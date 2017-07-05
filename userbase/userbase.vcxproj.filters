@@ -28,6 +28,9 @@
     <Filter Include="Memory">
       <UniqueIdentifier>{995bb9f4-45af-48f9-b47b-98c803d49b56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File">
+      <UniqueIdentifier>{ce410ddb-7b8e-4798-b00f-96d20d58446e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -48,6 +51,9 @@
     <ClInclude Include="UserMemory.h">
       <Filter>Memory</Filter>
     </ClInclude>
+    <ClInclude Include="UserFile.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -61,6 +67,9 @@
     </ClCompile>
     <ClCompile Include="UserMemory.cpp">
       <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="UserFile.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
