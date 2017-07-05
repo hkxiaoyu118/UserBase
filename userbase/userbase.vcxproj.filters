@@ -19,6 +19,15 @@
     <Filter Include="Reg">
       <UniqueIdentifier>{73ad2acd-2554-41e8-8487-c459d4ae642d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Log">
+      <UniqueIdentifier>{61c2d0d3-b148-4ffc-a1b7-89605f8a9549}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{34f5fa57-81d8-4860-8334-97c7886027f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{995bb9f4-45af-48f9-b47b-98c803d49b56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -36,6 +45,9 @@
     <ClInclude Include="UserReg.h">
       <Filter>Reg</Filter>
     </ClInclude>
+    <ClInclude Include="UserMemory.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -46,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="UserReg.cpp">
       <Filter>Reg</Filter>
+    </ClCompile>
+    <ClCompile Include="UserMemory.cpp">
+      <Filter>Memory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

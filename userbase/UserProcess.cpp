@@ -105,3 +105,29 @@ bool EnableRestorePriv()
 	return true;
 }
 
+bool PsGetPidsByProcessName(std::vector<DWORD> &vDwPids,const std::string &processName)
+{
+	vDwPids.clear();
+	HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+	if (INVALID_HANDLE_VALUE == hSnapshot) 
+	{
+		return false;
+	}
+
+	PROCESSENTRY32 pe = { sizeof(pe) };
+	for (BOOL fOk = Process32First(hSnapshot, &pe); fOk; fOk = Process32Next(hSnapshot, &pe))
+	{
+		if (!strcmpi(pe.szExeFile, processName.c_str())) 
+		{
+			DWORD pid = pe.th32ProcessID;
+			vDwPids.push_back(pid);
+		}
+	}
+	CloseHandle(hSnapshot);
+
+	if (vDwPids.size() != 0)
+		return true;
+
+	return false;
+}
+
