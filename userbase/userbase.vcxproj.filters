@@ -52,7 +52,10 @@
       <Filter>Memory</Filter>
     </ClInclude>
     <ClInclude Include="UserFile.h">
-      <Filter>头文件</Filter>
+      <Filter>File</Filter>
+    </ClInclude>
+    <ClInclude Include="Log\log_file.h">
+      <Filter>Log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -69,7 +72,10 @@
       <Filter>Memory</Filter>
     </ClCompile>
     <ClCompile Include="UserFile.cpp">
-      <Filter>源文件</Filter>
+      <Filter>File</Filter>
+    </ClCompile>
+    <ClCompile Include="Log\log_file.cpp">
+      <Filter>Log</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
