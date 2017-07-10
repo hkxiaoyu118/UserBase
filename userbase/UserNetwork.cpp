@@ -1,17 +1,11 @@
 #include "stdafx.h"
 #include "UserNetwork.h"
+#include "UserString.h"
 
 #pragma comment(lib, "Iphlpapi.lib")
 
 namespace ubase
 {
-	void Byte2Hex(unsigned char bData, unsigned char hex[])
-	{
-		int high = bData / 16, low = bData % 16;
-		hex[0] = (high < 10) ? ('0' + high) : ('A' + high - 10);
-		hex[1] = (low < 10) ? ('0' + low) : ('A' + low - 10);
-	}
-
 	bool GetLocalMac(std::vector<std::string> &vsMacAddress)
 	{
 		ULONG ulSize = 0;

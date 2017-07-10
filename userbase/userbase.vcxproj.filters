@@ -22,9 +22,6 @@
     <Filter Include="Log">
       <UniqueIdentifier>{61c2d0d3-b148-4ffc-a1b7-89605f8a9549}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource">
-      <UniqueIdentifier>{34f5fa57-81d8-4860-8334-97c7886027f4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Memory">
       <UniqueIdentifier>{995bb9f4-45af-48f9-b47b-98c803d49b56}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,12 @@
     </Filter>
     <Filter Include="Integer">
       <UniqueIdentifier>{2567bc0d-523c-46e1-9e7f-7197f5663ad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{e29c5cb1-6331-4c4a-b24b-3b8f34d13116}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\MD5">
+      <UniqueIdentifier>{e1fa5e99-b231-4325-8647-cbe1bcf93b31}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +78,9 @@
     <ClInclude Include="UserInteger.h">
       <Filter>Integer</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\MD5.h">
+      <Filter>ThirdParty\MD5</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -103,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="UserInteger.cpp">
       <Filter>Integer</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\MD5.cpp">
+      <Filter>ThirdParty\MD5</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

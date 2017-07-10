@@ -84,4 +84,23 @@ namespace ubase
 		}
 		return randomStr;
 	}
+
+	void Byte2Hex(unsigned char bData, unsigned char hex[])
+	{
+		int high = bData / 16, low = bData % 16;
+		hex[0] = (high < 10) ? ('0' + high) : ('A' + high - 10);
+		hex[1] = (low < 10) ? ('0' + low) : ('A' + low - 10);
+	}
+
+	std::string StrCvtByteToString(unsigned char *buffer, unsigned int bufferSize)
+	{
+		std::string result = "";
+		for (int i = 0; i < bufferSize; i++)
+		{
+			unsigned char hexBuf[3] = { 0 };
+			Byte2Hex(buffer[i], hexBuf);
+			result = result + (char *)hexBuf;
+		}
+		return result;
+	}
 }

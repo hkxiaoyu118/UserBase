@@ -7,6 +7,13 @@
 
 namespace ubase
 {
+	//文件的IO
+	bool FsReadFile(const std::string &filePath, std::string &data);//读取文件
+	bool FsWriteFile(const std::string &filePath, std::string &data);//写入文件
+
+	//文件校验
+	std::string FsGetFileMD5(std::string &filePath);//获取文件的MD5值
+
 	//系统特殊路径的获取(路径带反斜杠)
 	std::string FsGetDesktopPath();//获取文件夹的绝对路径
 	std::string FsGetDocumentPath();//获取文档文件夹的绝对路径
@@ -23,7 +30,7 @@ namespace ubase
 	std::string FsGetFileExt(IN const std::string& strFilePath);//获取文件的扩展名
 	std::string FsGetFilePath(IN const std::string& strFilePath);//通过文件全路径获取文件的路径,获取的路径带反斜杠
 	void FsAddBackslash(IN OUT std::string& strDir);//路径上面加上反斜杠
-	void FsDelFillBackslash(IN OUT std::string& strDir);//去掉路径后面的反斜杠
+	void FsDelBackslash(IN OUT std::string& strDir);//去掉路径后面的反斜杠
 	bool FsIsDir(IN const std::string& strPath);//判断路径是否是文件夹
 	bool FsIsFile(IN const std::string& strFilePath);//判断路径是否是文件
 

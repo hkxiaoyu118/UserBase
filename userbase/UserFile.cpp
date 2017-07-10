@@ -1,10 +1,63 @@
 ﻿#include "stdafx.h"
 #include "UserFile.h"
+#include "ThirdParty/MD5.h"
+#include "UserString.h"
 
 #pragma comment(lib,"Shlwapi.lib")
 
 namespace ubase
 {
+	bool FsReadFile(const std::string &filePath, std::string &data)
+	{
+		bool result = false;
+		HANDLE hFile = CreateFile(filePath.c_str(), GENERIC_READ, NULL, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+		if (hFile != INVALID_HANDLE_VALUE)
+		{
+			DWORD lowSize, readCount = 0;
+			lowSize = GetFileSize(hFile, NULL);
+			data.resize(lowSize);
+			if (ReadFile(hFile, (char *)data.c_str(), lowSize, &readCount, NULL))
+			{
+				if (readCount == lowSize)
+					result = true;
+			}
+			CloseHandle(hFile);
+		}
+		return result;
+	}
+
+	bool FsWriteFile(const std::string &filePath, std::string &data)
+	{
+		bool result = false;
+		HANDLE hFile = CreateFile(filePath.c_str(), GENERIC_WRITE, NULL, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+		if (hFile != INVALID_HANDLE_VALUE)
+		{
+			DWORD writeCount = 0;
+			if (WriteFile(hFile, (char *)data.c_str(), data.length(), &writeCount, NULL))
+			{
+				if (writeCount == data.length())
+					result = true;
+			}
+			CloseHandle(hFile);
+		}
+		return result;
+	}
+
+	std::string FsGetFileMD5(std::string &filePath)
+	{
+		std::string strMd5 = "";
+		std::string data;
+		if (FsReadFile(filePath, data))
+		{
+			thirdparty::MD5_CTX md5;
+			unsigned char md5Buffer[16] = { 0 };
+			md5.MD5Update((unsigned char *)data.c_str(), data.length());
+			md5.MD5Final(md5Buffer);
+			strMd5 = ubase::StrCvtByteToString(md5Buffer, 16);
+		}
+		return strMd5;
+	}
+
 	std::string FsGetDesktopPath()
 	{
 		return FsGetCSIDLPath(CSIDL_DESKTOPDIRECTORY);
@@ -23,7 +76,7 @@ namespace ubase
 	std::string FsGetCSIDLPath(IN int nCSIDL)
 	{
 		std::string strPath;
-		TCHAR szBuf[1025];
+		TCHAR szBuf[1025] = {0};
 		if (::SHGetSpecialFolderPath(NULL, szBuf, nCSIDL, TRUE))
 			strPath = szBuf;
 		FsAddBackslash(strPath);
@@ -120,7 +173,7 @@ namespace ubase
 			strDir += "\\";
 	}
 
-	void FsDelFillBackslash(IN OUT std::string& strDir)
+	void FsDelBackslash(IN OUT std::string& strDir)
 	{
 		if (strDir.empty())
 			return;
