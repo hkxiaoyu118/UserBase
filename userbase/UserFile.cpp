@@ -10,7 +10,6 @@ namespace ubase
 		return FsGetCSIDLPath(CSIDL_DESKTOPDIRECTORY);
 	}
 
-
 	std::string FsGetDocumentPath()
 	{
 		return FsGetCSIDLPath(CSIDL_PERSONAL);

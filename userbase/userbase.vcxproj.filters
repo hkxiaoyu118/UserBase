@@ -31,6 +31,15 @@
     <Filter Include="File">
       <UniqueIdentifier>{ce410ddb-7b8e-4798-b00f-96d20d58446e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{07cb6e20-03c2-4959-952c-79a16bccba19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="String">
+      <UniqueIdentifier>{a891f5f3-ebce-46aa-ab67-b1cae83a3847}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Integer">
+      <UniqueIdentifier>{2567bc0d-523c-46e1-9e7f-7197f5663ad3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -57,6 +66,15 @@
     <ClInclude Include="Log\log_file.h">
       <Filter>Log</Filter>
     </ClInclude>
+    <ClInclude Include="UserNetwork.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="UserString.h">
+      <Filter>String</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInteger.h">
+      <Filter>Integer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -76,6 +94,15 @@
     </ClCompile>
     <ClCompile Include="Log\log_file.cpp">
       <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="UserNetwork.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="UserString.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInteger.cpp">
+      <Filter>Integer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
