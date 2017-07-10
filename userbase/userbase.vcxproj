@@ -130,6 +130,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="UserFile.h" />
     <ClInclude Include="UserMemory.h" />
+    <ClInclude Include="UserNetwork.h" />
     <ClInclude Include="UserProcess.h" />
     <ClInclude Include="UserReg.h" />
   </ItemGroup>
@@ -142,6 +143,7 @@
     </ClCompile>
     <ClCompile Include="UserFile.cpp" />
     <ClCompile Include="UserMemory.cpp" />
+    <ClCompile Include="UserNetwork.cpp" />
     <ClCompile Include="UserProcess.cpp" />
     <ClCompile Include="UserReg.cpp" />
   </ItemGroup>
