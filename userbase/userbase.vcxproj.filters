@@ -31,9 +31,6 @@
     <Filter Include="File">
       <UniqueIdentifier>{ce410ddb-7b8e-4798-b00f-96d20d58446e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Network">
-      <UniqueIdentifier>{07cb6e20-03c2-4959-952c-79a16bccba19}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -57,8 +54,8 @@
     <ClInclude Include="UserFile.h">
       <Filter>File</Filter>
     </ClInclude>
-    <ClInclude Include="UserNetwork.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="Log\log_file.h">
+      <Filter>Log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -77,8 +74,8 @@
     <ClCompile Include="UserFile.cpp">
       <Filter>File</Filter>
     </ClCompile>
-    <ClCompile Include="UserNetwork.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="Log\log_file.cpp">
+      <Filter>Log</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
