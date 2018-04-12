@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "log_file.h"
 #include <string>
 #include <vector>

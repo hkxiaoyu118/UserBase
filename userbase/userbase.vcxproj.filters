@@ -81,6 +81,12 @@
     <ClInclude Include="ThirdParty\MD5.h">
       <Filter>ThirdParty\MD5</Filter>
     </ClInclude>
+    <ClInclude Include="NetWork\FtpUtility.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="NetWork\HttpUnity.h">
+      <Filter>Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -112,6 +118,12 @@
     </ClCompile>
     <ClCompile Include="ThirdParty\MD5.cpp">
       <Filter>ThirdParty\MD5</Filter>
+    </ClCompile>
+    <ClCompile Include="NetWork\FtpUtility.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="NetWork\HttpUnity.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
