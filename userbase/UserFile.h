@@ -48,6 +48,9 @@ namespace ubase
 	void FsForceDeleteDir(IN const std::string& strDir);//循环删除文件夹
 
 	//文件自删除
-	BOOL RebootDelete(char *pszFileName);//重启自删除文件
-	BOOL DelSelf(int iType);//通过构造批处理文件的方式自删除
+	BOOL FsRebootDelete(char *pszFileName);//重启自删除文件
+	BOOL FsDelSelf(int iType);//通过构造批处理文件的方式自删除
+
+	//遍历文件
+	void FsErgodicFiles(char *pszDirectory, std::vector<std::string> &fileVector);//遍历文件获取指定文件夹下所有文件的路径
 };
