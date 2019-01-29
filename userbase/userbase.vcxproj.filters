@@ -43,6 +43,12 @@
     <Filter Include="ThirdParty\MD5">
       <UniqueIdentifier>{e1fa5e99-b231-4325-8647-cbe1bcf93b31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PE">
+      <UniqueIdentifier>{83788b42-e54f-4aba-82b3-52080762ccdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crypto">
+      <UniqueIdentifier>{7f9dc2a3-262d-4173-9fbe-2fe89e19f770}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -87,6 +93,21 @@
     <ClInclude Include="NetWork\HttpUnity.h">
       <Filter>Network</Filter>
     </ClInclude>
+    <ClInclude Include="Crypto\aes_helper.h">
+      <Filter>Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="Crypto\base64.h">
+      <Filter>Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="PE\MmLoadDll.h">
+      <Filter>PE</Filter>
+    </ClInclude>
+    <ClInclude Include="PE\ApcInject.h">
+      <Filter>PE</Filter>
+    </ClInclude>
+    <ClInclude Include="PE\BypassUAC.h">
+      <Filter>PE</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -124,6 +145,21 @@
     </ClCompile>
     <ClCompile Include="NetWork\HttpUnity.cpp">
       <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Crypto\aes_helper.cpp">
+      <Filter>Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="Crypto\base64.cpp">
+      <Filter>Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="PE\MmLoadDll.cpp">
+      <Filter>PE</Filter>
+    </ClCompile>
+    <ClCompile Include="PE\ApcInject.cpp">
+      <Filter>PE</Filter>
+    </ClCompile>
+    <ClCompile Include="PE\BypassUAC.cpp">
+      <Filter>PE</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

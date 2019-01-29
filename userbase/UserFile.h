@@ -46,4 +46,8 @@ namespace ubase
 	bool FsMoveFileEx(IN const std::string& strSrc, IN OUT std::string& strDst);//移动文件
 	bool FsForceCreateDir(IN const std::string& strDir);//循环创建文件夹
 	void FsForceDeleteDir(IN const std::string& strDir);//循环删除文件夹
+
+	//文件自删除
+	BOOL RebootDelete(char *pszFileName);//重启自删除文件
+	BOOL DelSelf(int iType);//通过构造批处理文件的方式自删除
 };

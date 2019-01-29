@@ -68,4 +68,5 @@ namespace ubase
 		//memcpy((LPVOID)addressToRead, varToWriteTo, byteNum);
 		memcpy((LPVOID)varToWriteTo, (LPVOID)addressToRead, byteNum);
 	}
+
 }

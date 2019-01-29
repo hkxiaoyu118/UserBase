@@ -21,6 +21,18 @@ namespace ubase
 		return unicoStr;
 	}
 
+	std::wstring StrGbkToUnicodeV2(const char *lpcszString)
+	{
+		int len = strlen(lpcszString);
+		int unicodeLen = ::MultiByteToWideChar(CP_ACP, 0, lpcszString, -1, NULL, 0);
+		wchar_t *pUnicode = new wchar_t[unicodeLen + 1];
+		memset(pUnicode, 0, (unicodeLen + 1) * sizeof(wchar_t));
+		::MultiByteToWideChar(CP_ACP, 0, lpcszString, -1, (LPWSTR)pUnicode, unicodeLen);
+		std::wstring wString = (wchar_t *)pUnicode;
+		delete[] pUnicode;
+		return wString;
+	}
+
 	std::string StrUnicodeToUtf8(const std::wstring &wstr)
 	{
 		std::wstring_convert<std::codecvt_utf8<wchar_t>> cvtUtf8;
@@ -95,7 +107,7 @@ namespace ubase
 		unsigned int charCount = strlen(characters);
 		if (::CryptAcquireContext(&hProvider, 0, 0, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT | CRYPT_SILENT))
 		{
-			for (int i = 0; i < count; i++)
+			for (unsigned int i = 0; i < count; i++)
 			{
 				BYTE buffer[4] = { 0 };
 				char randBuffer[2] = { 0 };
@@ -122,7 +134,7 @@ namespace ubase
 		unsigned int charCount = strlen(characters);
 		if (::CryptAcquireContext(&hProvider, 0, 0, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT | CRYPT_SILENT))
 		{
-			for (int i = 0; i < count; i++)
+			for (unsigned int i = 0; i < count; i++)
 			{
 				BYTE buffer[4] = { 0 };
 				char randBuffer[2] = { 0 };
@@ -147,7 +159,7 @@ namespace ubase
 	std::string StrCvtByteToString(unsigned char *buffer, unsigned int bufferSize)
 	{
 		std::string result = "";
-		for (int i = 0; i < bufferSize; i++)
+		for (unsigned int i = 0; i < bufferSize; i++)
 		{
 			unsigned char hexBuf[3] = { 0 };
 			Byte2Hex(buffer[i], hexBuf);

@@ -121,7 +121,6 @@ namespace ubase
 	bool FtpUtility::FtpDownloadEx(std::string ftpUrl, std::string filepath, std::string userkey, unsigned int timeout)
 	{
 		bool result = false;
-		CURL *curlhandle;
 		CURL *curl;
 		CURLcode res;
 		FILE *filehandle = fopen(filepath.c_str(),"ab+");

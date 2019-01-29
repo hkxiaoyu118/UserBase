@@ -10,6 +10,7 @@ namespace ubase
 {
 	std::string StrUnicodeToGbk(const std::wstring &wstr);//unicode转gbk
 	std::wstring StrGbkToUnicode(const std::string &str);//gbk转unicode
+	std::wstring StrGbkToUnicodeV2(const char *lpcszString);//gbk转unicode版本2(用的windows的api函数)
 	std::string StrUnicodeToUtf8(const std::wstring &wstr);//unicode转utf8
 	std::wstring StrUtf8ToUnicode(const std::string &str);//utf8转unicode
 	std::string StrUtf8ToGbk(const std::string &str);//utf8转gbk
