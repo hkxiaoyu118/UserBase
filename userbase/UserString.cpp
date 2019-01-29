@@ -35,6 +35,58 @@ namespace ubase
 		return unicoStr;
 	}
 
+	std::string StrUtf8ToGbk(const std::string &str)
+	{
+		int len = MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, NULL, 0);
+		unsigned short * wszGBK = new unsigned short[len + 1];
+		memset(wszGBK, 0, len * 2 + 2);
+		MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, (LPWSTR)wszGBK, len);
+
+		len = WideCharToMultiByte(CP_ACP, 0, (LPWSTR)wszGBK, -1, NULL, 0, NULL, NULL);
+		char *szGBK = new char[len + 1];
+		memset(szGBK, 0, len + 1);
+		WideCharToMultiByte(CP_ACP, 0, (LPWSTR)wszGBK, -1, szGBK, len, NULL, NULL);
+		std::string strTemp(szGBK);
+		delete[]szGBK;
+		delete[]wszGBK;
+		return strTemp;
+	}
+
+	std::string StrGbkToUtf8(const std::string &str)
+	{
+		int n = MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, NULL, 0);
+		WCHAR *str1 = new WCHAR[n + 1];
+		MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, str1, n);
+		n = WideCharToMultiByte(CP_UTF8, 0, str1, -1, NULL, 0, NULL, NULL);
+		char *utf8Str = new char[n + 1];
+		WideCharToMultiByte(CP_UTF8, 0, str1, -1, utf8Str, n, NULL, NULL);
+		std::string result(utf8Str);
+		delete[]utf8Str;
+		delete[]str1;
+		return result;
+	}
+
+	std::string &StdStrFormat(std::string & _str, const char * _Format, ...)
+	{
+		std::string tmp;
+
+		va_list marker = NULL;
+		va_start(marker, _Format);
+
+		size_t num_of_chars = _vscprintf(_Format, marker);
+
+		if (num_of_chars > tmp.capacity()) {
+			tmp.resize(num_of_chars + 1);
+		}
+
+		vsprintf_s((char *)tmp.data(), tmp.capacity(), _Format, marker);
+
+		va_end(marker);
+
+		_str = tmp.c_str();
+		return _str;
+	}
+
 	std::string StrGetRandomStr(unsigned int count)
 	{
 		char *characters = "abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ123456789";
@@ -102,5 +154,20 @@ namespace ubase
 			result = result + (char *)hexBuf;
 		}
 		return result;
+	}
+
+	std::string StrTrim(std::string &str)
+	{
+		std::string::size_type pos = str.find_last_not_of(' ');
+		if (pos != std::string::npos)
+		{
+			str.erase(pos + 1);
+			pos = str.find_first_not_of(' ');
+			if (pos != std::string::npos)
+				str.erase(0, pos);
+		}
+		else
+			str.erase(str.begin(), str.end());
+		return str;
 	}
 }
