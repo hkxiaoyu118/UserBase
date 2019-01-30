@@ -132,7 +132,9 @@
     <ClInclude Include="NetWork\HttpUnity.h" />
     <ClInclude Include="PE\ApcInject.h" />
     <ClInclude Include="PE\BypassUAC.h" />
+    <ClInclude Include="PE\DisguiseProcess.h" />
     <ClInclude Include="PE\MmLoadDll.h" />
+    <ClInclude Include="PE\ReplaceProcess.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ThirdParty\MD5.h" />
@@ -143,6 +145,9 @@
     <ClInclude Include="UserProcess.h" />
     <ClInclude Include="UserReg.h" />
     <ClInclude Include="UserString.h" />
+    <ClInclude Include="ZLib\zlib\zconf.h" />
+    <ClInclude Include="ZLib\zlib\zlib.h" />
+    <ClInclude Include="ZLib\zlib_compress.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Crypto\aes_helper.cpp" />
@@ -152,7 +157,9 @@
     <ClCompile Include="NetWork\HttpUnity.cpp" />
     <ClCompile Include="PE\ApcInject.cpp" />
     <ClCompile Include="PE\BypassUAC.cpp" />
+    <ClCompile Include="PE\DisguiseProcess.cpp" />
     <ClCompile Include="PE\MmLoadDll.cpp" />
+    <ClCompile Include="PE\ReplaceProcess.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -167,6 +174,7 @@
     <ClCompile Include="UserProcess.cpp" />
     <ClCompile Include="UserReg.cpp" />
     <ClCompile Include="UserString.cpp" />
+    <ClCompile Include="ZLib\zlib_compress.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

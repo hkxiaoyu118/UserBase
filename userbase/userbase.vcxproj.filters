@@ -49,6 +49,9 @@
     <Filter Include="Crypto">
       <UniqueIdentifier>{7f9dc2a3-262d-4173-9fbe-2fe89e19f770}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ZLib">
+      <UniqueIdentifier>{9e2096b6-cdd7-4866-85f4-30cbd35abc0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -105,6 +108,21 @@
     <ClInclude Include="PE\BypassUAC.h">
       <Filter>PE</Filter>
     </ClInclude>
+    <ClInclude Include="PE\DisguiseProcess.h">
+      <Filter>PE</Filter>
+    </ClInclude>
+    <ClInclude Include="PE\ReplaceProcess.h">
+      <Filter>PE</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\zlib_compress.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\zlib\zconf.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\zlib\zlib.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -157,6 +175,15 @@
     </ClCompile>
     <ClCompile Include="PE\BypassUAC.cpp">
       <Filter>PE</Filter>
+    </ClCompile>
+    <ClCompile Include="PE\DisguiseProcess.cpp">
+      <Filter>PE</Filter>
+    </ClCompile>
+    <ClCompile Include="PE\ReplaceProcess.cpp">
+      <Filter>PE</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\zlib_compress.cpp">
+      <Filter>ZLib</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -53,4 +53,8 @@ namespace ubase
 
 	//遍历文件
 	void FsErgodicFiles(char *pszDirectory, std::vector<std::string> &fileVector);//遍历文件获取指定文件夹下所有文件的路径
+
+	//文件压缩
+	bool CompressData(BYTE *pUncompressData, DWORD dwUncompressDataLength, BYTE **ppCompressData, DWORD *pdwCompressDataLength);//压缩数据,返回指针,需要自行释放内存
+	bool UncompressData(BYTE *pCompressData, DWORD dwCompressDataLength, BYTE **ppUncompressData, DWORD *pdwUncompressDataLength);//解压缩数据,返回指针,需要自行释放内存
 };
