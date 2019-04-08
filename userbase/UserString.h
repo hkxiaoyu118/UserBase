@@ -21,4 +21,6 @@ namespace ubase
 	void Byte2Hex(unsigned char bData, unsigned char hex[]);//字符转16进制显示
 	std::string StrCvtByteToString(unsigned char *buffer, unsigned int bufferSize);//将内存字符以16进制的形式表现出来
 	std::string StrTrim(std::string &str);//去掉std::string字符串左右两边的空格
+	std::string BinToHex(const std::string& strBin, bool bIsUpper = false);
+	std::string HexToBin(const std::string& strHex);
 }
