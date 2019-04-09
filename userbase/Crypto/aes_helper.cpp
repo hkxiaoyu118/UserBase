@@ -1,5 +1,6 @@
 #include "aes_helper.h"
 #include "base64.h"
+#include "../UserString.h"
 //#include "VMProtectSDK.h"
 
 #pragma comment(lib,"Lib/libcrypto.lib")
@@ -118,4 +119,121 @@ std::string cbcDecoder(std::string strtext, std::string key)
 		result = detext;
 	}
 	return result;
+}
+
+int encrypt(unsigned char* plaintext, int plaintext_len, unsigned char* key,
+	unsigned char* iv, unsigned char* ciphertext)
+{
+	EVP_CIPHER_CTX* ctx;
+
+	int len;
+
+	int ciphertext_len;
+
+	/* Create and initialise the context */
+	if (!(ctx = EVP_CIPHER_CTX_new()))
+		return -1;
+
+	/* Initialise the encryption operation. IMPORTANT - ensure you use a key
+	 * and IV size appropriate for your cipher
+	 * In this example we are using 256 bit AES (i.e. a 256 bit key). The
+	 * IV size for *most* modes is the same as the block size. For AES this
+	 * is 128 bits */
+	if (1 != EVP_EncryptInit_ex(ctx, EVP_aes_128_ctr(), NULL, key, iv))
+		return -1;
+
+	/* Provide the message to be encrypted, and obtain the encrypted output.
+	 * EVP_EncryptUpdate can be called multiple times if necessary
+	 */
+	if (1 != EVP_EncryptUpdate(ctx, ciphertext, &len, plaintext, plaintext_len))
+		return -1;
+	ciphertext_len = len;
+
+	/* Finalise the encryption. Further ciphertext bytes may be written at
+	 * this stage.
+	 */
+	if (1 != EVP_EncryptFinal_ex(ctx, ciphertext + len, &len))
+		return -1;
+	ciphertext_len += len;
+
+	/* Clean up */
+	EVP_CIPHER_CTX_free(ctx);
+
+	return ciphertext_len;
+}
+
+int decrypt(unsigned char* ciphertext, int ciphertext_len, unsigned char* key,
+	unsigned char* iv, unsigned char* plaintext)
+{
+	EVP_CIPHER_CTX* ctx;
+
+	int len;
+
+	int plaintext_len;
+
+	/* Create and initialise the context */
+	if (!(ctx = EVP_CIPHER_CTX_new()))
+		return -1;
+
+	/* Initialise the decryption operation. IMPORTANT - ensure you use a key
+	 * and IV size appropriate for your cipher
+	 * In this example we are using 256 bit AES (i.e. a 256 bit key). The
+	 * IV size for *most* modes is the same as the block size. For AES this
+	 * is 128 bits */
+	if (1 != EVP_DecryptInit_ex(ctx, EVP_aes_128_ctr(), NULL, key, iv))
+		return -1;
+
+	/* Provide the message to be decrypted, and obtain the plaintext output.
+	 * EVP_DecryptUpdate can be called multiple times if necessary
+	 */
+	if (1 != EVP_DecryptUpdate(ctx, plaintext, &len, ciphertext, ciphertext_len))
+		return -1;
+	plaintext_len = len;
+
+	/* Finalise the decryption. Further plaintext bytes may be written at
+	 * this stage.
+	 */
+	if (1 != EVP_DecryptFinal_ex(ctx, plaintext + len, &len))
+		return -1;
+	plaintext_len += len;
+
+	/* Clean up */
+	EVP_CIPHER_CTX_free(ctx);
+
+	return plaintext_len;
+}
+
+std::string ctrEncoder(std::string data, std::string key)
+{
+	std::string iv = ubase::StrGetRandomStr(16);
+	std::string resultData;
+	std::string cryptData;
+	cryptData.resize(data.length());
+	int result = encrypt((unsigned char*)data.c_str(), data.length(), (unsigned char*)key.c_str(), (unsigned char*)iv.c_str(), (unsigned char*)cryptData.c_str());
+	if (result != -1)
+	{
+		resultData.resize(data.length() + iv.size());
+		memcpy((char*)resultData.c_str(), iv.c_str(), iv.size());
+		memcpy((char*)(resultData.c_str() + iv.size()), cryptData.c_str(), cryptData.length());
+		resultData = ubase::BinToHex(resultData);
+	}
+	return resultData;
+}
+
+std::string ctrDecoder(std::string data, std::string key)
+{
+	std::string resultData;
+	std::string binData = ubase::HexToBin(data);
+	if (binData.empty() == false)
+	{
+		std::string iv = binData.substr(0, 16);//前16个字符是
+		std::string trueData = binData.substr(16);//后面真正的数据
+		resultData.resize(trueData.length());
+		int result = decrypt((unsigned char*)trueData.c_str(), trueData.length(), (unsigned char*)key.c_str(), (unsigned char*)iv.c_str(), (unsigned char*)resultData.c_str());
+		if (result != -1)
+		{
+			;
+		}
+	}
+	return resultData;
 }

@@ -183,7 +183,7 @@ namespace ubase
 		return str;
 	}
 
-	std::string BinToHex(const std::string& strBin, bool bIsUpper = false)
+	std::string BinToHex(const std::string& strBin, bool bIsUpper)
 	{
 		std::string strHex;
 		strHex.resize(strBin.size() * 2);
