@@ -145,6 +145,7 @@
     <ClInclude Include="UserProcess.h" />
     <ClInclude Include="UserReg.h" />
     <ClInclude Include="UserString.h" />
+    <ClInclude Include="UserTimer.h" />
     <ClInclude Include="ZLib\zlib\zconf.h" />
     <ClInclude Include="ZLib\zlib\zlib.h" />
     <ClInclude Include="ZLib\zlib_compress.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="UserProcess.cpp" />
     <ClCompile Include="UserReg.cpp" />
     <ClCompile Include="UserString.cpp" />
+    <ClCompile Include="UserTimer.cpp" />
     <ClCompile Include="ZLib\zlib_compress.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

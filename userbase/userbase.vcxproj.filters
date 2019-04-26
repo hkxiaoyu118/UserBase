@@ -52,6 +52,9 @@
     <Filter Include="ZLib">
       <UniqueIdentifier>{9e2096b6-cdd7-4866-85f4-30cbd35abc0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{b4730511-7ea4-408c-a22f-99f34a77fa37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -123,6 +126,9 @@
     <ClInclude Include="ZLib\zlib\zlib.h">
       <Filter>ZLib</Filter>
     </ClInclude>
+    <ClInclude Include="UserTimer.h">
+      <Filter>Time</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -184,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="ZLib\zlib_compress.cpp">
       <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="UserTimer.cpp">
+      <Filter>Time</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
