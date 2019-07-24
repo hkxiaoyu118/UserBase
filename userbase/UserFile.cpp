@@ -102,6 +102,14 @@ namespace ubase
 		return FsGetCSIDLPath(CSIDL_SYSTEM);
 	}
 
+	std::string FsGetProcessFullPath()
+	{
+		TCHAR szAppDir[1025];
+		GetModuleFileName(NULL, szAppDir, 1024);
+		std::string strPath(szAppDir);
+		return strPath;
+	}
+
 	std::string FsGetProcessPath()
 	{
 		TCHAR szAppDir[1025];

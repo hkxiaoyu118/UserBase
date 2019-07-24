@@ -24,6 +24,7 @@ namespace ubase
 	std::string FsGetCSIDLPath(IN int nCSIDL);//获取特殊路径--SHGetSpecialFolderPath实现
 
 	//与文件路径有关的操作
+	std::string FsGetProcessFullPath();//获取进程的PE文件全路径
 	std::string FsGetProcessPath();//获取进程的路径带反斜杠
 	std::string FsGetProcessFullPath();//获取进程的全路径包括进程的PE文件
 	std::string FsGetFileName(IN const std::string& strFilePath);//根据文件的全路径获取文件的名称
