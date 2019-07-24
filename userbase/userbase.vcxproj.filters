@@ -55,6 +55,9 @@
     <Filter Include="Time">
       <UniqueIdentifier>{b4730511-7ea4-408c-a22f-99f34a77fa37}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\ConvertUTF">
+      <UniqueIdentifier>{911d9b1f-f77d-49b4-94d1-bfdab29a39fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -129,6 +132,9 @@
     <ClInclude Include="UserTimer.h">
       <Filter>Time</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\ConvertUTF\ConvertUTF.h">
+      <Filter>ThirdParty\ConvertUTF</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -194,5 +200,13 @@
     <ClCompile Include="UserTimer.cpp">
       <Filter>Time</Filter>
     </ClCompile>
+    <ClCompile Include="ThirdParty\ConvertUTF\ConvertUTF.c">
+      <Filter>ThirdParty\ConvertUTF</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ThirdParty\ConvertUTF\readme.txt">
+      <Filter>ThirdParty\ConvertUTF</Filter>
+    </Text>
   </ItemGroup>
 </Project>

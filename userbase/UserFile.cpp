@@ -119,14 +119,6 @@ namespace ubase
 		return strPath;
 	}
 
-	std::string FsGetProcessFullPath()
-	{
-		TCHAR szAppDir[1025];
-		GetModuleFileName(NULL, szAppDir, 1024);
-		std::string strFileName(szAppDir);
-		return strFileName;
-	}
-
 	std::string FsGetFileName(IN const std::string& strFilePath)
 	{
 		std::string fileName = "";
