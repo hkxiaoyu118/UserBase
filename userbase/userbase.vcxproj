@@ -137,8 +137,14 @@
     <ClInclude Include="PE\ReplaceProcess.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="ThirdParty\CmdLineArgs\CmdLineArgs.h" />
     <ClInclude Include="ThirdParty\ConvertUTF\ConvertUTF.h" />
+    <ClInclude Include="ThirdParty\Hardware\cpu.h" />
     <ClInclude Include="ThirdParty\MD5.h" />
+    <ClInclude Include="ThirdParty\modp_b64\modp_b64.h" />
+    <ClInclude Include="ThirdParty\modp_b64\modp_b64_data.h" />
+    <ClInclude Include="ThirdParty\Network\network_util.h" />
+    <ClInclude Include="ThirdParty\Network\nio_base.h" />
     <ClInclude Include="UserFile.h" />
     <ClInclude Include="UserInteger.h" />
     <ClInclude Include="UserMemory.h" />
@@ -168,8 +174,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ThirdParty\CmdLineArgs\CmdLineArgs.cpp" />
     <ClCompile Include="ThirdParty\ConvertUTF\ConvertUTF.c" />
+    <ClCompile Include="ThirdParty\Hardware\cpu.cpp" />
     <ClCompile Include="ThirdParty\MD5.cpp" />
+    <ClCompile Include="ThirdParty\modp_b64\modp_b64.cc" />
+    <ClCompile Include="ThirdParty\Network\network_util.cpp" />
     <ClCompile Include="UserFile.cpp" />
     <ClCompile Include="UserInteger.cpp" />
     <ClCompile Include="UserMemory.cpp" />
@@ -182,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ThirdParty\ConvertUTF\readme.txt" />
+    <Text Include="ThirdParty\modp_b64\Readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

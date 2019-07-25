@@ -49,4 +49,7 @@ namespace ubase
 	size_t StrWStringReplaceAll(const std::wstring& find, const std::wstring& replace, std::wstring& output);//替换wstring类型字符串中的所有文本
 	std::list<std::string> StrStringTokenize(const char* input, const char* delimitor);//找到string类型字符串中所有通过delimitor标识分割的元素
 	std::list<std::wstring> StrWStringTokenize(const wchar_t* input, const wchar_t* delimitor);//找到wstring类型字符串中所有通过delimitor标识分割的元素
+
+	bool StrBase64Encode(const std::string& input, std::string* output);//base64编码
+	bool StrBase64Decode(const std::string& input, std::string* output);//base64解码
 }

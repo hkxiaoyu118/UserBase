@@ -58,6 +58,18 @@
     <Filter Include="ThirdParty\ConvertUTF">
       <UniqueIdentifier>{911d9b1f-f77d-49b4-94d1-bfdab29a39fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\modp_b64">
+      <UniqueIdentifier>{30a32de9-2d5b-4a24-95f4-d67300ccf7f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\CmdLineArgs">
+      <UniqueIdentifier>{79e9c586-5740-4043-9bd7-17ebbd4effe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\Network">
+      <UniqueIdentifier>{d277ec92-2a8e-486d-ad34-1d9c53959efc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\Hardware">
+      <UniqueIdentifier>{cbefdcb7-4873-4eb5-8b16-276f3642b9a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -135,6 +147,24 @@
     <ClInclude Include="ThirdParty\ConvertUTF\ConvertUTF.h">
       <Filter>ThirdParty\ConvertUTF</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\modp_b64\modp_b64.h">
+      <Filter>ThirdParty\modp_b64</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\modp_b64\modp_b64_data.h">
+      <Filter>ThirdParty\modp_b64</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\CmdLineArgs\CmdLineArgs.h">
+      <Filter>ThirdParty\CmdLineArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\Network\network_util.h">
+      <Filter>ThirdParty\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\Network\nio_base.h">
+      <Filter>ThirdParty\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\Hardware\cpu.h">
+      <Filter>ThirdParty\Hardware</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -203,10 +233,25 @@
     <ClCompile Include="ThirdParty\ConvertUTF\ConvertUTF.c">
       <Filter>ThirdParty\ConvertUTF</Filter>
     </ClCompile>
+    <ClCompile Include="ThirdParty\modp_b64\modp_b64.cc">
+      <Filter>ThirdParty\modp_b64</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\CmdLineArgs\CmdLineArgs.cpp">
+      <Filter>ThirdParty\CmdLineArgs</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Network\network_util.cpp">
+      <Filter>ThirdParty\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Hardware\cpu.cpp">
+      <Filter>ThirdParty\Hardware</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ThirdParty\ConvertUTF\readme.txt">
       <Filter>ThirdParty\ConvertUTF</Filter>
+    </Text>
+    <Text Include="ThirdParty\modp_b64\Readme.txt">
+      <Filter>ThirdParty\modp_b64</Filter>
     </Text>
   </ItemGroup>
 </Project>
