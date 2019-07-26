@@ -1,4 +1,4 @@
-# **userbase ---windows应用层c/c++基础库**
+# userbase ---windows应用层c/c++基础库
 
 1.windows下的API函数太多，很难记住，用过的函数一段时间不用，很快就会忘记用法，主要还是windows下的API函数量太多，用起来太繁琐，不易于使用，因此总结了一套便于使用的常用函数
 

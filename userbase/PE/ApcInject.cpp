@@ -1,14 +1,5 @@
 #include "ApcInject.h"
 
-
-void ShowError(char *pszText)
-{
-	char szErr[MAX_PATH] = { 0 };
-	::wsprintf(szErr, "%s Error[%d]\n", pszText);
-	OutputDebugStringA(szErr);
-}
-
-
 // 根据进程名称获取PID
 DWORD GetProcessIdByProcessName(char *pszProcessName)
 {
@@ -23,7 +14,6 @@ DWORD GetProcessIdByProcessName(char *pszProcessName)
 	hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 	if (NULL == hSnapshot)
 	{
-		ShowError("CreateToolhelp32Snapshot");
 		return dwProcessId;
 	}
 
@@ -62,7 +52,6 @@ BOOL GetAllThreadIdByProcessId(DWORD dwProcessId, DWORD **ppThreadId, DWORD *pdw
 		pThreadId = new DWORD[dwBufferLength];
 		if (NULL == pThreadId)
 		{
-			ShowError("new");
 			bRet = FALSE;
 			break;
 		}
@@ -74,7 +63,6 @@ BOOL GetAllThreadIdByProcessId(DWORD dwProcessId, DWORD **ppThreadId, DWORD *pdw
 		hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
 		if (NULL == hSnapshot)
 		{
-			ShowError("CreateToolhelp32Snapshot");
 			bRet = FALSE;
 			break;
 		}
@@ -149,7 +137,6 @@ BOOL ApcInjectDll(char *pszProcessName, char *pszDllName)
 		hProcess = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwProcessId);
 		if (NULL == hProcess)
 		{
-			ShowError("OpenProcess");
 			bRet = FALSE;
 			break;
 		}
@@ -158,7 +145,6 @@ BOOL ApcInjectDll(char *pszProcessName, char *pszDllName)
 		pBaseAddress = ::VirtualAllocEx(hProcess, NULL, dwDllPathLen, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 		if (NULL == pBaseAddress)
 		{
-			ShowError("VirtualAllocEx");
 			bRet = FALSE;
 			break;
 		}
@@ -166,7 +152,6 @@ BOOL ApcInjectDll(char *pszProcessName, char *pszDllName)
 		::WriteProcessMemory(hProcess, pBaseAddress, pszDllName, dwDllPathLen, &dwRet);
 		if (dwRet != dwDllPathLen)
 		{
-			ShowError("WriteProcessMemory");
 			bRet = FALSE;
 			break;
 		}
@@ -175,7 +160,6 @@ BOOL ApcInjectDll(char *pszProcessName, char *pszDllName)
 		pLoadLibraryAFunc = ::GetProcAddress(::GetModuleHandle("kernel32.dll"), "LoadLibraryA");
 		if (NULL == pLoadLibraryAFunc)
 		{
-			ShowError("GetProcessAddress");
 			bRet = FALSE;
 			break;
 		}

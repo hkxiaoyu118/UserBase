@@ -78,29 +78,8 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="UserProcess.h">
-      <Filter>Process</Filter>
-    </ClInclude>
-    <ClInclude Include="UserReg.h">
-      <Filter>Reg</Filter>
-    </ClInclude>
-    <ClInclude Include="UserMemory.h">
-      <Filter>Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="UserFile.h">
-      <Filter>File</Filter>
-    </ClInclude>
     <ClInclude Include="Log\log_file.h">
       <Filter>Log</Filter>
-    </ClInclude>
-    <ClInclude Include="UserNetwork.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="UserString.h">
-      <Filter>String</Filter>
-    </ClInclude>
-    <ClInclude Include="UserInteger.h">
-      <Filter>Integer</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\MD5.h">
       <Filter>ThirdParty\MD5</Filter>
@@ -141,9 +120,6 @@
     <ClInclude Include="ZLib\zlib\zlib.h">
       <Filter>ZLib</Filter>
     </ClInclude>
-    <ClInclude Include="UserTimer.h">
-      <Filter>Time</Filter>
-    </ClInclude>
     <ClInclude Include="ThirdParty\ConvertUTF\ConvertUTF.h">
       <Filter>ThirdParty\ConvertUTF</Filter>
     </ClInclude>
@@ -165,34 +141,37 @@
     <ClInclude Include="ThirdParty\Hardware\cpu.h">
       <Filter>ThirdParty\Hardware</Filter>
     </ClInclude>
+    <ClInclude Include="File\UserFile.h">
+      <Filter>File</Filter>
+    </ClInclude>
+    <ClInclude Include="Integer\UserInteger.h">
+      <Filter>Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\UserMemory.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="NetWork\UserNetwork.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Process\UserProcess.h">
+      <Filter>Process</Filter>
+    </ClInclude>
+    <ClInclude Include="Reg\UserReg.h">
+      <Filter>Reg</Filter>
+    </ClInclude>
+    <ClInclude Include="String\UserString.h">
+      <Filter>String</Filter>
+    </ClInclude>
+    <ClInclude Include="Time\UserTimer.h">
+      <Filter>Time</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="UserProcess.cpp">
-      <Filter>Process</Filter>
-    </ClCompile>
-    <ClCompile Include="UserReg.cpp">
-      <Filter>Reg</Filter>
-    </ClCompile>
-    <ClCompile Include="UserMemory.cpp">
-      <Filter>Memory</Filter>
-    </ClCompile>
-    <ClCompile Include="UserFile.cpp">
-      <Filter>File</Filter>
-    </ClCompile>
     <ClCompile Include="Log\log_file.cpp">
       <Filter>Log</Filter>
-    </ClCompile>
-    <ClCompile Include="UserNetwork.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include="UserString.cpp">
-      <Filter>String</Filter>
-    </ClCompile>
-    <ClCompile Include="UserInteger.cpp">
-      <Filter>Integer</Filter>
     </ClCompile>
     <ClCompile Include="ThirdParty\MD5.cpp">
       <Filter>ThirdParty\MD5</Filter>
@@ -227,9 +206,6 @@
     <ClCompile Include="ZLib\zlib_compress.cpp">
       <Filter>ZLib</Filter>
     </ClCompile>
-    <ClCompile Include="UserTimer.cpp">
-      <Filter>Time</Filter>
-    </ClCompile>
     <ClCompile Include="ThirdParty\ConvertUTF\ConvertUTF.c">
       <Filter>ThirdParty\ConvertUTF</Filter>
     </ClCompile>
@@ -244,6 +220,30 @@
     </ClCompile>
     <ClCompile Include="ThirdParty\Hardware\cpu.cpp">
       <Filter>ThirdParty\Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="File\UserFile.cpp">
+      <Filter>File</Filter>
+    </ClCompile>
+    <ClCompile Include="Integer\UserInteger.cpp">
+      <Filter>Integer</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\UserMemory.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="NetWork\UserNetwork.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Process\UserProcess.cpp">
+      <Filter>Process</Filter>
+    </ClCompile>
+    <ClCompile Include="Reg\UserReg.cpp">
+      <Filter>Reg</Filter>
+    </ClCompile>
+    <ClCompile Include="String\UserString.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
+    <ClCompile Include="Time\UserTimer.cpp">
+      <Filter>Time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

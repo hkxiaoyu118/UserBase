@@ -11,7 +11,7 @@
 #include <nb30.h>
 #include <snmp.h>
 #include <iphlpapi.h>
-#include "../../UserString.h"
+#include "../../String/UserString.h"
 
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 

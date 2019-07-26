@@ -24,7 +24,6 @@ BOOL ReplaceProcess(char *pszFilePath, PVOID pReplaceData, DWORD dwReplaceDataSi
 	bRet = ::CreateProcess(pszFilePath, NULL, NULL, NULL, FALSE, CREATE_SUSPENDED, NULL, NULL, &si, &pi);
 	if (FALSE == bRet)
 	{
-		ShowError("CreateProcess");
 		return FALSE;
 	}
 	// 读取基址的方法: 此时context中的EBX是指向PEB的指针, 而在PEB偏移是8的位置存放 PEB_LDR_DATA 的地址
@@ -36,14 +35,12 @@ BOOL ReplaceProcess(char *pszFilePath, PVOID pReplaceData, DWORD dwReplaceDataSi
 	LPVOID lpDestBaseAddr = ::VirtualAllocEx(pi.hProcess, NULL, dwReplaceDataSize, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 	if (NULL == lpDestBaseAddr)
 	{
-		ShowError("VirtualAllocEx");
 		return FALSE;
 	}
 	// 写入替换的数据
 	bRet = ::WriteProcessMemory(pi.hProcess, lpDestBaseAddr, pReplaceData, dwReplaceDataSize, NULL);
 	if (FALSE == bRet)
 	{
-		ShowError("WriteProcessError");
 		return FALSE;
 	}
 	// 获取线程上下文
@@ -52,7 +49,6 @@ BOOL ReplaceProcess(char *pszFilePath, PVOID pReplaceData, DWORD dwReplaceDataSi
 	bRet = ::GetThreadContext(pi.hThread, &threadContext);
 	if (FALSE == bRet)
 	{
-		ShowError("GetThreadContext");
 		return FALSE;
 	}
 	// 修改进程的PE文件的入口地址以及映像大小,先获取原来进程PE结构的加载基址
@@ -61,7 +57,6 @@ BOOL ReplaceProcess(char *pszFilePath, PVOID pReplaceData, DWORD dwReplaceDataSi
 	bRet = ::SetThreadContext(pi.hThread, &threadContext);
 	if (FALSE == bRet)
 	{
-		ShowError("SetThreadContext");
 		return FALSE;
 	}
 	// 恢复挂起的进程的线程

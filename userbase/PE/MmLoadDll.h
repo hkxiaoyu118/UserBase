@@ -9,9 +9,6 @@
 
 typedef BOOL(__stdcall *typedef_DllMain)(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved);
 
-
-void ShowInfo(char *lpszText);
-
 // 模拟LoadLibrary加载内存DLL文件到进程中
 // lpData: 内存DLL文件数据的基址
 // dwSize: 内存DLL文件的内存大小

@@ -1,14 +1,6 @@
 #include "DisguiseProcess.h"
 
 
-void ShowError(char *pszText)
-{
-	char szErr[MAX_PATH] = { 0 };
-	::wsprintf(szErr, "%s Error[%d]\n", pszText, ::GetLastError());
-	OutputDebugStringA(szErr);
-}
-
-
 // 修改指定进程的进程环境块PEB中的路径和命令行信息, 实现进程伪装
 BOOL DisguiseProcess(DWORD dwProcessId, wchar_t *lpwszPath, wchar_t *lpwszCmd)
 {
@@ -16,7 +8,6 @@ BOOL DisguiseProcess(DWORD dwProcessId, wchar_t *lpwszPath, wchar_t *lpwszCmd)
 	HANDLE hProcess = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwProcessId);
 	if (NULL == hProcess)
 	{
-		ShowError("OpenProcess");
 		return FALSE;
 	}
 
@@ -31,14 +22,12 @@ BOOL DisguiseProcess(DWORD dwProcessId, wchar_t *lpwszPath, wchar_t *lpwszCmd)
 		::LoadLibrary("ntdll.dll"), "NtQueryInformationProcess");
 	if (NULL == NtQueryInformationProcess)
 	{
-		ShowError("GetProcAddress");
 		return FALSE;
 	}
 	// 获取指定进程的基本信息
 	NTSTATUS status = NtQueryInformationProcess(hProcess, ProcessBasicInformation, &pbi, sizeof(pbi), NULL);
 	if (!NT_SUCCESS(status))
 	{
-		ShowError("NtQueryInformationProcess");
 		return FALSE;
 	}
 

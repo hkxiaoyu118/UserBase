@@ -1,14 +1,5 @@
 #include "MmLoadDll.h"
 
-
-void ShowInfo(char *lpszText)
-{
-	char szErr[MAX_PATH] = { 0 };
-	::wsprintf(szErr, "%s Error!\nError Code Is:%d\n", lpszText, ::GetLastError());
-	OutputDebugStringA(szErr);
-}
-
-
 // 模拟LoadLibrary加载内存DLL文件到进程中
 // lpData: 内存DLL文件数据的基址
 // dwSize: 内存DLL文件的内存大小
@@ -24,7 +15,6 @@ LPVOID MmLoadLibrary(LPVOID lpData, DWORD dwSize)
 	lpBaseAddress = ::VirtualAlloc(NULL, dwSizeOfImage, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 	if (NULL == lpBaseAddress)
 	{
-		ShowInfo("VirtualAlloc");
 		return NULL;
 	}
 	::RtlZeroMemory(lpBaseAddress, dwSizeOfImage);
@@ -32,21 +22,18 @@ LPVOID MmLoadLibrary(LPVOID lpData, DWORD dwSize)
 	// 将内存DLL数据按SectionAlignment大小对齐映射到进程内存中
 	if (FALSE == MmMapFile(lpData, lpBaseAddress))
 	{
-		ShowInfo("MmMapFile");
 		return NULL;
 	}
 
 	// 修改PE文件重定位表信息
 	if(FALSE == DoRelocationTable(lpBaseAddress))
 	{
-		ShowInfo("DoRelocationTable");
 		return NULL;
 	}
 
 	// 填写PE文件导入表信息
 	if (FALSE == DoImportTable(lpBaseAddress))
 	{
-		ShowInfo("DoImportTable");
 		return NULL;
 	}
 
@@ -55,21 +42,18 @@ LPVOID MmLoadLibrary(LPVOID lpData, DWORD dwSize)
 	DWORD dwOldProtect = 0;
 	if (FALSE == ::VirtualProtect(lpBaseAddress, dwSizeOfImage, PAGE_EXECUTE_READWRITE, &dwOldProtect))
 	{
-		ShowInfo("VirtualProtect");
 		return NULL;
 	}
 
 	// 修改PE文件加载基址IMAGE_NT_HEADERS.OptionalHeader.ImageBase
 	if (FALSE == SetImageBase(lpBaseAddress))
 	{
-		ShowInfo("SetImageBase");
 		return NULL;
 	}
 
 	// 调用DLL的入口函数DllMain,函数地址即为PE文件的入口点IMAGE_NT_HEADERS.OptionalHeader.AddressOfEntryPoint
 	if (FALSE == CallDllMain(lpBaseAddress))
 	{
-		ShowInfo("CallDllMain");
 		return NULL;
 	}
 
@@ -330,7 +314,7 @@ BOOL CallDllMain(LPVOID lpBaseAddress)
 	BOOL bRet = DllMain((HINSTANCE)lpBaseAddress, DLL_PROCESS_ATTACH, NULL);          
 	if (FALSE == bRet)
 	{
-		ShowInfo("DllMain");
+		;
 	}
 
 	return bRet;

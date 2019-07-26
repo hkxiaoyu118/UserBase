@@ -1,6 +1,6 @@
-#include "stdafx.h"
+#include "../stdafx.h"
 #include "UserNetwork.h"
-#include "UserString.h"
+#include "../String/UserString.h"
 
 #pragma comment(lib, "Iphlpapi.lib")
 

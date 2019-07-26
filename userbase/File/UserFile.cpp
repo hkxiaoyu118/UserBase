@@ -1,7 +1,7 @@
-﻿#include "stdafx.h"
+﻿#include "../stdafx.h"
 #include "UserFile.h"
-#include "ThirdParty/MD5.h"
-#include "UserString.h"
+#include "../ThirdParty/MD5.h"
+#include "../String/UserString.h"
 
 #pragma comment(lib,"Shlwapi.lib")
 

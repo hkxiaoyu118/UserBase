@@ -1,6 +1,6 @@
-#include "stdafx.h"
+#include "../stdafx.h"
 #include "UserString.h"
-#include "ThirdParty/modp_b64/modp_b64.h"
+#include "../ThirdParty/modp_b64/modp_b64.h"
 
 #pragma comment(lib, "advapi32.lib")
 

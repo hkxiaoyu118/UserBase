@@ -1,6 +1,6 @@
 #include "aes_helper.h"
 #include "base64.h"
-#include "../UserString.h"
+#include "../String/UserString.h"
 //#include "VMProtectSDK.h"
 
 #pragma comment(lib,"Lib/libcrypto.lib")
