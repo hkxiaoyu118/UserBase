@@ -1,6 +1,6 @@
 ﻿#include "../stdafx.h"
 #include "UserFile.h"
-#include "../ThirdParty/MD5.h"
+#include "../ThirdParty/MD5/MD5.h"
 #include "../String/UserString.h"
 
 #pragma comment(lib,"Shlwapi.lib")

@@ -13,8 +13,6 @@
 #include <iphlpapi.h>
 #include "../../String/UserString.h"
 
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
-
 namespace ThirdParty
 {
 

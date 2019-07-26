@@ -81,9 +81,6 @@
     <ClInclude Include="Log\log_file.h">
       <Filter>Log</Filter>
     </ClInclude>
-    <ClInclude Include="ThirdParty\MD5.h">
-      <Filter>ThirdParty\MD5</Filter>
-    </ClInclude>
     <ClInclude Include="NetWork\FtpUtility.h">
       <Filter>Network</Filter>
     </ClInclude>
@@ -165,6 +162,9 @@
     <ClInclude Include="Time\UserTimer.h">
       <Filter>Time</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\MD5\MD5.h">
+      <Filter>ThirdParty\MD5</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -172,9 +172,6 @@
     </ClCompile>
     <ClCompile Include="Log\log_file.cpp">
       <Filter>Log</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\MD5.cpp">
-      <Filter>ThirdParty\MD5</Filter>
     </ClCompile>
     <ClCompile Include="NetWork\FtpUtility.cpp">
       <Filter>Network</Filter>
@@ -244,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="Time\UserTimer.cpp">
       <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\MD5\MD5.cpp">
+      <Filter>ThirdParty\MD5</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

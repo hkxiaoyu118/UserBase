@@ -148,7 +148,7 @@
     <ClInclude Include="ThirdParty\CmdLineArgs\CmdLineArgs.h" />
     <ClInclude Include="ThirdParty\ConvertUTF\ConvertUTF.h" />
     <ClInclude Include="ThirdParty\Hardware\cpu.h" />
-    <ClInclude Include="ThirdParty\MD5.h" />
+    <ClInclude Include="ThirdParty\MD5\MD5.h" />
     <ClInclude Include="ThirdParty\modp_b64\modp_b64.h" />
     <ClInclude Include="ThirdParty\modp_b64\modp_b64_data.h" />
     <ClInclude Include="ThirdParty\Network\network_util.h" />
@@ -185,7 +185,7 @@
     <ClCompile Include="ThirdParty\CmdLineArgs\CmdLineArgs.cpp" />
     <ClCompile Include="ThirdParty\ConvertUTF\ConvertUTF.c" />
     <ClCompile Include="ThirdParty\Hardware\cpu.cpp" />
-    <ClCompile Include="ThirdParty\MD5.cpp" />
+    <ClCompile Include="ThirdParty\MD5\MD5.cpp" />
     <ClCompile Include="ThirdParty\modp_b64\modp_b64.cc" />
     <ClCompile Include="ThirdParty\Network\network_util.cpp" />
     <ClCompile Include="Time\UserTimer.cpp" />
