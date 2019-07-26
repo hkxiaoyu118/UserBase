@@ -70,6 +70,18 @@
     <Filter Include="ThirdParty\Hardware">
       <UniqueIdentifier>{cbefdcb7-4873-4eb5-8b16-276f3642b9a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\MHook">
+      <UniqueIdentifier>{d18f3e61-e214-48c9-a8d6-8190a75399f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\MHook\disasm-lib">
+      <UniqueIdentifier>{27f57073-c303-421d-b60f-92103f587e7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\MHook\mhook-lib">
+      <UniqueIdentifier>{033a910d-2cf0-44f6-8d77-9678bfc2b175}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\Detours">
+      <UniqueIdentifier>{9be98b77-1b4b-457d-8185-022a011dd0f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -165,6 +177,30 @@
     <ClInclude Include="ThirdParty\MD5\MD5.h">
       <Filter>ThirdParty\MD5</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\MHook\disasm-lib\cpu.h">
+      <Filter>ThirdParty\MHook\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\MHook\disasm-lib\disasm.h">
+      <Filter>ThirdParty\MHook\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\MHook\disasm-lib\disasm_x86.h">
+      <Filter>ThirdParty\MHook\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\MHook\disasm-lib\disasm_x86_tables.h">
+      <Filter>ThirdParty\MHook\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\MHook\disasm-lib\misc.h">
+      <Filter>ThirdParty\MHook\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\MHook\mhook-lib\mhook.h">
+      <Filter>ThirdParty\MHook\mhook-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\Detours\detours.h">
+      <Filter>ThirdParty\Detours</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\Detours\detver.h">
+      <Filter>ThirdParty\Detours</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -245,6 +281,54 @@
     <ClCompile Include="ThirdParty\MD5\MD5.cpp">
       <Filter>ThirdParty\MD5</Filter>
     </ClCompile>
+    <ClCompile Include="ThirdParty\MHook\disasm-lib\cpu.c">
+      <Filter>ThirdParty\MHook\disasm-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\MHook\disasm-lib\disasm.c">
+      <Filter>ThirdParty\MHook\disasm-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\MHook\disasm-lib\disasm_x86.c">
+      <Filter>ThirdParty\MHook\disasm-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\MHook\disasm-lib\misc.c">
+      <Filter>ThirdParty\MHook\disasm-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\MHook\mhook-lib\mhook.cpp">
+      <Filter>ThirdParty\MHook\mhook-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Detours\creatwth.cpp">
+      <Filter>ThirdParty\Detours</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Detours\detours.cpp">
+      <Filter>ThirdParty\Detours</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Detours\disasm.cpp">
+      <Filter>ThirdParty\Detours</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Detours\disolarm.cpp">
+      <Filter>ThirdParty\Detours</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Detours\disolarm64.cpp">
+      <Filter>ThirdParty\Detours</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Detours\disolia64.cpp">
+      <Filter>ThirdParty\Detours</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Detours\disolx64.cpp">
+      <Filter>ThirdParty\Detours</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Detours\disolx86.cpp">
+      <Filter>ThirdParty\Detours</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Detours\image.cpp">
+      <Filter>ThirdParty\Detours</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Detours\modules.cpp">
+      <Filter>ThirdParty\Detours</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Detours\uimports.cpp">
+      <Filter>ThirdParty\Detours</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ThirdParty\ConvertUTF\readme.txt">
@@ -253,5 +337,10 @@
     <Text Include="ThirdParty\modp_b64\Readme.txt">
       <Filter>ThirdParty\modp_b64</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThirdParty\Detours\Makefile">
+      <Filter>ThirdParty\Detours</Filter>
+    </None>
   </ItemGroup>
 </Project>

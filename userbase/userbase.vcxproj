@@ -147,8 +147,16 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ThirdParty\CmdLineArgs\CmdLineArgs.h" />
     <ClInclude Include="ThirdParty\ConvertUTF\ConvertUTF.h" />
+    <ClInclude Include="ThirdParty\Detours\detours.h" />
+    <ClInclude Include="ThirdParty\Detours\detver.h" />
     <ClInclude Include="ThirdParty\Hardware\cpu.h" />
     <ClInclude Include="ThirdParty\MD5\MD5.h" />
+    <ClInclude Include="ThirdParty\MHook\disasm-lib\cpu.h" />
+    <ClInclude Include="ThirdParty\MHook\disasm-lib\disasm.h" />
+    <ClInclude Include="ThirdParty\MHook\disasm-lib\disasm_x86.h" />
+    <ClInclude Include="ThirdParty\MHook\disasm-lib\disasm_x86_tables.h" />
+    <ClInclude Include="ThirdParty\MHook\disasm-lib\misc.h" />
+    <ClInclude Include="ThirdParty\MHook\mhook-lib\mhook.h" />
     <ClInclude Include="ThirdParty\modp_b64\modp_b64.h" />
     <ClInclude Include="ThirdParty\modp_b64\modp_b64_data.h" />
     <ClInclude Include="ThirdParty\Network\network_util.h" />
@@ -184,8 +192,24 @@
     <ClCompile Include="String\UserString.cpp" />
     <ClCompile Include="ThirdParty\CmdLineArgs\CmdLineArgs.cpp" />
     <ClCompile Include="ThirdParty\ConvertUTF\ConvertUTF.c" />
+    <ClCompile Include="ThirdParty\Detours\creatwth.cpp" />
+    <ClCompile Include="ThirdParty\Detours\detours.cpp" />
+    <ClCompile Include="ThirdParty\Detours\disasm.cpp" />
+    <ClCompile Include="ThirdParty\Detours\disolarm.cpp" />
+    <ClCompile Include="ThirdParty\Detours\disolarm64.cpp" />
+    <ClCompile Include="ThirdParty\Detours\disolia64.cpp" />
+    <ClCompile Include="ThirdParty\Detours\disolx64.cpp" />
+    <ClCompile Include="ThirdParty\Detours\disolx86.cpp" />
+    <ClCompile Include="ThirdParty\Detours\image.cpp" />
+    <ClCompile Include="ThirdParty\Detours\modules.cpp" />
+    <ClCompile Include="ThirdParty\Detours\uimports.cpp" />
     <ClCompile Include="ThirdParty\Hardware\cpu.cpp" />
     <ClCompile Include="ThirdParty\MD5\MD5.cpp" />
+    <ClCompile Include="ThirdParty\MHook\disasm-lib\cpu.c" />
+    <ClCompile Include="ThirdParty\MHook\disasm-lib\disasm.c" />
+    <ClCompile Include="ThirdParty\MHook\disasm-lib\disasm_x86.c" />
+    <ClCompile Include="ThirdParty\MHook\disasm-lib\misc.c" />
+    <ClCompile Include="ThirdParty\MHook\mhook-lib\mhook.cpp" />
     <ClCompile Include="ThirdParty\modp_b64\modp_b64.cc" />
     <ClCompile Include="ThirdParty\Network\network_util.cpp" />
     <ClCompile Include="Time\UserTimer.cpp" />
@@ -194,6 +218,9 @@
   <ItemGroup>
     <Text Include="ThirdParty\ConvertUTF\readme.txt" />
     <Text Include="ThirdParty\modp_b64\Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThirdParty\Detours\Makefile" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
