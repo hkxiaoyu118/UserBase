@@ -6,6 +6,7 @@
 #include <windows.h>
 #include <assert.h>
 #include <Wincrypt.h>
+#include <stdint.h>
 
 namespace ubase
 {

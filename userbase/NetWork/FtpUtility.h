@@ -20,9 +20,9 @@
 #include <iostream>
 
 #if _DEBUG
-#pragma comment(lib, "Lib/libcurld.lib")
+#pragma comment(lib, "debug/libcurld.lib")
 #else
-#pragma comment(lib, "Lib/libcurl.lib")
+#pragma comment(lib, "release/libcurl.lib")
 #endif
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "winmm.lib")

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <windows.h>
 #include <Wincrypt.h>
+#include <stdint.h>
 
 namespace ubase
 {

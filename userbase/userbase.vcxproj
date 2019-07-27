@@ -28,13 +28,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v140_xp</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v140_xp</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -69,18 +69,29 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>..\$(Configuration)\Temp\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\Bin\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\Bin\</OutDir>
+    <IntDir>..\$(Configuration)\Temp\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;BUILDING_LIBCURL;%(PreprocessorDefinitions);_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\NetWork\include;.\Crypto\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -101,14 +112,18 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;BUILDING_LIBCURL;%(PreprocessorDefinitions);_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\NetWork\include;.\Crypto\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/D _WINSOCK_DEPRECATED_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -147,8 +162,6 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ThirdParty\CmdLineArgs\CmdLineArgs.h" />
     <ClInclude Include="ThirdParty\ConvertUTF\ConvertUTF.h" />
-    <ClInclude Include="ThirdParty\Detours\detours.h" />
-    <ClInclude Include="ThirdParty\Detours\detver.h" />
     <ClInclude Include="ThirdParty\Hardware\cpu.h" />
     <ClInclude Include="ThirdParty\MD5\MD5.h" />
     <ClInclude Include="ThirdParty\MHook\disasm-lib\cpu.h" />
@@ -162,6 +175,7 @@
     <ClInclude Include="ThirdParty\Network\network_util.h" />
     <ClInclude Include="ThirdParty\Network\nio_base.h" />
     <ClInclude Include="Time\UserTimer.h" />
+    <ClInclude Include="ubase.h" />
     <ClInclude Include="ZLib\zlib\zconf.h" />
     <ClInclude Include="ZLib\zlib\zlib.h" />
     <ClInclude Include="ZLib\zlib_compress.h" />
@@ -192,17 +206,6 @@
     <ClCompile Include="String\UserString.cpp" />
     <ClCompile Include="ThirdParty\CmdLineArgs\CmdLineArgs.cpp" />
     <ClCompile Include="ThirdParty\ConvertUTF\ConvertUTF.c" />
-    <ClCompile Include="ThirdParty\Detours\creatwth.cpp" />
-    <ClCompile Include="ThirdParty\Detours\detours.cpp" />
-    <ClCompile Include="ThirdParty\Detours\disasm.cpp" />
-    <ClCompile Include="ThirdParty\Detours\disolarm.cpp" />
-    <ClCompile Include="ThirdParty\Detours\disolarm64.cpp" />
-    <ClCompile Include="ThirdParty\Detours\disolia64.cpp" />
-    <ClCompile Include="ThirdParty\Detours\disolx64.cpp" />
-    <ClCompile Include="ThirdParty\Detours\disolx86.cpp" />
-    <ClCompile Include="ThirdParty\Detours\image.cpp" />
-    <ClCompile Include="ThirdParty\Detours\modules.cpp" />
-    <ClCompile Include="ThirdParty\Detours\uimports.cpp" />
     <ClCompile Include="ThirdParty\Hardware\cpu.cpp" />
     <ClCompile Include="ThirdParty\MD5\MD5.cpp" />
     <ClCompile Include="ThirdParty\MHook\disasm-lib\cpu.c" />
@@ -218,9 +221,6 @@
   <ItemGroup>
     <Text Include="ThirdParty\ConvertUTF\readme.txt" />
     <Text Include="ThirdParty\modp_b64\Readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ThirdParty\Detours\Makefile" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

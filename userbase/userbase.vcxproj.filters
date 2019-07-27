@@ -79,9 +79,6 @@
     <Filter Include="ThirdParty\MHook\mhook-lib">
       <UniqueIdentifier>{033a910d-2cf0-44f6-8d77-9678bfc2b175}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\Detours">
-      <UniqueIdentifier>{9be98b77-1b4b-457d-8185-022a011dd0f1}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -195,11 +192,8 @@
     <ClInclude Include="ThirdParty\MHook\mhook-lib\mhook.h">
       <Filter>ThirdParty\MHook\mhook-lib</Filter>
     </ClInclude>
-    <ClInclude Include="ThirdParty\Detours\detours.h">
-      <Filter>ThirdParty\Detours</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\Detours\detver.h">
-      <Filter>ThirdParty\Detours</Filter>
+    <ClInclude Include="ubase.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -296,39 +290,6 @@
     <ClCompile Include="ThirdParty\MHook\mhook-lib\mhook.cpp">
       <Filter>ThirdParty\MHook\mhook-lib</Filter>
     </ClCompile>
-    <ClCompile Include="ThirdParty\Detours\creatwth.cpp">
-      <Filter>ThirdParty\Detours</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Detours\detours.cpp">
-      <Filter>ThirdParty\Detours</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Detours\disasm.cpp">
-      <Filter>ThirdParty\Detours</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Detours\disolarm.cpp">
-      <Filter>ThirdParty\Detours</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Detours\disolarm64.cpp">
-      <Filter>ThirdParty\Detours</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Detours\disolia64.cpp">
-      <Filter>ThirdParty\Detours</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Detours\disolx64.cpp">
-      <Filter>ThirdParty\Detours</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Detours\disolx86.cpp">
-      <Filter>ThirdParty\Detours</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Detours\image.cpp">
-      <Filter>ThirdParty\Detours</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Detours\modules.cpp">
-      <Filter>ThirdParty\Detours</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Detours\uimports.cpp">
-      <Filter>ThirdParty\Detours</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ThirdParty\ConvertUTF\readme.txt">
@@ -337,10 +298,5 @@
     <Text Include="ThirdParty\modp_b64\Readme.txt">
       <Filter>ThirdParty\modp_b64</Filter>
     </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ThirdParty\Detours\Makefile">
-      <Filter>ThirdParty\Detours</Filter>
-    </None>
   </ItemGroup>
 </Project>

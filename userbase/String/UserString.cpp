@@ -771,22 +771,12 @@ namespace ubase
 		if (input2.empty())
 			return output;
 
-#if defined(OS_WIN)	
 		wchar_t* token = wcstok(&input2[0], delimitor);
 		while (token != NULL)
 		{
 			output.push_back(token);
 			token = wcstok(NULL, delimitor);
 		}
-#else
-		wchar_t* ptr;
-		wchar_t* token = wcstok(const_cast<wchar_t*>(&input2[0]), delimitor, &ptr);
-		while (token != NULL)
-		{
-			output.push_back(token);
-			token = wcstok(NULL, delimitor, &ptr);
-		}
-#endif
 
 		return output;
 	}

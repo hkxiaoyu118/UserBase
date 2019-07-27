@@ -10,17 +10,9 @@
 #include "zlib\\zconf.h"
 #include "zlib\\zlib.h"
 #ifdef _DEBUG
-	#ifdef _WIN64
-		#pragma comment(lib, "zlib\\x64\\debug\\zlibstat.lib")
-	#else
-		#pragma comment(lib, "zlib\\x86\\debug\\zlibstat.lib")
-	#endif
+	#pragma comment(lib, "debug\\zlibstat.lib")
 #else
-	#ifdef _WIN64
-		#pragma comment(lib, "zlib\\x64\\release\\zlibstat.lib")
-	#else
-		#pragma comment(lib, "zlib\\x86\\release\\zlibstat.lib")
-	#endif
+	#pragma comment(lib, "release\\zlibstat.lib")
 #endif
 //*************************************************
 

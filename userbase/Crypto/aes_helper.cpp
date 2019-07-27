@@ -3,7 +3,7 @@
 #include "../String/UserString.h"
 //#include "VMProtectSDK.h"
 
-#pragma comment(lib,"Lib/libcrypto.lib")
+#pragma comment(lib,"libcrypto.lib")
 
 
 //ecb aesΩ‚√‹

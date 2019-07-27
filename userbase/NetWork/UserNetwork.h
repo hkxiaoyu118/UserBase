@@ -9,4 +9,3 @@ namespace ubase
 {
 	bool GetLocalMac(std::vector<std::string> &vsMacAddress);//获取本地所有网卡的MAC地址
 };
-
