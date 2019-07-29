@@ -23,6 +23,7 @@
 #include "PE/ReplaceProcess.h"
 
 #include "Memory/UserMemory.h"
+#include "Memory/ShareMemory.h"
 
 #include "Log/log_file.h"
 
@@ -34,6 +35,8 @@
 
 #include "Crypto/aes_helper.h"
 #include "Crypto/base64.h"
+
+#include "Window/TSWindowsAPI.h"
 
 
 //以下是ThirdParty(三方函数)
