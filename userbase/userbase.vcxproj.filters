@@ -82,6 +82,9 @@
     <Filter Include="ThirdParty\KeyMouse">
       <UniqueIdentifier>{b61a1455-0fc3-4fc6-a4f4-bdf694e8b92c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{82c6c82b-bc1f-47e2-a42d-73b8de500e28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -207,6 +210,9 @@
     <ClInclude Include="ThirdParty\KeyMouse\MyMouseNamespace.h">
       <Filter>ThirdParty\KeyMouse</Filter>
     </ClInclude>
+    <ClInclude Include="Window\TSWindowsAPI.h">
+      <Filter>Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -307,6 +313,9 @@
     </ClCompile>
     <ClCompile Include="ThirdParty\KeyMouse\MyMouseNamespace.cpp">
       <Filter>ThirdParty\KeyMouse</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\TSWindowsAPI.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
