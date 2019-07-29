@@ -1,9 +1,11 @@
 #include "../stdafx.h"
 #include "UserProcess.h"
 
+#pragma comment(lib, "Psapi.lib")
+
 namespace ubase
 {
-	bool EnableDebugPriv()
+	bool PsEnableDebugPriv()
 	{
 		HANDLE hToken;
 		LUID seDebugNameValue;
@@ -29,7 +31,7 @@ namespace ubase
 		return true;
 	}
 
-	bool EnableShutdownPriv()
+	bool PsEnableShutdownPriv()
 	{
 		HANDLE hToken;
 		LUID seDebugNameValue;
@@ -55,7 +57,7 @@ namespace ubase
 		return true;
 	}
 
-	bool EnableBackupPriv()
+	bool PsEnableBackupPriv()
 	{
 		HANDLE hToken;
 		LUID seDebugNameValue;
@@ -81,7 +83,7 @@ namespace ubase
 		return true;
 	}
 
-	bool EnableRestorePriv()
+	bool PsEnableRestorePriv()
 	{
 		HANDLE hToken;
 		LUID seDebugNameValue;
@@ -152,7 +154,7 @@ namespace ubase
 		return false;
 	}
 
-	bool RemoteThreadInjectDll(DWORD dwPid, char* szPath)
+	bool PsRemoteThreadInjectDll(DWORD dwPid, char* szPath)
 	{
 		bool bResult = false;
 		//1 在目标进程中申请一个空间
@@ -192,7 +194,7 @@ namespace ubase
 		return bResult;
 	}
 
-	HMODULE FindRemoteMod(HANDLE hProcess, const wchar_t * pszModShortName)
+	HMODULE PsFindRemoteMod(HANDLE hProcess, const wchar_t * pszModShortName)
 	{
 		HMODULE hModules[0x100] = { 0 };
 		int cbNeeded = 0;
@@ -216,7 +218,7 @@ namespace ubase
 		return (HMODULE)0;
 	}
 
-	bool RemoteThreadUnloadDll(DWORD dwPid, wchar_t *dllName)
+	bool PsRemoteThreadUnloadDll(DWORD dwPid, wchar_t *dllName)
 	{
 		bool bResult = false;
 		// 打开进程，具备写入权限和创建线程权限 
@@ -240,7 +242,7 @@ namespace ubase
 		}
 		CloseHandle(hToken);
 
-		HMODULE hDllModule = FindRemoteMod(hProcess, dllName);
+		HMODULE hDllModule = PsFindRemoteMod(hProcess, dllName);
 
 		if (hDllModule != 0)
 		{
@@ -259,7 +261,7 @@ namespace ubase
 		return bResult;
 	}
 
-	bool ZwCreateThreadExInjectDll(DWORD dwProcessId, char *pszDllFileName)
+	bool PsZwCreateThreadExInjectDll(DWORD dwProcessId, char *pszDllFileName)
 	{
 		HANDLE hProcess = NULL;
 		SIZE_T dwSize = 0;
@@ -342,6 +344,67 @@ namespace ubase
 		::FreeLibrary(hNtdllDll);
 
 		return true;
+	}
+
+	bool PsGetRemoteModulePath(const char* moduleName, short nPID, char* modulepath)
+	{
+		HANDLE tlh = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, nPID);
+		MODULEENTRY32 modEntry;
+		modEntry.dwSize = sizeof(MODULEENTRY32);
+
+		Module32First(tlh, &modEntry);
+		do
+		{
+			if (!stricmp(moduleName, modEntry.szModule))
+			{
+				CloseHandle(tlh);
+				strcpy(modulepath, modEntry.szExePath);
+				return true;
+			}
+		} while (Module32Next(tlh, &modEntry));
+		CloseHandle(tlh);
+
+		return false;
+	}
+
+	DWORD PsGetRemoteModuleBaseAddr(const char* moduleName, short nPID)
+	{
+		HANDLE tlh = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, nPID);
+		MODULEENTRY32 modEntry;
+		modEntry.dwSize = sizeof(MODULEENTRY32);
+
+		Module32First(tlh, &modEntry);
+		do
+		{
+			if (!stricmp(moduleName, modEntry.szModule))
+			{
+				CloseHandle(tlh);
+				return (DWORD)modEntry.modBaseAddr;
+			}
+		} while (Module32Next(tlh, &modEntry));
+		CloseHandle(tlh);
+
+		return NULL;
+	}
+
+	HMODULE PsGetRemoteModuleHandle(const char* moduleName, short nPID)
+	{
+		HANDLE tlh = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, nPID);
+		MODULEENTRY32 modEntry;
+		modEntry.dwSize = sizeof(MODULEENTRY32);
+
+		Module32First(tlh, &modEntry);
+		do
+		{
+			if (!stricmp(moduleName, modEntry.szModule))
+			{
+				CloseHandle(tlh);
+				return modEntry.hModule;
+			}
+		} while (Module32Next(tlh, &modEntry));
+		CloseHandle(tlh);
+
+		return NULL;
 	}
 }
 

@@ -79,6 +79,9 @@
     <Filter Include="ThirdParty\MHook\mhook-lib">
       <UniqueIdentifier>{033a910d-2cf0-44f6-8d77-9678bfc2b175}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\KeyMouse">
+      <UniqueIdentifier>{b61a1455-0fc3-4fc6-a4f4-bdf694e8b92c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -195,6 +198,15 @@
     <ClInclude Include="ubase.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Memory\ShareMemory.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\KeyMouse\MyKeyboardNamespace.h">
+      <Filter>ThirdParty\KeyMouse</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\KeyMouse\MyMouseNamespace.h">
+      <Filter>ThirdParty\KeyMouse</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -289,6 +301,12 @@
     </ClCompile>
     <ClCompile Include="ThirdParty\MHook\mhook-lib\mhook.cpp">
       <Filter>ThirdParty\MHook\mhook-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\KeyMouse\MyKeyboardNamespace.cpp">
+      <Filter>ThirdParty\KeyMouse</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\KeyMouse\MyMouseNamespace.cpp">
+      <Filter>ThirdParty\KeyMouse</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

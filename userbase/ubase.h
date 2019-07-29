@@ -36,7 +36,7 @@
 #include "Crypto/base64.h"
 
 
-//以下是ThirdParty
+//以下是ThirdParty(三方函数)
 #include "ThirdParty/CmdLineArgs/CmdLineArgs.h"
 #include "ThirdParty/ConvertUTF/ConvertUTF.h"
 #include "ThirdParty/Hardware/cpu.h"
@@ -44,3 +44,5 @@
 #include "ThirdParty/MHook/mhook-lib/mhook.h"
 #include "ThirdParty/modp_b64/modp_b64.h"
 #include "ThirdParty/Network/network_util.h"
+#include "ThirdParty/KeyMouse/MyKeyboardNamespace.h"
+#include "ThirdParty/KeyMouse/MyMouseNamespace.h"

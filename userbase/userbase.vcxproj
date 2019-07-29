@@ -146,6 +146,7 @@
     <ClInclude Include="File\UserFile.h" />
     <ClInclude Include="Integer\UserInteger.h" />
     <ClInclude Include="Log\log_file.h" />
+    <ClInclude Include="Memory\ShareMemory.h" />
     <ClInclude Include="Memory\UserMemory.h" />
     <ClInclude Include="NetWork\FtpUtility.h" />
     <ClInclude Include="NetWork\HttpUnity.h" />
@@ -163,6 +164,8 @@
     <ClInclude Include="ThirdParty\CmdLineArgs\CmdLineArgs.h" />
     <ClInclude Include="ThirdParty\ConvertUTF\ConvertUTF.h" />
     <ClInclude Include="ThirdParty\Hardware\cpu.h" />
+    <ClInclude Include="ThirdParty\KeyMouse\MyKeyboardNamespace.h" />
+    <ClInclude Include="ThirdParty\KeyMouse\MyMouseNamespace.h" />
     <ClInclude Include="ThirdParty\MD5\MD5.h" />
     <ClInclude Include="ThirdParty\MHook\disasm-lib\cpu.h" />
     <ClInclude Include="ThirdParty\MHook\disasm-lib\disasm.h" />
@@ -207,6 +210,8 @@
     <ClCompile Include="ThirdParty\CmdLineArgs\CmdLineArgs.cpp" />
     <ClCompile Include="ThirdParty\ConvertUTF\ConvertUTF.c" />
     <ClCompile Include="ThirdParty\Hardware\cpu.cpp" />
+    <ClCompile Include="ThirdParty\KeyMouse\MyKeyboardNamespace.cpp" />
+    <ClCompile Include="ThirdParty\KeyMouse\MyMouseNamespace.cpp" />
     <ClCompile Include="ThirdParty\MD5\MD5.cpp" />
     <ClCompile Include="ThirdParty\MHook\disasm-lib\cpu.c" />
     <ClCompile Include="ThirdParty\MHook\disasm-lib\disasm.c" />
