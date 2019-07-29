@@ -85,6 +85,9 @@
     <Filter Include="Window">
       <UniqueIdentifier>{82c6c82b-bc1f-47e2-a42d-73b8de500e28}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OS">
+      <UniqueIdentifier>{53e9eef3-a239-456c-95ac-d691e37312a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -213,6 +216,12 @@
     <ClInclude Include="Window\TSWindowsAPI.h">
       <Filter>Window</Filter>
     </ClInclude>
+    <ClInclude Include="OS\RealOSVersion.h">
+      <Filter>OS</Filter>
+    </ClInclude>
+    <ClInclude Include="OS\OSInfo.h">
+      <Filter>OS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -316,6 +325,12 @@
     </ClCompile>
     <ClCompile Include="Window\TSWindowsAPI.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="OS\RealOSVersion.cpp">
+      <Filter>OS</Filter>
+    </ClCompile>
+    <ClCompile Include="OS\OSInfo.cpp">
+      <Filter>OS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

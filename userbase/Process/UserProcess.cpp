@@ -5,6 +5,29 @@
 
 namespace ubase
 {
+	bool PsEnablePrivilege(LPCSTR pszPrivName, bool fEnable)
+	{
+		bool bResult = false;  
+		HANDLE hToken;
+ 
+		if (OpenProcessToken(GetCurrentProcess(),
+			TOKEN_ADJUST_PRIVILEGES, &hToken))
+		{
+			TOKEN_PRIVILEGES tp = { 1 };
+
+			if (LookupPrivilegeValueA(NULL, pszPrivName, &tp.Privileges[0].Luid))
+			{
+				tp.Privileges[0].Attributes = fEnable ? SE_PRIVILEGE_ENABLED : 0;
+
+				AdjustTokenPrivileges(hToken, false, &tp, sizeof(tp), NULL, NULL);
+
+				bResult = (GetLastError() == ERROR_SUCCESS);
+			}
+			CloseHandle(hToken);
+		}
+		return bResult;
+	}
+
 	bool PsEnableDebugPriv()
 	{
 		HANDLE hToken;

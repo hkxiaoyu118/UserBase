@@ -38,6 +38,9 @@
 
 #include "Window/TSWindowsAPI.h"
 
+#include "OS/RealOSVersion.h"
+#include "OS/OSInfo.h"
+
 
 //以下是ThirdParty(三方函数)
 #include "ThirdParty/CmdLineArgs/CmdLineArgs.h"

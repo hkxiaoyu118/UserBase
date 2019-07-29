@@ -8,6 +8,7 @@
 
 namespace ubase
 {
+	bool PsEnablePrivilege(LPCSTR pszPrivName, bool fEnable);//开启和关闭权限
 	bool PsEnableDebugPriv();//提升当前进程权限函数("SeDebugPrivilege"读、写控制权限)
 	bool PsEnableShutdownPriv();//提升当前进程权限函数("SeShutdownPrivilege"关机权限)
 	bool PsEnableBackupPriv();//提升当前进程权限函数("SeBackupPrivilege"备份数据权限)

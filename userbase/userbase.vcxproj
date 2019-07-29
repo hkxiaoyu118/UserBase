@@ -151,6 +151,8 @@
     <ClInclude Include="NetWork\FtpUtility.h" />
     <ClInclude Include="NetWork\HttpUnity.h" />
     <ClInclude Include="NetWork\UserNetwork.h" />
+    <ClInclude Include="OS\OSInfo.h" />
+    <ClInclude Include="OS\RealOSVersion.h" />
     <ClInclude Include="PE\ApcInject.h" />
     <ClInclude Include="PE\BypassUAC.h" />
     <ClInclude Include="PE\DisguiseProcess.h" />
@@ -194,6 +196,8 @@
     <ClCompile Include="NetWork\FtpUtility.cpp" />
     <ClCompile Include="NetWork\HttpUnity.cpp" />
     <ClCompile Include="NetWork\UserNetwork.cpp" />
+    <ClCompile Include="OS\OSInfo.cpp" />
+    <ClCompile Include="OS\RealOSVersion.cpp" />
     <ClCompile Include="PE\ApcInject.cpp" />
     <ClCompile Include="PE\BypassUAC.cpp" />
     <ClCompile Include="PE\DisguiseProcess.cpp" />
