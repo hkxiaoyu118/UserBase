@@ -222,6 +222,9 @@
     <ClInclude Include="OS\OSInfo.h">
       <Filter>OS</Filter>
     </ClInclude>
+    <ClInclude Include="PE\PE.h">
+      <Filter>PE</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -331,6 +334,9 @@
     </ClCompile>
     <ClCompile Include="OS\OSInfo.cpp">
       <Filter>OS</Filter>
+    </ClCompile>
+    <ClCompile Include="PE\PE.cpp">
+      <Filter>PE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

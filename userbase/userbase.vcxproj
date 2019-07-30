@@ -157,6 +157,7 @@
     <ClInclude Include="PE\BypassUAC.h" />
     <ClInclude Include="PE\DisguiseProcess.h" />
     <ClInclude Include="PE\MmLoadDll.h" />
+    <ClInclude Include="PE\PE.h" />
     <ClInclude Include="PE\ReplaceProcess.h" />
     <ClInclude Include="Process\UserProcess.h" />
     <ClInclude Include="Reg\UserReg.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="PE\BypassUAC.cpp" />
     <ClCompile Include="PE\DisguiseProcess.cpp" />
     <ClCompile Include="PE\MmLoadDll.cpp" />
+    <ClCompile Include="PE\PE.cpp" />
     <ClCompile Include="PE\ReplaceProcess.cpp" />
     <ClCompile Include="Process\UserProcess.cpp" />
     <ClCompile Include="Reg\UserReg.cpp" />

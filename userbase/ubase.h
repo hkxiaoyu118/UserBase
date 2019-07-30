@@ -21,6 +21,7 @@
 #include "PE/HideProcess.h"
 #include "PE/MmLoadDll.h"
 #include "PE/ReplaceProcess.h"
+#include "PE/PE.h"
 
 #include "Memory/UserMemory.h"
 #include "Memory/ShareMemory.h"
