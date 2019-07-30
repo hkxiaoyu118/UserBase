@@ -61,4 +61,34 @@ namespace ubase
 		}
 		return result;
 	}
+
+	DWORD PE::GetExportFunOffsetByName(const char* pFile, const char* findName)
+	{
+		DWORD offset = 0;
+		PIMAGE_DOS_HEADER pDosHeader = (PIMAGE_DOS_HEADER)pFile;//获取DOS头
+		PIMAGE_NT_HEADERS32 pNTHeader = (PIMAGE_NT_HEADERS32)(pFile + pDosHeader->e_lfanew);//获取NT头
+		DWORD dwExportOffset = RvaToOffset(pNTHeader, pNTHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress);
+		if (dwExportOffset != 0)
+		{
+			PIMAGE_EXPORT_DIRECTORY pExport = (PIMAGE_EXPORT_DIRECTORY)(pFile + dwExportOffset);
+			DWORD dwFunNameOffset = (DWORD)pFile + RvaToOffset(pNTHeader, pExport->Name);
+			DWORD* pDwNamesAddress = (DWORD*)(pFile + RvaToOffset(pNTHeader, pExport->AddressOfNames));
+			DWORD* pdwFunctionAddress = (DWORD*)(pFile + RvaToOffset(pNTHeader, pExport->AddressOfFunctions));
+			WORD* pwOrdinals = (WORD*)(pFile + RvaToOffset(pNTHeader, pExport->AddressOfNameOrdinals));
+
+			for (int i = 0; i < pExport->NumberOfNames; i++)
+			{
+				DWORD dwFunctionAddress = pdwFunctionAddress[pwOrdinals[i]];
+				DWORD pdwFunNameOffset = RvaToOffset(pNTHeader, pDwNamesAddress[i]);
+				char* funName = (char*)(pFile + pdwFunNameOffset);//函数名称
+				//对比函数名称是否是我们想找的函数名
+				if (_stricmp(funName, findName) == 0)//如果函数是我们想找的函数
+				{
+					offset = RvaToOffset(pNTHeader, dwFunctionAddress);//获取查找的导出函数的文件偏移
+					break;
+				}
+			}
+		}
+		return offset;
+	}
 }

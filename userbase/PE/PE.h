@@ -18,5 +18,9 @@ namespace ubase
 		// count:需要读取函数的字节数(从函数头开始)
 		// bin2Hex:读取结果是否以16进制的方式展示
 		std::string GetOrinalFunctionContent(const char* pFile, const char* findName, unsigned int count, bool bin2Hex = true);
+
+		// 获取dll文件指定名称的函数的文件偏移
+		// 如果获取成功,则返回非0
+		DWORD PE::GetExportFunOffsetByName(const char* pFile, const char* findName);
 	};
 }
