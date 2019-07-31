@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <map>
 #include <windows.h>
 
 namespace ubase
@@ -22,5 +23,8 @@ namespace ubase
 		// 获取dll文件指定名称的函数的文件偏移
 		// 如果获取成功,则返回非0
 		DWORD PE::GetExportFunOffsetByName(const char* pFile, const char* findName);
+
+		// 获取指定dll文件所有以命名方式的导出函数的函数名和文件偏移
+		void PE::GetAllExportNamedFunctionsOffset(const char* pFile, std::map<std::string, DWORD>& mpFunctions);
 	};
 }
