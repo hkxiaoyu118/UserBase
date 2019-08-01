@@ -25,12 +25,21 @@ namespace ubase
 
 	typedef struct _PE_IMPORT_DESC
 	{
+		UINT dllIndex;
 		CHAR dllName[MAX_PATH];
 		DWORD originalFirstThunk;
 		DWORD timeDateStamp;
 		DWORD forwarderChain;
 		DWORD firstThunk;
 	}PE_IMPORT_DESC;
+
+	typedef struct _PE_IMPORT_FUNC
+	{
+		DWORD thunkRVA;
+		DWORD thunkValue;
+		WORD hint;
+		CHAR funcName[MAX_PATH];
+	}PE_IMPORT_FUNC;
 
 	class PE
 	{
@@ -82,6 +91,9 @@ namespace ubase
 		PIMAGE_IMPORT_DESCRIPTOR GetFirstImportDesc(LPVOID imageBase);
 
 		//获取导入表的基本信息
-		bool GetImportDescInfo(LPVOID imageBase, std::vector< PE_IMPORT_DESC>& vtImportDesc);
+		bool GetImportDescInfo(LPVOID imageBase, std::vector<PE_IMPORT_DESC>& vtImportDesc);
+
+		//通过DllIndex获取导入函数列表
+		bool GetImportFuncByDllIndex(LPVOID imageBase, UINT dllIndex, std::vector<PE_IMPORT_FUNC>& vtImportFunc);
 	};
 }

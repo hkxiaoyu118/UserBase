@@ -275,7 +275,7 @@ namespace ubase
 		return pImportDesc;
 	}
 
-	bool PE::GetImportDescInfo(LPVOID imageBase, std::vector< PE_IMPORT_DESC>& vtImportDesc)
+	bool PE::GetImportDescInfo(LPVOID imageBase, std::vector<PE_IMPORT_DESC>& vtImportDesc)
 	{
 		bool result = false;
 		PIMAGE_NT_HEADERS pNtHeader = NULL;
@@ -289,6 +289,7 @@ namespace ubase
 		if (!pImportDesc)
 			return result;
 
+		unsigned int index = 0;
 		while (pImportDesc->FirstThunk)
 		{
 			PE_IMPORT_DESC item = { 0 };
@@ -299,6 +300,7 @@ namespace ubase
 			DWORD forwarderChain = pImportDesc->ForwarderChain;
 			DWORD firstThunk = pImportDesc->FirstThunk;
 			
+			item.dllIndex = index;
 			strcpy(item.dllName, szDllName);
 			item.originalFirstThunk = originalFirstThunk;
 			item.timeDateStamp = timeDateStamp;
@@ -307,10 +309,76 @@ namespace ubase
 
 			vtImportDesc.push_back(item);
 
+			index++;
 			pImportDesc++;
 		}
 
 		if (vtImportDesc.size() != 0)
+			result = true;
+
+		return result;
+	}
+
+	DWORD SelectThunk(PIMAGE_IMPORT_DESCRIPTOR pImportDesc)
+	{
+		return pImportDesc->OriginalFirstThunk ? pImportDesc->OriginalFirstThunk : pImportDesc->FirstThunk;
+	}
+
+	bool PE::GetImportFuncByDllIndex(LPVOID imageBase, UINT dllIndex, std::vector<PE_IMPORT_FUNC>& vtImportFunc)
+	{
+		bool result = false;
+
+		PIMAGE_NT_HEADERS pNtHeader = NULL;
+		PIMAGE_IMPORT_DESCRIPTOR pFirstImportDesc = NULL, pCurrentImportDesc = NULL;
+		PIMAGE_IMPORT_BY_NAME pByName = NULL;
+		DWORD dwThunk, *pdwThunk = NULL, *pdwRVA = NULL;
+		CHAR cOrd[30], cMemAddr[30];
+
+		pNtHeader = GetNtHeaders(imageBase);
+		if (!pNtHeader)
+			return result;
+
+		pFirstImportDesc = GetFirstImportDesc(imageBase);
+		if (!pFirstImportDesc)
+			return result;
+
+		pCurrentImportDesc = &pFirstImportDesc[dllIndex];
+		dwThunk = SelectThunk(pCurrentImportDesc);
+		pdwRVA = (DWORD*)dwThunk;//OriginalFirstThunk或FirstThunk指向的IMAGE_THUNK_DATA结构数组的RVA
+		pdwThunk = (DWORD*)ImageRvaToVa(pNtHeader, imageBase, dwThunk, NULL);//OriginalFirstThunk或FirstThunk指向的IMAGE_THUNK_DATA结构数组的文件偏移
+
+		if (!pdwThunk)
+			return result;
+
+		while (*pdwThunk)
+		{
+			PE_IMPORT_FUNC item = { 0 };
+			item.thunkRVA = (DWORD)pdwRVA;//IAT地址的RVA
+			item.thunkValue = (DWORD)(*pdwThunk);//IAT地址的内容
+			
+			if (HIWORD(*pdwThunk) == 0x8000)
+			{
+				wsprintf(item.funcName, "Ord:%08lX", IMAGE_ORDINAL32(*pdwThunk));
+			}
+			else 
+			{
+				PIMAGE_IMPORT_BY_NAME pByName=(PIMAGE_IMPORT_BY_NAME)ImageRvaToVa(pNtHeader, imageBase, (DWORD)(*pdwThunk), NULL);
+				if (pByName)
+				{
+					item.hint = pByName->Hint;//函数号
+					wsprintf(item.funcName, (char*)pByName->Name);//函数名称
+				}
+				else
+				{
+					wsprintf(item.funcName, "MemAddr:%08lX", (DWORD)(*pdwThunk));
+				}
+			}
+			vtImportFunc.push_back(item);
+			pdwRVA++;
+			pdwThunk++;
+		}
+
+		if (vtImportFunc.size() != 0)
 			result = true;
 
 		return result;
