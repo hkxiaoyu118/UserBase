@@ -1,5 +1,8 @@
 #include "PE.h"
 #include "../String/UserString.h"
+#include <imagehlp.h>
+
+#pragma comment(lib, "Imagehlp.lib")
 
 namespace ubase
 {
@@ -26,31 +29,31 @@ namespace ubase
 		return 0;
 	}
 
-	std::string PE::GetOrinalFunctionContent(const char* pFile, const char* findName, unsigned int count, bool bin2Hex)
+	std::string PE::GetOrinalFunctionContent(PVOID imageBase, const char* findName, unsigned int count, bool bin2Hex)
 	{
 		std::string result;
-		PIMAGE_DOS_HEADER pDosHeader = (PIMAGE_DOS_HEADER)pFile;//获取DOS头
-		PIMAGE_NT_HEADERS32 pNTHeader = (PIMAGE_NT_HEADERS32)(pFile + pDosHeader->e_lfanew);//获取NT头
+		PIMAGE_DOS_HEADER pDosHeader = (PIMAGE_DOS_HEADER)imageBase;//获取DOS头
+		PIMAGE_NT_HEADERS32 pNTHeader = (PIMAGE_NT_HEADERS32)((DWORD)imageBase + pDosHeader->e_lfanew);//获取NT头
 		DWORD dwExportOffset = RvaToOffset(pNTHeader, pNTHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress);
 		if (dwExportOffset != 0)
 		{
-			PIMAGE_EXPORT_DIRECTORY pExport = (PIMAGE_EXPORT_DIRECTORY)(pFile + dwExportOffset);
-			DWORD dwFunNameOffset = (DWORD)pFile + RvaToOffset(pNTHeader, pExport->Name);
-			DWORD* pDwNamesAddress = (DWORD*)(pFile + RvaToOffset(pNTHeader, pExport->AddressOfNames));
-			DWORD* pdwFunctionAddress = (DWORD*)(pFile + RvaToOffset(pNTHeader, pExport->AddressOfFunctions));
-			WORD* pwOrdinals = (WORD*)(pFile + RvaToOffset(pNTHeader, pExport->AddressOfNameOrdinals));
+			PIMAGE_EXPORT_DIRECTORY pExport = (PIMAGE_EXPORT_DIRECTORY)((DWORD)imageBase + dwExportOffset);
+			DWORD dwFunNameOffset = (DWORD)imageBase + RvaToOffset(pNTHeader, pExport->Name);
+			DWORD* pDwNamesAddress = (DWORD*)((DWORD)imageBase + RvaToOffset(pNTHeader, pExport->AddressOfNames));
+			DWORD* pdwFunctionAddress = (DWORD*)((DWORD)imageBase + RvaToOffset(pNTHeader, pExport->AddressOfFunctions));
+			WORD* pwOrdinals = (WORD*)((DWORD)imageBase + RvaToOffset(pNTHeader, pExport->AddressOfNameOrdinals));
 
 			for (int i = 0; i < pExport->NumberOfNames; i++)
 			{
 				DWORD dwFunctionAddress = pdwFunctionAddress[pwOrdinals[i]];
 				DWORD pdwFunNameOffset = RvaToOffset(pNTHeader, pDwNamesAddress[i]);
-				char* funName = (char*)(pFile + pdwFunNameOffset);//函数名称
+				char* funName = (char*)((DWORD)imageBase + pdwFunNameOffset);//函数名称
 				//对比函数名称是否是我们想找的函数名
 				if (_stricmp(funName, findName) == 0)//如果函数是我们想找的函数
 				{
 					DWORD dwFunctionOffset = RvaToOffset(pNTHeader, dwFunctionAddress);//获取导出函数的文件偏移
 					result.resize(count);
-					memcpy((char*)result.c_str(), (char*)(pFile + dwFunctionOffset), count);
+					memcpy((char*)result.c_str(), (char*)((DWORD)imageBase + dwFunctionOffset), count);
 					if (bin2Hex == true)
 					{
 						result = ubase::BinToHex(result, true);
@@ -62,25 +65,25 @@ namespace ubase
 		return result;
 	}
 
-	DWORD PE::GetExportFunOffsetByName(const char* pFile, const char* findName)
+	DWORD PE::GetExportFunOffsetByName(PVOID imageBase, const char* findName)
 	{
 		DWORD offset = 0;
-		PIMAGE_DOS_HEADER pDosHeader = (PIMAGE_DOS_HEADER)pFile;//获取DOS头
-		PIMAGE_NT_HEADERS32 pNTHeader = (PIMAGE_NT_HEADERS32)(pFile + pDosHeader->e_lfanew);//获取NT头
+		PIMAGE_DOS_HEADER pDosHeader = (PIMAGE_DOS_HEADER)imageBase;//获取DOS头
+		PIMAGE_NT_HEADERS32 pNTHeader = (PIMAGE_NT_HEADERS32)((DWORD)imageBase + pDosHeader->e_lfanew);//获取NT头
 		DWORD dwExportOffset = RvaToOffset(pNTHeader, pNTHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress);
 		if (dwExportOffset != 0)
 		{
-			PIMAGE_EXPORT_DIRECTORY pExport = (PIMAGE_EXPORT_DIRECTORY)(pFile + dwExportOffset);
-			DWORD dwFunNameOffset = (DWORD)pFile + RvaToOffset(pNTHeader, pExport->Name);
-			DWORD* pDwNamesAddress = (DWORD*)(pFile + RvaToOffset(pNTHeader, pExport->AddressOfNames));
-			DWORD* pdwFunctionAddress = (DWORD*)(pFile + RvaToOffset(pNTHeader, pExport->AddressOfFunctions));
-			WORD* pwOrdinals = (WORD*)(pFile + RvaToOffset(pNTHeader, pExport->AddressOfNameOrdinals));
+			PIMAGE_EXPORT_DIRECTORY pExport = (PIMAGE_EXPORT_DIRECTORY)((DWORD)imageBase + dwExportOffset);
+			DWORD dwFunNameOffset = (DWORD)imageBase + RvaToOffset(pNTHeader, pExport->Name);
+			DWORD* pDwNamesAddress = (DWORD*)((DWORD)imageBase + RvaToOffset(pNTHeader, pExport->AddressOfNames));
+			DWORD* pdwFunctionAddress = (DWORD*)((DWORD)imageBase + RvaToOffset(pNTHeader, pExport->AddressOfFunctions));
+			WORD* pwOrdinals = (WORD*)((DWORD)imageBase + RvaToOffset(pNTHeader, pExport->AddressOfNameOrdinals));
 
 			for (int i = 0; i < pExport->NumberOfNames; i++)
 			{
 				DWORD dwFunctionAddress = pdwFunctionAddress[pwOrdinals[i]];
 				DWORD pdwFunNameOffset = RvaToOffset(pNTHeader, pDwNamesAddress[i]);
-				char* funName = (char*)(pFile + pdwFunNameOffset);//函数名称
+				char* funName = (char*)((DWORD)imageBase + pdwFunNameOffset);//函数名称
 				//对比函数名称是否是我们想找的函数名
 				if (_stricmp(funName, findName) == 0)//如果函数是我们想找的函数
 				{
@@ -92,25 +95,25 @@ namespace ubase
 		return offset;
 	}
 
-	void PE::GetAllExportNamedFunctionsOffset(const char* pFile, std::map<std::string, DWORD>& mpFunctions)
+	void PE::GetAllExportNamedFunctionsOffset(PVOID imageBase, std::map<std::string, DWORD>& mpFunctions)
 	{
 		bool result = false;
-		PIMAGE_DOS_HEADER pDosHeader = (PIMAGE_DOS_HEADER)pFile;//获取DOS头
-		PIMAGE_NT_HEADERS32 pNTHeader = (PIMAGE_NT_HEADERS32)(pFile + pDosHeader->e_lfanew);//获取NT头
+		PIMAGE_DOS_HEADER pDosHeader = (PIMAGE_DOS_HEADER)imageBase;//获取DOS头
+		PIMAGE_NT_HEADERS32 pNTHeader = (PIMAGE_NT_HEADERS32)((DWORD)imageBase + pDosHeader->e_lfanew);//获取NT头
 		DWORD dwExportOffset = RvaToOffset(pNTHeader, pNTHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress);
 		if (dwExportOffset != 0)
 		{
-			PIMAGE_EXPORT_DIRECTORY pExport = (PIMAGE_EXPORT_DIRECTORY)(pFile + dwExportOffset);
-			DWORD dwFunNameOffset = (DWORD)pFile + RvaToOffset(pNTHeader, pExport->Name);
-			DWORD* pDwNamesAddress = (DWORD*)(pFile + RvaToOffset(pNTHeader, pExport->AddressOfNames));
-			DWORD* pdwFunctionAddress = (DWORD*)(pFile + RvaToOffset(pNTHeader, pExport->AddressOfFunctions));
-			WORD* pwOrdinals = (WORD*)(pFile + RvaToOffset(pNTHeader, pExport->AddressOfNameOrdinals));
+			PIMAGE_EXPORT_DIRECTORY pExport = (PIMAGE_EXPORT_DIRECTORY)((DWORD)imageBase + dwExportOffset);
+			DWORD dwFunNameOffset = (DWORD)imageBase + RvaToOffset(pNTHeader, pExport->Name);
+			DWORD* pDwNamesAddress = (DWORD*)((DWORD)imageBase + RvaToOffset(pNTHeader, pExport->AddressOfNames));
+			DWORD* pdwFunctionAddress = (DWORD*)((DWORD)imageBase + RvaToOffset(pNTHeader, pExport->AddressOfFunctions));
+			WORD* pwOrdinals = (WORD*)((DWORD)imageBase + RvaToOffset(pNTHeader, pExport->AddressOfNameOrdinals));
 
 			for (int i = 0; i < pExport->NumberOfNames; i++)
 			{
 				DWORD dwFunctionAddress = pdwFunctionAddress[pwOrdinals[i]];//获取对应名称函数的RVA
 				DWORD pdwFunNameOffset = RvaToOffset(pNTHeader, pDwNamesAddress[i]);//获取存储函数名称的RVA
-				char* funName = (char*)(pFile + pdwFunNameOffset);//获取函数的名称
+				char* funName = (char*)((DWORD)imageBase + pdwFunNameOffset);//获取函数的名称
 				DWORD fileOffset= RvaToOffset(pNTHeader, dwFunctionAddress);//获取函数的文件偏移
 				mpFunctions[funName] = fileOffset;//存储命名导出函数的信息
 			}
@@ -238,5 +241,78 @@ namespace ubase
 			return true;
 
 		return false;
+	}
+
+	LPVOID PE::GetDirectoryEntryToData(LPVOID imageBase, USHORT directoryEntry)
+	{
+		DWORD dwDataStartRVA;
+		LPVOID pDirData = NULL;
+		PIMAGE_NT_HEADERS     pNtHeader = NULL;
+		PIMAGE_OPTIONAL_HEADER pOptionalHeader = NULL;
+
+		pNtHeader = GetNtHeaders(imageBase);
+		if (!pNtHeader)
+			return NULL;
+		pOptionalHeader = GetOptionalHeader(imageBase);
+		if (!pOptionalHeader)
+			return NULL;
+		dwDataStartRVA = pOptionalHeader->DataDirectory[directoryEntry].VirtualAddress;
+		if (!dwDataStartRVA)
+			return NULL;
+
+		pDirData = ImageRvaToVa(pNtHeader, imageBase, dwDataStartRVA, NULL);
+		if (!pDirData)
+			return NULL;
+		return  pDirData;
+	}
+
+	PIMAGE_IMPORT_DESCRIPTOR PE::GetFirstImportDesc(LPVOID imageBase)
+	{
+		PIMAGE_IMPORT_DESCRIPTOR pImportDesc;
+		pImportDesc = (PIMAGE_IMPORT_DESCRIPTOR)GetDirectoryEntryToData(imageBase, IMAGE_DIRECTORY_ENTRY_IMPORT);
+		if (!pImportDesc)
+			return NULL;
+		return pImportDesc;
+	}
+
+	bool PE::GetImportDescInfo(LPVOID imageBase, std::vector< PE_IMPORT_DESC>& vtImportDesc)
+	{
+		bool result = false;
+		PIMAGE_NT_HEADERS pNtHeader = NULL;
+		PIMAGE_IMPORT_DESCRIPTOR pImportDesc = NULL;
+
+		pNtHeader = GetNtHeaders(imageBase);
+		if (!pNtHeader)
+			return result;
+
+		pImportDesc = GetFirstImportDesc(imageBase);
+		if (!pImportDesc)
+			return result;
+
+		while (pImportDesc->FirstThunk)
+		{
+			PE_IMPORT_DESC item = { 0 };
+
+			char* szDllName = (char*)ImageRvaToVa(pNtHeader, imageBase, pImportDesc->Name, NULL);//获取导入DLL名称
+			DWORD originalFirstThunk = pImportDesc->OriginalFirstThunk;
+			DWORD timeDateStamp = pImportDesc->TimeDateStamp;
+			DWORD forwarderChain = pImportDesc->ForwarderChain;
+			DWORD firstThunk = pImportDesc->FirstThunk;
+			
+			strcpy(item.dllName, szDllName);
+			item.originalFirstThunk = originalFirstThunk;
+			item.timeDateStamp = timeDateStamp;
+			item.forwarderChain = forwarderChain;
+			item.firstThunk = firstThunk;
+
+			vtImportDesc.push_back(item);
+
+			pImportDesc++;
+		}
+
+		if (vtImportDesc.size() != 0)
+			result = true;
+
+		return result;
 	}
 }
