@@ -5,6 +5,13 @@
 
 namespace ubase
 {
+	typedef struct _MAP_FILE_STRUCT
+	{
+		HANDLE hFile;//文件句柄
+		HANDLE hMapping;//映射文件句柄
+		LPVOID imageBase;//映像地址
+	}MAP_FILE_STRUCT;
+
 	class PE
 	{
 	public:
@@ -26,5 +33,25 @@ namespace ubase
 
 		// 获取指定dll文件所有以命名方式的导出函数的函数名和文件偏移
 		void PE::GetAllExportNamedFunctionsOffset(const char* pFile, std::map<std::string, DWORD>& mpFunctions);
+
+		// 判断是否是PE格式
+		bool IsPEFile(LPVOID imageBase);
+
+		// 获取DOS头部
+		PIMAGE_DOS_HEADER GetDosHeader(LPVOID imageBase);
+
+		// 获取NT头部
+		PIMAGE_NT_HEADERS GetNtHeaders(LPVOID imageBase);
+
+		// 获取文件头
+		PIMAGE_FILE_HEADER GetFileHeader(LPVOID imageBase);
+
+		// 获取可选头
+		PIMAGE_OPTIONAL_HEADER GetOptionalHeader(LPVOID imageBase);
+
+		// 获取第一个节的位置
+		PIMAGE_SECTION_HEADER GetFirstSectionHeader(PIMAGE_NT_HEADERS pNtHeader);
+
+		bool GetSectionHeaderInfo(LPVOID imageBase);//获取节的信息
 	};
 }

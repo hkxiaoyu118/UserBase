@@ -116,4 +116,115 @@ namespace ubase
 			}
 		}
 	}
+
+	bool PE::IsPEFile(LPVOID imageBase)
+	{
+		PIMAGE_DOS_HEADER pDosHeader = NULL;
+		PIMAGE_NT_HEADERS pNtHeader = NULL;
+		if (imageBase != NULL)
+			return false;
+
+		pDosHeader = (PIMAGE_DOS_HEADER)imageBase;//获取DOS头部
+		if (pDosHeader->e_magic != IMAGE_DOS_SIGNATURE)//判断是否是MZ
+			return false;
+
+		pNtHeader = (PIMAGE_NT_HEADERS)((DWORD)pDosHeader + pDosHeader->e_lfanew);//获取NT头部
+		if (pNtHeader->Signature != IMAGE_NT_SIGNATURE)//判断是否为PE格式
+			return false;
+
+		return true;
+	}
+
+	PIMAGE_DOS_HEADER PE::GetDosHeader(LPVOID imageBase)
+	{
+		PIMAGE_DOS_HEADER pDosHeader = NULL;
+
+		if (!IsPEFile(imageBase))
+			return NULL;
+
+		pDosHeader = (PIMAGE_DOS_HEADER)imageBase;
+		return pDosHeader;
+	}
+
+	PIMAGE_NT_HEADERS PE::GetNtHeaders(LPVOID imageBase)
+	{
+		PIMAGE_DOS_HEADER pDosHeader = NULL;
+		PIMAGE_NT_HEADERS pNtHeader = NULL;
+
+		if (!IsPEFile(imageBase))
+			return NULL;
+
+		pDosHeader = (PIMAGE_DOS_HEADER)imageBase;
+		pNtHeader = (PIMAGE_NT_HEADERS)((DWORD)pDosHeader + pDosHeader->e_lfanew);
+		return pNtHeader;
+	}
+
+	PIMAGE_FILE_HEADER PE::GetFileHeader(LPVOID imageBase)
+	{
+		PIMAGE_NT_HEADERS pNtHeader = NULL;
+		PIMAGE_FILE_HEADER pFileHeader = NULL;
+		pNtHeader = GetNtHeaders(imageBase);
+		if (!pNtHeader)
+			return NULL;
+		pFileHeader = &pNtHeader->FileHeader;
+		return pFileHeader;
+	}
+
+	PIMAGE_OPTIONAL_HEADER PE::GetOptionalHeader(LPVOID imageBase)
+	{
+		PIMAGE_NT_HEADERS pNtHeader = NULL;
+		PIMAGE_OPTIONAL_HEADER pOptionalHeader = NULL;
+		pNtHeader = GetNtHeaders(imageBase);
+		if (!pNtHeader)
+			return NULL;
+		pOptionalHeader = &pNtHeader->OptionalHeader;
+		return pOptionalHeader;
+	}
+
+	PIMAGE_SECTION_HEADER PE::GetFirstSectionHeader(PIMAGE_NT_HEADERS pNtHeader)
+	{
+		PIMAGE_SECTION_HEADER pSectionHeader = NULL;
+		pSectionHeader = IMAGE_FIRST_SECTION(pNtHeader);
+		return pSectionHeader;
+	}
+
+	bool PE::GetSectionHeaderInfo(LPVOID imageBase)
+	{
+		char cName[9];
+
+		PIMAGE_NT_HEADERS pNtHeader = GetNtHeaders(imageBase);
+		if (!pNtHeader)
+			return false;
+
+		PIMAGE_FILE_HEADER pFileHeader = &pNtHeader->FileHeader;
+		if (!pFileHeader)
+			return false;
+
+		PIMAGE_SECTION_HEADER pSectionHeader = GetFirstSectionHeader(pNtHeader);
+		if (!pSectionHeader)
+			return false;
+
+		for (int i = 0; i < pFileHeader->NumberOfSections; i++)
+		{
+			//节名称
+			memset(cName, 0, sizeof(cName));
+			memcpy(cName, pSectionHeader->Name, 8);
+
+			//真实长度
+			DWORD virtualSize = pSectionHeader->Misc.VirtualSize;
+
+			//节虚拟偏移(RVA)
+			DWORD rva = pSectionHeader->VirtualAddress;
+
+			//节文件偏移(Offset)
+			DWORD offset = pSectionHeader->PointerToRawData;
+
+			//节大小
+			DWORD sectionSize = pSectionHeader->SizeOfRawData;
+
+			//节属性,可读、可写、可执行
+			DWORD Characteristics = pSectionHeader->Characteristics;
+			++pSectionHeader;
+		}
+	}
 }
