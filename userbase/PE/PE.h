@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <map>
+#include <vector>
 #include <windows.h>
 
 namespace ubase
@@ -11,6 +12,16 @@ namespace ubase
 		HANDLE hMapping;//映射文件句柄
 		LPVOID imageBase;//映像地址
 	}MAP_FILE_STRUCT;
+
+	typedef struct _PE_SECTION_INFO
+	{
+		char sectionName[9];
+		DWORD virtualSize;
+		DWORD virtualAddress;
+		DWORD pointerToRawData;
+		DWORD sizeOfRawData;
+		DWORD characteristics;
+	}PE_SECTION_INFO;
 
 	class PE
 	{
@@ -52,6 +63,7 @@ namespace ubase
 		// 获取第一个节的位置
 		PIMAGE_SECTION_HEADER GetFirstSectionHeader(PIMAGE_NT_HEADERS pNtHeader);
 
-		bool GetSectionHeaderInfo(LPVOID imageBase);//获取节的信息
+		//获取节块的基本信息
+		bool GetSectionHeaderInfo(LPVOID imageBase, std::vector<PE_SECTION_INFO>& vtSectionInfo);//获取节的信息
 	};
 }

@@ -121,7 +121,7 @@ namespace ubase
 	{
 		PIMAGE_DOS_HEADER pDosHeader = NULL;
 		PIMAGE_NT_HEADERS pNtHeader = NULL;
-		if (imageBase != NULL)
+		if (imageBase == NULL)
 			return false;
 
 		pDosHeader = (PIMAGE_DOS_HEADER)imageBase;//获取DOS头部
@@ -188,10 +188,8 @@ namespace ubase
 		return pSectionHeader;
 	}
 
-	bool PE::GetSectionHeaderInfo(LPVOID imageBase)
+	bool PE::GetSectionHeaderInfo(LPVOID imageBase, std::vector<PE_SECTION_INFO>& vtSectionInfo)
 	{
-		char cName[9];
-
 		PIMAGE_NT_HEADERS pNtHeader = GetNtHeaders(imageBase);
 		if (!pNtHeader)
 			return false;
@@ -206,25 +204,39 @@ namespace ubase
 
 		for (int i = 0; i < pFileHeader->NumberOfSections; i++)
 		{
+			PE_SECTION_INFO item = { 0 };
+
 			//节名称
+			char cName[9];
 			memset(cName, 0, sizeof(cName));
 			memcpy(cName, pSectionHeader->Name, 8);
 
 			//真实长度
 			DWORD virtualSize = pSectionHeader->Misc.VirtualSize;
-
 			//节虚拟偏移(RVA)
-			DWORD rva = pSectionHeader->VirtualAddress;
-
+			DWORD virtualAddress = pSectionHeader->VirtualAddress;
 			//节文件偏移(Offset)
-			DWORD offset = pSectionHeader->PointerToRawData;
-
+			DWORD pointerToRawData = pSectionHeader->PointerToRawData;
 			//节大小
-			DWORD sectionSize = pSectionHeader->SizeOfRawData;
-
+			DWORD sizeOfRawData = pSectionHeader->SizeOfRawData;
 			//节属性,可读、可写、可执行
-			DWORD Characteristics = pSectionHeader->Characteristics;
+			DWORD characteristics = pSectionHeader->Characteristics;
+
+			memcpy(item.sectionName, cName, 8);
+			item.virtualSize = virtualSize;
+			item.virtualAddress = virtualAddress;
+			item.pointerToRawData = pointerToRawData;
+			item.sizeOfRawData = sizeOfRawData;
+			item.characteristics = characteristics;
+
+			vtSectionInfo.push_back(item);
+
 			++pSectionHeader;
 		}
+
+		if (vtSectionInfo.size() != 0)
+			return true;
+
+		return false;
 	}
 }
