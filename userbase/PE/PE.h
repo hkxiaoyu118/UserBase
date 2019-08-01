@@ -81,19 +81,19 @@ namespace ubase
 		// 获取第一个节的位置
 		PIMAGE_SECTION_HEADER GetFirstSectionHeader(PIMAGE_NT_HEADERS pNtHeader);
 
-		//获取节块的基本信息
+		// 获取节块的基本信息
 		bool GetSectionHeaderInfo(LPVOID imageBase, std::vector<PE_SECTION_INFO>& vtSectionInfo);
 
-		//获取数据目录项的入口地址
+		// 获取数据目录项的入口地址
 		LPVOID GetDirectoryEntryToData(LPVOID imageBase, USHORT directoryEntry);
 
-		//获取第一个导入表结构
+		// 获取第一个导入表结构
 		PIMAGE_IMPORT_DESCRIPTOR GetFirstImportDesc(LPVOID imageBase);
 
-		//获取导入表的基本信息
+		// 获取导入表的基本信息
 		bool GetImportDescInfo(LPVOID imageBase, std::vector<PE_IMPORT_DESC>& vtImportDesc);
 
-		//通过DllIndex获取导入函数列表
+		// 通过DllIndex获取导入函数列表
 		bool GetImportFuncByDllIndex(LPVOID imageBase, UINT dllIndex, std::vector<PE_IMPORT_FUNC>& vtImportFunc);
 	};
 }
