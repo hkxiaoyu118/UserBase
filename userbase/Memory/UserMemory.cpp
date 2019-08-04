@@ -1,5 +1,6 @@
 #include "../stdafx.h"
 #include "UserMemory.h"
+#include <winternl.h>
 
 #pragma comment(lib, "Psapi.lib")
 
@@ -129,6 +130,42 @@ namespace ubase
 			if (bFoundMemImage == TRUE)
 			{
 				break;
+			}
+		}
+		return uResult;
+	}
+
+	typedef NTSTATUS(*pZwQueryInformationProcess)(
+		_In_      HANDLE           ProcessHandle,
+		_In_      PROCESSINFOCLASS ProcessInformationClass,
+		_Out_     PVOID            ProcessInformation,
+		_In_      ULONG            ProcessInformationLength,
+		_Out_opt_ PULONG           ReturnLength
+		);
+
+	ULONG_PTR MmFindExeImageBase(HANDLE hProc)
+	{
+		ULONG_PTR uResult;
+		HMODULE hModule = ::LoadLibraryA("ntdll.dll");
+		if (hModule != NULL)
+		{
+			pZwQueryInformationProcess ZwQueryInformationProcess = (pZwQueryInformationProcess)GetProcAddress(hModule, "ZwQueryInformationProcess");
+			if (ZwQueryInformationProcess != NULL)
+			{
+				PROCESS_BASIC_INFORMATION pbi;
+				ULONG ret = 0;
+				ZeroMemory(&pbi, sizeof(PROCESS_BASIC_INFORMATION));
+				NTSTATUS ntResult = ZwQueryInformationProcess(hProc, ProcessBasicInformation, &pbi, sizeof(PROCESS_BASIC_INFORMATION), &ret);
+				if (ntResult == ERROR_SUCCESS)
+				{
+					PEB peb;
+					SIZE_T rt = 0;
+					BOOL rdResult = ::ReadProcessMemory(hProc, pbi.PebBaseAddress, (LPVOID)& peb, sizeof(PEB), &rt);//读取目标进程中的PEB
+					if (rdResult == TRUE)
+					{
+						uResult = (ULONG_PTR)(peb.Reserved3[1]);//PEB的偏移0x8就是ImagePath
+					}
+				}
 			}
 		}
 		return uResult;

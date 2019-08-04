@@ -10,4 +10,5 @@ namespace ubase
 	void MmWriteToMemory(uintptr_t addressToWrite, char* valueToWrite, int byteNum);//写入当前进程空间内存
 	void MmReadFromMemory(uintptr_t addressToRead, char* varToWriteTo, int byteNum);//读取当前进程空间内存
 	ULONG_PTR MmFindImageBase(HANDLE hProc, LPSTR lpCommandLine);//从指定进程中找到对应模块的基地址(能够在进程刚创建还没有运行主线程之前调用(进程只有ntdll和exe模块加载时))
+	ULONG_PTR MmFindExeImageBase(HANDLE hProc);//从指定进程中,找到进程EXE的内存加载地址
 }
