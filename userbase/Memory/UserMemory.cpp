@@ -1,6 +1,8 @@
 #include "../stdafx.h"
 #include "UserMemory.h"
 
+#pragma comment(lib, "Psapi.lib")
+
 namespace ubase
 {
 	MODULEINFO MmGetModuleInfo(char *szModule)
@@ -47,7 +49,7 @@ namespace ubase
 		return NULL;
 	}
 
-	void WriteToMemory(uintptr_t addressToWrite, char* valueToWrite, int byteNum)
+	void MmWriteToMemory(uintptr_t addressToWrite, char* valueToWrite, int byteNum)
 	{
 		//used to change our file access type, stores the old
 		//access type and restores it after memory is written
@@ -62,11 +64,73 @@ namespace ubase
 		VirtualProtect((LPVOID)(addressToWrite), byteNum, OldProtection, NULL);
 	}
 
-	void ReadFromMemory(uintptr_t addressToRead, char* varToWriteTo, int byteNum)
+	void MmReadFromMemory(uintptr_t addressToRead, char* varToWriteTo, int byteNum)
 	{
 		//memcpy((LPVOID)addressToWrite, valueToWrite, byteNum);
 		//memcpy((LPVOID)addressToRead, varToWriteTo, byteNum);
 		memcpy((LPVOID)varToWriteTo, (LPVOID)addressToRead, byteNum);
 	}
 
+	ULONG_PTR MmFindImageBase(HANDLE hProc, LPSTR lpCommandLine)
+	{
+		ULONG_PTR uResult = 0;
+		CHAR szBuf[1024] = { 0 };
+		SIZE_T dwSize = 0;
+		PBYTE pAddress = NULL;
+
+		MEMORY_BASIC_INFORMATION mbi = { 0 };
+		BOOL bFoundMemImage = FALSE;
+		char szImageFilePath[MAX_PATH] = { 0 };
+		char* pFileNameToCheck = strrchr(lpCommandLine, '\\');
+
+		//获取页的大小
+		SYSTEM_INFO sysinfo;
+		ZeroMemory(&sysinfo, sizeof(SYSTEM_INFO));
+		GetSystemInfo(&sysinfo);
+
+		//查找第一个具有MEM_IMAGE属性的页
+		pAddress = (PBYTE)sysinfo.lpMinimumApplicationAddress;
+		while (pAddress < (PBYTE)sysinfo.lpMaximumApplicationAddress)
+		{
+			ZeroMemory(&mbi, sizeof(MEMORY_BASIC_INFORMATION));
+			dwSize = VirtualQueryEx(hProc, pAddress, &mbi, sizeof(MEMORY_BASIC_INFORMATION));
+			if (dwSize == 0)
+			{
+				pAddress += sysinfo.dwPageSize;
+				continue;
+			}
+
+			switch (mbi.State)
+			{
+			case MEM_FREE:
+			case MEM_RESERVE:
+				pAddress = (PBYTE)mbi.BaseAddress + mbi.RegionSize;
+				break;
+			case MEM_COMMIT:
+				if (mbi.Type == MEM_IMAGE)
+				{
+					if (GetMappedFileName(hProc, pAddress, szImageFilePath, MAX_PATH) != 0)
+					{
+						char* pCompare = strrchr(szImageFilePath, '\\');
+						if (stricmp(pCompare, pFileNameToCheck) == 0)
+						{
+							bFoundMemImage = TRUE;
+							uResult = (ULONG_PTR)pAddress;
+							break;
+						}
+					}
+				}
+				pAddress = (PBYTE)mbi.BaseAddress + mbi.RegionSize;
+				break;
+			default:
+				break;
+			}
+
+			if (bFoundMemImage == TRUE)
+			{
+				break;
+			}
+		}
+		return uResult;
+	}
 }
