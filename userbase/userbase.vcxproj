@@ -147,6 +147,7 @@
     <ClInclude Include="File\UserFile.h" />
     <ClInclude Include="Integer\UserInteger.h" />
     <ClInclude Include="Log\log_file.h" />
+    <ClInclude Include="Memory\Event.h" />
     <ClInclude Include="Memory\ShareMemory.h" />
     <ClInclude Include="Memory\UserMemory.h" />
     <ClInclude Include="NetWork\FtpUtility.h" />

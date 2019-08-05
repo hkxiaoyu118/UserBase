@@ -25,6 +25,7 @@
 
 #include "Memory/UserMemory.h"
 #include "Memory/ShareMemory.h"
+#include "Memory/Event.h"
 
 #include "Log/log_file.h"
 
