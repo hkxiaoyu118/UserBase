@@ -113,7 +113,7 @@ namespace ubase
 					if (GetMappedFileName(hProc, pAddress, szImageFilePath, MAX_PATH) != 0)
 					{
 						char* pCompare = strrchr(szImageFilePath, '\\');
-						if (stricmp(pCompare, pFileNameToCheck) == 0)
+						if (_stricmp(pCompare, pFileNameToCheck) == 0)
 						{
 							bFoundMemImage = TRUE;
 							uResult = (ULONG_PTR)pAddress;

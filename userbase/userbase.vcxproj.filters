@@ -231,6 +231,9 @@
     <ClInclude Include="Memory\Event.h">
       <Filter>Memory</Filter>
     </ClInclude>
+    <ClInclude Include="Crypto\crc.h">
+      <Filter>Crypto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -343,6 +346,9 @@
     </ClCompile>
     <ClCompile Include="PE\PE.cpp">
       <Filter>PE</Filter>
+    </ClCompile>
+    <ClCompile Include="Crypto\crc.cc">
+      <Filter>Crypto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

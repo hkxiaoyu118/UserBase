@@ -379,7 +379,7 @@ namespace ubase
 		Module32First(tlh, &modEntry);
 		do
 		{
-			if (!stricmp(moduleName, modEntry.szModule))
+			if (!_stricmp(moduleName, modEntry.szModule))
 			{
 				CloseHandle(tlh);
 				strcpy(modulepath, modEntry.szExePath);
@@ -400,7 +400,7 @@ namespace ubase
 		Module32First(tlh, &modEntry);
 		do
 		{
-			if (!stricmp(moduleName, modEntry.szModule))
+			if (!_stricmp(moduleName, modEntry.szModule))
 			{
 				CloseHandle(tlh);
 				return (DWORD)modEntry.modBaseAddr;
@@ -420,7 +420,7 @@ namespace ubase
 		Module32First(tlh, &modEntry);
 		do
 		{
-			if (!stricmp(moduleName, modEntry.szModule))
+			if (!_stricmp(moduleName, modEntry.szModule))
 			{
 				CloseHandle(tlh);
 				return modEntry.hModule;
@@ -462,7 +462,7 @@ namespace ubase
 					break;
 
 				int length = lstrlen(szDevName);
-				if (strnicmp(devPath.c_str(), szDevName, length) == 0)
+				if (_strnicmp(devPath.c_str(), szDevName, length) == 0)
 				{
 					result = szDrive;
 					result = result + devPath.substr(length);
