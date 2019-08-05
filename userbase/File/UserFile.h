@@ -26,7 +26,6 @@ namespace ubase
 	//与文件路径有关的操作
 	std::string FsGetProcessFullPath();//获取进程的PE文件全路径
 	std::string FsGetProcessPath();//获取进程的路径带反斜杠
-	std::string FsGetProcessFullPath();//获取进程的全路径包括进程的PE文件
 	std::string FsGetFileName(IN const std::string& strFilePath);//根据文件的全路径获取文件的名称
 	std::string FsGetFileExt(IN const std::string& strFilePath);//获取文件的扩展名
 	std::string FsGetFilePath(IN const std::string& strFilePath);//通过文件全路径获取文件的路径,获取的路径带反斜杠

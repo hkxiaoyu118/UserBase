@@ -225,6 +225,9 @@
     <ClInclude Include="PE\PE.h">
       <Filter>PE</Filter>
     </ClInclude>
+    <ClInclude Include="comdef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

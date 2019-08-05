@@ -1,6 +1,6 @@
 #include "../stdafx.h"
 #include "UserMemory.h"
-#include <winternl.h>
+#include "../comdef.h"
 
 #pragma comment(lib, "Psapi.lib")
 
@@ -135,17 +135,9 @@ namespace ubase
 		return uResult;
 	}
 
-	typedef NTSTATUS(*pZwQueryInformationProcess)(
-		_In_      HANDLE           ProcessHandle,
-		_In_      PROCESSINFOCLASS ProcessInformationClass,
-		_Out_     PVOID            ProcessInformation,
-		_In_      ULONG            ProcessInformationLength,
-		_Out_opt_ PULONG           ReturnLength
-		);
-
 	ULONG_PTR MmFindExeImageBase(HANDLE hProc)
 	{
-		ULONG_PTR uResult;
+		ULONG_PTR uResult = 0;
 		HMODULE hModule = ::LoadLibraryA("ntdll.dll");
 		if (hModule != NULL)
 		{

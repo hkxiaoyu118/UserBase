@@ -1,5 +1,6 @@
 #include "../stdafx.h"
 #include "UserProcess.h"
+#include "../comdef.h"
 
 #pragma comment(lib, "Psapi.lib")
 
@@ -428,6 +429,62 @@ namespace ubase
 		CloseHandle(tlh);
 
 		return NULL;
+	}
+
+	std::string PsGetProcesFullPath(HANDLE hProcess)
+	{
+		DWORD dwRet = 0;
+		CHAR szImageName[MAX_PATH] = { 0 };
+		std::string result;
+		dwRet = GetProcessImageFileName(hProcess, szImageName, MAX_PATH);//获取进程的DOS文件路径
+		if (dwRet > 0)
+		{
+			result = PsDevicePathToDosPath(szImageName);//设备名称转DOS名称
+		}
+		return result;
+	}
+
+	std::string PsDevicePathToDosPath(std::string devPath)
+	{
+		CHAR szDriveStr[512];
+		CHAR szDrive[3];
+		CHAR szDevName[64];
+		std::string result;
+		
+		if (GetLogicalDriveStrings(sizeof(szDriveStr), szDriveStr))
+		{
+			for (int i = 0; szDriveStr[i]; i += 4)
+			{
+				szDrive[0] = szDriveStr[i];
+				szDrive[1] = szDriveStr[i + 1];
+				szDrive[2] = '\0';
+				if (!QueryDosDevice(szDrive, szDevName, 64))
+					break;
+
+				int length = lstrlen(szDevName);
+				if (strnicmp(devPath.c_str(), szDevName, length) == 0)
+				{
+					result = szDrive;
+					result = result + devPath.substr(length);
+					break;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	std::string PsDosPathToDevicePath(std::string dosPath)
+	{
+		CHAR szDevName[64];
+		std::string result;
+		std::string dos = dosPath.substr(0, 2);
+		if (QueryDosDevice(dos.c_str(), szDevName, 64))
+		{
+			result = szDevName;
+			result = result + dosPath.substr(2);
+		}
+		return result;
 	}
 }
 

@@ -22,4 +22,7 @@ namespace ubase
 	bool PsGetRemoteModulePath(const char* moduleName, short nPID, char* modulepath);//获取指定进程中指定模块的路径(测试一下)
 	DWORD PsGetRemoteModuleBaseAddr(const char* moduleName, short nPID);//获取指定进程指定模块的内存地址
 	HMODULE PsGetRemoteModuleHandle(const char* moduleName, short nPID);//获取指定进程指定模块的句柄
+	std::string PsGetProcesFullPath(HANDLE hProcess);//获取指定进程的全路径
+	std::string PsDevicePathToDosPath(std::string devPath);//将设备路径转为Dos路径
+	std::string PsDosPathToDevicePath(std::string dosPath);//将DOS路径转换为设备路径
 }
