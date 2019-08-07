@@ -3,8 +3,8 @@
 namespace ubase
 {
 	// 数据压缩
-// 输入：将要压缩文件的路径
-// 输出：数据压缩后的压缩数据内容、数据压缩后的压缩数据内容长度
+	// 输入：将要压缩文件的路径
+	// 输出：数据压缩后的压缩数据内容、数据压缩后的压缩数据内容长度
 	BOOL Zlib_CompressData(char* pszCompressFileName, BYTE** ppCompressData, DWORD* pdwCompressDataSize)
 	{
 		// 注意可能出现压缩后的文件比压缩前的文件大的现象!!!

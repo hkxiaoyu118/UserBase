@@ -43,6 +43,9 @@
 #include "OS/RealOSVersion.h"
 #include "OS/OSInfo.h"
 
+#include "TCP/Client_DuMingqiao/TcpClient.h"
+#include "TCP/IOCP_DuMingqiao/IocpModeSvr.h"
+
 
 //以下是ThirdParty(三方函数)
 #include "ThirdParty/CmdLineArgs/CmdLineArgs.h"

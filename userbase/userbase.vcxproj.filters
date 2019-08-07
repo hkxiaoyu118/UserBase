@@ -88,6 +88,18 @@
     <Filter Include="OS">
       <UniqueIdentifier>{53e9eef3-a239-456c-95ac-d691e37312a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TCP">
+      <UniqueIdentifier>{3d1ec143-36af-4d0d-961a-bfb484dd3e33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TCP\IOCP_DuMingqiao">
+      <UniqueIdentifier>{bce513e6-060f-4126-9b30-bac748f0cbff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TCP\Client_DuMingqiao">
+      <UniqueIdentifier>{989aabe4-fdc4-4539-9460-821eb1079139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{993cc998-5eb5-44f6-b6ae-18d5123f7da5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -234,6 +246,18 @@
     <ClInclude Include="Crypto\crc.h">
       <Filter>Crypto</Filter>
     </ClInclude>
+    <ClInclude Include="TCP\IOCP_DuMingqiao\ClientList.h">
+      <Filter>TCP\IOCP_DuMingqiao</Filter>
+    </ClInclude>
+    <ClInclude Include="TCP\IOCP_DuMingqiao\IocpModeSvr.h">
+      <Filter>TCP\IOCP_DuMingqiao</Filter>
+    </ClInclude>
+    <ClInclude Include="TCP\Client_DuMingqiao\TcpClient.h">
+      <Filter>TCP\Client_DuMingqiao</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\MyCriticalSection.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -349,6 +373,12 @@
     </ClCompile>
     <ClCompile Include="Crypto\crc.cc">
       <Filter>Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="TCP\IOCP_DuMingqiao\IocpModeSvr.cpp">
+      <Filter>TCP\IOCP_DuMingqiao</Filter>
+    </ClCompile>
+    <ClCompile Include="TCP\Client_DuMingqiao\TcpClient.cpp">
+      <Filter>TCP\Client_DuMingqiao</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
