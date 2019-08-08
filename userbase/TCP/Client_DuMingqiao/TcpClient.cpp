@@ -58,7 +58,7 @@ bool TcpClient::Init(char* ip, unsigned short port)
 	//创建接收消息的线程
 	_beginthread(RecvThread, 0, this);
 
-	MyCriticalSection myCriticalSection(&m_criticalSection);
+	ubase::MyCriticalSection myCriticalSection(&m_criticalSection);
 	m_connected = true;
 	initResult = true;
 
@@ -118,7 +118,7 @@ void TcpClient::RecvThread(LPVOID args)
 		if (connected == false)
 		{
 			//设置客户端没有连接
-			MyCriticalSection myCriticalSection(&p->m_criticalSection);
+			ubase::MyCriticalSection myCriticalSection(&p->m_criticalSection);
 			p->m_connected = false;
 			//网络断开,并设置客户端socket为空
 			closesocket(p->m_clientSocket);
@@ -132,6 +132,6 @@ void TcpClient::RecvThread(LPVOID args)
 //判断客户端是否连接
 bool TcpClient::IsConnected()
 {
-	MyCriticalSection myCriticalSection(&m_criticalSection);
+	ubase::MyCriticalSection myCriticalSection(&m_criticalSection);
 	return m_connected;
 }

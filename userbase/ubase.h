@@ -25,7 +25,6 @@
 
 #include "Memory/UserMemory.h"
 #include "Memory/ShareMemory.h"
-#include "Memory/Event.h"
 
 #include "Log/log_file.h"
 
@@ -45,6 +44,9 @@
 
 #include "TCP/Client_DuMingqiao/TcpClient.h"
 #include "TCP/IOCP_DuMingqiao/IocpModeSvr.h"
+
+#include "Common/Event.h"
+#include "Common/MyCriticalSection.h"
 
 
 //以下是ThirdParty(三方函数)

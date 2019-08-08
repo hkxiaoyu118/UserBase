@@ -240,9 +240,6 @@
     <ClInclude Include="comdef.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Memory\Event.h">
-      <Filter>Memory</Filter>
-    </ClInclude>
     <ClInclude Include="Crypto\crc.h">
       <Filter>Crypto</Filter>
     </ClInclude>
@@ -256,6 +253,9 @@
       <Filter>TCP\Client_DuMingqiao</Filter>
     </ClInclude>
     <ClInclude Include="Common\MyCriticalSection.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Event.h">
       <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
