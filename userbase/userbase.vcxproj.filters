@@ -100,6 +100,9 @@
     <Filter Include="Common">
       <UniqueIdentifier>{993cc998-5eb5-44f6-b6ae-18d5123f7da5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TCP\Client_Golang">
+      <UniqueIdentifier>{21431886-c4ab-4748-beaf-64ae89091a16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -258,6 +261,9 @@
     <ClInclude Include="Common\Event.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="TCP\Client_Golang\TcpClientGo.h">
+      <Filter>TCP\Client_Golang</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -379,6 +385,9 @@
     </ClCompile>
     <ClCompile Include="TCP\Client_DuMingqiao\TcpClient.cpp">
       <Filter>TCP\Client_DuMingqiao</Filter>
+    </ClCompile>
+    <ClCompile Include="TCP\Client_Golang\TcpClientGo.cpp">
+      <Filter>TCP\Client_Golang</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

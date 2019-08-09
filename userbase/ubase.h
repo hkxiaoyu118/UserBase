@@ -44,6 +44,7 @@
 
 #include "TCP/Client_DuMingqiao/TcpClient.h"
 #include "TCP/IOCP_DuMingqiao/IocpModeSvr.h"
+#include "TCP/Client_Golang/TcpClientGo.h"
 
 #include "Common/Event.h"
 #include "Common/MyCriticalSection.h"

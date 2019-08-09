@@ -6,7 +6,7 @@
 
 #pragma comment(lib,"ws2_32.lib")
 
-TcpClient::TcpClient(ProcessRecvData* pProcessRecvData) :m_connected(false)
+TcpClient::TcpClient(FuncProcessRecvData* pProcessRecvData) :m_connected(false)
 {
 	m_clientSocket = 0;
 	m_pProcessRecvData = pProcessRecvData;

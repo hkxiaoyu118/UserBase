@@ -1,12 +1,12 @@
 #pragma once
 #include <WinSock2.h>
 
-typedef void __stdcall ProcessRecvData(char* data, unsigned int dataLength);
+typedef void __stdcall FuncProcessRecvData(char* data, unsigned int dataLength);
 
 class TcpClient
 {
 public:
-	TcpClient(ProcessRecvData* pProcessRecvData);
+	TcpClient(FuncProcessRecvData* pProcessRecvData);
 	~TcpClient();
 	bool Init(char* ip, unsigned short port);
 	void UnInit();
@@ -17,7 +17,7 @@ protected:
 	static void RecvThread(LPVOID args);
 private:
 	SOCKET m_clientSocket;
-	ProcessRecvData* m_pProcessRecvData;
+	FuncProcessRecvData* m_pProcessRecvData;
 	bool m_connected;
 	CRITICAL_SECTION m_criticalSection;
 };
