@@ -19,8 +19,8 @@ TcpClientGo::TcpClientGo(FunProcessRecvData* pProcessRecvData, std::string key) 
 	::InitializeCriticalSection(&m_dataCS);
 	::InitializeCriticalSection(&m_trueDataCS);
 
-	_beginthread(DealRecvData, 0, NULL);
-	_beginthread(DealTrueData, 0, NULL);
+	_beginthread(DealRecvData, 0, this);
+	_beginthread(DealTrueData, 0, this);
 
 	WORD sockVersion = MAKEWORD(2, 2);
 	WSADATA data;
