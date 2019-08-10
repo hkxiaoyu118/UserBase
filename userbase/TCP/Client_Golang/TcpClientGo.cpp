@@ -108,10 +108,10 @@ void TcpClientGo::RecvThread(LPVOID args)
 		char buf[1024 * 4] = { 0 }; //4K数据长度,windows经验值
 		bool connected = true;
 		int ret = recv(p->m_clientSocket, buf, 1024 * 4, 0);
-		if (ret > 0 && ret < 1024 * 4)//不能是超大包,超大包直接扔掉
+		if (ret > 0 && ret <= 1024 * 4)//包长度限制
 		{
-			buf[ret] = 0;
-			p->m_pProcessRecvData(buf, ret);
+			//buf[ret] = 0;
+			p->AddRecvData(buf, ret);
 		}
 		else if (ret == 0)//网络优雅的断开
 		{
@@ -229,7 +229,7 @@ bool TcpClientGo::GetTrueData(std::vector<std::string>& trueData)
 void TcpClientGo::UnPack(std::string& data)
 {
 	std::string dealData = m_tmpData + data;//这句有问题
-	unsigned int length = m_tmpData.length();
+	unsigned int length = dealData.length();
 	int i = 0;
 	for (i = 0; i < length; i++)
 	{
@@ -255,7 +255,7 @@ void TcpClientGo::UnPack(std::string& data)
 			//通过消息内容缓存队列传出
 			AddTrueData(trueData);
 			//移动数据指针到新的位置
-			i += m_packedHeaderLength + CONST_SAVEDATALENGTH + messageLength;
+			i += m_packedHeaderLength + CONST_SAVEDATALENGTH + messageLength - 1;
 		}
 	}
 	if (i == length)
@@ -276,7 +276,7 @@ std::string TcpClientGo::UnCryptData(std::string data)
 	std::string result;
 	if (m_aesKey.empty() == false)
 	{
-		result = ctrEncoder(data, m_aesKey);
+		result = ctrDecoder(data, m_aesKey);
 	}
 	else
 	{
@@ -290,7 +290,7 @@ std::string TcpClientGo::CryptData(std::string data)
 	std::string result;
 	if (m_aesKey.empty() == false)
 	{
-		result = ctrDecoder(data, m_aesKey);
+		result = ctrEncoder(data, m_aesKey);
 	}
 	else
 	{
