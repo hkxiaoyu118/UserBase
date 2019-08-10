@@ -8,10 +8,12 @@
 
 #pragma comment(lib,"ws2_32.lib")
 
-TcpClientGo::TcpClientGo(FunProcessRecvData* pProcessRecvData, std::string key) :m_connected(false)
+TcpClientGo::TcpClientGo(FunProcessRecvData* pProcessRecvData, std::string ipAddr, unsigned int port, std::string key) :m_connected(false)
 {
 	m_clientSocket = NULL;
 	m_pProcessRecvData = pProcessRecvData;
+	m_ipAddr = ipAddr;//连接的IP地址
+	m_port = port;//连接的端口
 	m_aesKey = key;//加密的密钥
 	m_packedHeader = "www.yuyincun.com";//封包头标志
 	m_packedHeaderLength = m_packedHeader.size();//封包头标志的长度
@@ -19,12 +21,11 @@ TcpClientGo::TcpClientGo(FunProcessRecvData* pProcessRecvData, std::string key) 
 	::InitializeCriticalSection(&m_dataCS);
 	::InitializeCriticalSection(&m_trueDataCS);
 
-	_beginthread(DealRecvData, 0, this);
-	_beginthread(DealTrueData, 0, this);
-
 	WORD sockVersion = MAKEWORD(2, 2);
 	WSADATA data;
 	WSAStartup(sockVersion, &data);
+
+	_beginthread(MinitorConnectThread, 0, this);//连接状态监控/重连
 }
 
 TcpClientGo::~TcpClientGo()
@@ -35,7 +36,7 @@ TcpClientGo::~TcpClientGo()
 	::DeleteCriticalSection(&m_trueDataCS);
 }
 
-bool TcpClientGo::Init(char* ip, unsigned short port)
+bool TcpClientGo::Init()
 {
 	bool initResult = false;
 
@@ -57,8 +58,8 @@ bool TcpClientGo::Init(char* ip, unsigned short port)
 
 	sockaddr_in serAddr;
 	serAddr.sin_family = AF_INET;
-	serAddr.sin_port = htons(port);
-	inet_pton(AF_INET, ip, (void*)& serAddr.sin_addr.S_un.S_addr);
+	serAddr.sin_port = htons(m_port);
+	inet_pton(AF_INET, m_ipAddr.c_str(), (void*)& serAddr.sin_addr.S_un.S_addr);
 	//与指定IP地址和端口的服务端连接
 	if (connect(m_clientSocket, (sockaddr*)& serAddr, sizeof(serAddr)) == SOCKET_ERROR)
 	{
@@ -66,6 +67,10 @@ bool TcpClientGo::Init(char* ip, unsigned short port)
 		return initResult;
 	}
 
+	//创建处理封包数据的线程
+	_beginthread(DealRecvData, 0, this);
+	//创建处理真实数据的线程
+	_beginthread(DealTrueData, 0, this);
 	//创建接收消息的线程
 	_beginthread(RecvThread, 0, this);
 
@@ -83,12 +88,13 @@ void TcpClientGo::UnInit()
 	WSACleanup();
 }
 
-bool TcpClientGo::SendData(char* data, unsigned int length)
+bool TcpClientGo::SendData(std::string data)
 {
 	bool sendResult = false;
 	if (IsConnected() == true)//每次发送数据都要验证客户端和工作台的连接状态
 	{
-		int iResult = send(m_clientSocket, data, length, 0);
+		std::string packedData = Pack(data);//封包
+		int iResult = send(m_clientSocket, packedData.c_str(), packedData.length(), 0);
 		if (iResult == SOCKET_ERROR)
 		{
 			DWORD errorCode = WSAGetLastError();
@@ -98,6 +104,33 @@ bool TcpClientGo::SendData(char* data, unsigned int length)
 			sendResult = true;
 	}
 	return sendResult;
+}
+
+void TcpClientGo::MinitorConnectThread(LPVOID args)
+{
+	TcpClientGo* p = (TcpClientGo*)args;
+	unsigned int count = 0;
+	while (true)
+	{
+		if (p->IsConnected() == false)//如果断开了连接,则重新连接
+		{
+			if (count == 60)
+			{
+				LOG(LogError, "Tcp断开,重新连接...");
+				count = 0;
+			}
+			else
+				count++;
+
+			bool reConResult = p->Init();//重新初始化
+			if (reConResult == true)
+			{
+				LOG(LogInfo, "TCP重新连接成功...");
+				count = 60;
+			}
+		}
+		Sleep(500);//500ms监视一次
+	}
 }
 
 void TcpClientGo::RecvThread(LPVOID args)
@@ -153,15 +186,24 @@ void TcpClientGo::DealRecvData(LPVOID args)
 	TcpClientGo* p = (TcpClientGo*)args;
 	while (true)
 	{
-		std::vector<std::string> vtData;
-		bool result = p->GetRecvData(vtData);//一次性取出所有数据
-		if (result == true)
+		if (p->IsConnected() == true)
 		{
-			for (std::vector<std::string>::iterator iter = vtData.begin(); iter != vtData.end(); iter++)
+			std::vector<std::string> vtData;
+			bool result = p->GetRecvData(vtData);//一次性取出所有数据
+			if (result == true)
 			{
-				p->UnPack(*iter);//处理数据
+				for (std::vector<std::string>::iterator iter = vtData.begin(); iter != vtData.end(); iter++)
+				{
+					p->UnPack(*iter);//处理数据
+				}
 			}
 		}
+		else
+		{
+			LOG(LogWarning, "TCP链接断开,封包数据处理线程退出...");
+			break;
+		}
+
 		Sleep(50);
 	}
 }
@@ -171,18 +213,27 @@ void TcpClientGo::DealTrueData(LPVOID args)
 	TcpClientGo* p = (TcpClientGo*)args;
 	while (true)
 	{
-		std::vector<std::string> vtTrueData;
-		bool result = p->GetTrueData(vtTrueData);//一次性取出所有数据
-		if (result == true)
+		if (p->IsConnected() == true)
 		{
-			for (std::vector<std::string>::iterator iter = vtTrueData.begin(); iter != vtTrueData.end(); iter++)
+			std::vector<std::string> vtTrueData;
+			bool result = p->GetTrueData(vtTrueData);//一次性取出所有数据
+			if (result == true)
 			{
-				//1.将数据解密
-				//2.将数据通过回调函数传递给调用者
-				std::string message = p->UnCryptData(*iter);
-				p->m_pProcessRecvData((char *)message.c_str(), message.length());
+				for (std::vector<std::string>::iterator iter = vtTrueData.begin(); iter != vtTrueData.end(); iter++)
+				{
+					//1.将数据解密
+					//2.将数据通过回调函数传递给调用者
+					std::string message = p->UnCryptData(*iter);
+					p->m_pProcessRecvData((char*)message.c_str(), message.length());
+				}
 			}
 		}
+		else
+		{
+			LOG(LogWarning, "TCP链接断开,真实数据处理线程退出...");
+			break;
+		}
+
 		Sleep(50);
 	}
 }
@@ -269,6 +320,19 @@ void TcpClientGo::UnPack(std::string& data)
 		m_tmpData.resize(length - i);//剩余数据的长度
 		memcpy((char*)m_tmpData.c_str(), (char*)(dealData.c_str() + i), length - i);//将剩余的数据保存
 	}
+}
+
+std::string TcpClientGo::Pack(std::string& data)
+{
+	std::string result;
+	unsigned char binLength[CONST_SAVEDATALENGTH] = { 0 };
+	std::string cryptedData = CryptData(data);
+	ubase::ConvertUIntToBytes(cryptedData.length(), binLength, true);
+	result.resize(m_packedHeaderLength + CONST_SAVEDATALENGTH + cryptedData.length());//封包长度
+	memcpy((char*)result.c_str(), m_packedHeader.c_str(), m_packedHeaderLength);//填充包头标志
+	memcpy((char*)(result.c_str() + m_packedHeaderLength), binLength, CONST_SAVEDATALENGTH);//填充数据长度4字节
+	memcpy((char*)(result.c_str() + m_packedHeaderLength + CONST_SAVEDATALENGTH), cryptedData.c_str(), cryptedData.length());//填充包数据
+	return result;
 }
 
 std::string TcpClientGo::UnCryptData(std::string data)

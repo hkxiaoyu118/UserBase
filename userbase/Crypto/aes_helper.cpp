@@ -223,12 +223,11 @@ std::string ctrEncoder(std::string data, std::string key)
 std::string ctrDecoder(std::string data, std::string key)
 {
 	std::string resultData;
-	
-	if (data.empty() == false)
+	std::string binData = ubase::HexToBin(data);
+	if (binData.empty() == false)
 	{
-		std::string iv = data.substr(0, 16);//前16个字符是IV
-		std::string hexData = data.substr(16);//后面真正的数据
-		std::string trueData = ubase::HexToBin(hexData);
+		std::string iv = binData.substr(0, 16);//前16个字符是
+		std::string trueData = binData.substr(16);//后面真正的数据
 		resultData.resize(trueData.length());
 		int result = decrypt((unsigned char*)trueData.c_str(), trueData.length(), (unsigned char*)key.c_str(), (unsigned char*)iv.c_str(), (unsigned char*)resultData.c_str());
 		if (result != -1)
