@@ -25,4 +25,6 @@ namespace ubase
 	std::string PsGetProcesFullPath(HANDLE hProcess);//获取指定进程的全路径
 	std::string PsDevicePathToDosPath(std::string devPath);//将设备路径转为Dos路径
 	std::string PsDosPathToDevicePath(std::string dosPath);//将DOS路径转换为设备路径
+	bool PsCreateProcess(std::string pePath);//创建进程(普通的创建进程)
+	bool PsCreateProcessReturnInfo(std::string pePath, PROCESS_INFORMATION& pi);//创建进程(创建成功后,返回子进程的基本信息)
 }
