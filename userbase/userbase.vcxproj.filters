@@ -264,6 +264,9 @@
     <ClInclude Include="TCP\Client_Golang\TcpClientGo.h">
       <Filter>TCP\Client_Golang</Filter>
     </ClInclude>
+    <ClInclude Include="Window\TrayWindow.h">
+      <Filter>Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -388,6 +391,9 @@
     </ClCompile>
     <ClCompile Include="TCP\Client_Golang\TcpClientGo.cpp">
       <Filter>TCP\Client_Golang</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\TrayWindow.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

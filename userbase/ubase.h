@@ -38,6 +38,7 @@
 #include "Crypto/base64.h"
 
 #include "Window/TSWindowsAPI.h"
+#include "Window/TrayWindow.h"
 
 #include "OS/RealOSVersion.h"
 #include "OS/OSInfo.h"

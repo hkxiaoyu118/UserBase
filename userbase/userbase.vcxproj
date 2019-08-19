@@ -190,6 +190,7 @@
     <ClInclude Include="ThirdParty\Network\nio_base.h" />
     <ClInclude Include="Time\UserTimer.h" />
     <ClInclude Include="ubase.h" />
+    <ClInclude Include="Window\TrayWindow.h" />
     <ClInclude Include="Window\TSWindowsAPI.h" />
     <ClInclude Include="ZLib\zlib\zconf.h" />
     <ClInclude Include="ZLib\zlib\zlib.h" />
@@ -240,6 +241,7 @@
     <ClCompile Include="ThirdParty\modp_b64\modp_b64.cc" />
     <ClCompile Include="ThirdParty\Network\network_util.cpp" />
     <ClCompile Include="Time\UserTimer.cpp" />
+    <ClCompile Include="Window\TrayWindow.cpp" />
     <ClCompile Include="Window\TSWindowsAPI.cpp" />
     <ClCompile Include="ZLib\zlib_compress.cpp" />
   </ItemGroup>
