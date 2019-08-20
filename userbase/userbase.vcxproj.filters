@@ -103,6 +103,9 @@
     <Filter Include="TCP\Client_Golang">
       <UniqueIdentifier>{21431886-c4ab-4748-beaf-64ae89091a16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="NativeAPI">
+      <UniqueIdentifier>{422aa4e0-3352-40e7-b112-aed659834d83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -267,6 +270,9 @@
     <ClInclude Include="Window\TrayWindow.h">
       <Filter>Window</Filter>
     </ClInclude>
+    <ClInclude Include="NativeAPI\NtAPI.h">
+      <Filter>NativeAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -394,6 +400,9 @@
     </ClCompile>
     <ClCompile Include="Window\TrayWindow.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="NativeAPI\NtAPI.cpp">
+      <Filter>NativeAPI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

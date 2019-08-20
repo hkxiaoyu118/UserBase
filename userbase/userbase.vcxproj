@@ -152,6 +152,7 @@
     <ClInclude Include="Log\log_file.h" />
     <ClInclude Include="Memory\ShareMemory.h" />
     <ClInclude Include="Memory\UserMemory.h" />
+    <ClInclude Include="NativeAPI\NtAPI.h" />
     <ClInclude Include="NetWork\FtpUtility.h" />
     <ClInclude Include="NetWork\HttpUnity.h" />
     <ClInclude Include="NetWork\UserNetwork.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="Integer\UserInteger.cpp" />
     <ClCompile Include="Log\log_file.cpp" />
     <ClCompile Include="Memory\UserMemory.cpp" />
+    <ClCompile Include="NativeAPI\NtAPI.cpp" />
     <ClCompile Include="NetWork\FtpUtility.cpp" />
     <ClCompile Include="NetWork\HttpUnity.cpp" />
     <ClCompile Include="NetWork\UserNetwork.cpp" />
