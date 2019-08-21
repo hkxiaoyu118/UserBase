@@ -49,6 +49,7 @@
 
 #include "Common/Event.h"
 #include "Common/MyCriticalSection.h"
+#include "Common/Utils.h"
 
 #include "Exception/Error.h"
 

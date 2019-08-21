@@ -279,6 +279,9 @@
     <ClInclude Include="Exception\Error.h">
       <Filter>Exception</Filter>
     </ClInclude>
+    <ClInclude Include="Common\Utils.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
