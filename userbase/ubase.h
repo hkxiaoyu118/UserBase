@@ -50,6 +50,8 @@
 #include "Common/Event.h"
 #include "Common/MyCriticalSection.h"
 
+#include "Exception/Error.h"
+
 
 //以下是ThirdParty(三方函数)
 #include "ThirdParty/CmdLineArgs/CmdLineArgs.h"

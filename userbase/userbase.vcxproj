@@ -147,6 +147,7 @@
     <ClInclude Include="Crypto\aes_helper.h" />
     <ClInclude Include="Crypto\base64.h" />
     <ClInclude Include="Crypto\crc.h" />
+    <ClInclude Include="Exception\Error.h" />
     <ClInclude Include="File\UserFile.h" />
     <ClInclude Include="Integer\UserInteger.h" />
     <ClInclude Include="Log\log_file.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="Crypto\aes_helper.cpp" />
     <ClCompile Include="Crypto\base64.cpp" />
     <ClCompile Include="Crypto\crc.cc" />
+    <ClCompile Include="Exception\Error.cpp" />
     <ClCompile Include="File\UserFile.cpp" />
     <ClCompile Include="Integer\UserInteger.cpp" />
     <ClCompile Include="Log\log_file.cpp" />

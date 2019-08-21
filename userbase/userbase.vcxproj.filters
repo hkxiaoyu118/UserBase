@@ -106,6 +106,9 @@
     <Filter Include="NativeAPI">
       <UniqueIdentifier>{422aa4e0-3352-40e7-b112-aed659834d83}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Exception">
+      <UniqueIdentifier>{a64b6d03-487c-41ed-bb6e-fe6c94cc7c11}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -273,6 +276,9 @@
     <ClInclude Include="NativeAPI\NtAPI.h">
       <Filter>NativeAPI</Filter>
     </ClInclude>
+    <ClInclude Include="Exception\Error.h">
+      <Filter>Exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -403,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="NativeAPI\NtAPI.cpp">
       <Filter>NativeAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="Exception\Error.cpp">
+      <Filter>Exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

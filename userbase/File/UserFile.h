@@ -33,6 +33,7 @@ namespace ubase
 	void FsDelBackslash(IN OUT std::string& strDir);//去掉路径后面的反斜杠
 	bool FsIsDir(IN const std::string& strPath);//判断路径是否是文件夹
 	bool FsIsFile(IN const std::string& strFilePath);//判断路径是否是文件
+	bool FsIsFileExists(const std::string& path);//判断文件是否存在
 
 	//与文件属性相关
 	__int64 FsGetFileSize(IN const std::string& strFileName);//获取文件的大小,单位是longlong或者__int64类型,能够表示大于4G的文件大小

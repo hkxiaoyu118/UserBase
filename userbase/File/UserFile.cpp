@@ -202,6 +202,11 @@ namespace ubase
 		return false;
 	}
 
+	bool FsIsFileExists(const std::string& path)
+	{
+		return (GetFileAttributesA(path.c_str()) != 0xFFFFFFFF);
+	}
+
 	__int64 FsGetFileSize(IN const std::string& strFileName)
 	{
 		__int64 nLen = 0;

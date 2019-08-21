@@ -431,7 +431,7 @@ namespace ubase
 		return NULL;
 	}
 
-	std::string PsGetProcesFullPath(HANDLE hProcess)
+	std::string PsGetProcessFullPath(HANDLE hProcess)
 	{
 		DWORD dwRet = 0;
 		CHAR szImageName[MAX_PATH] = { 0 };
@@ -442,6 +442,17 @@ namespace ubase
 			result = PsDevicePathToDosPath(szImageName);//设备名称转DOS名称
 		}
 		return result;
+	}
+
+	std::string PsGetProcessFullPathV2(HANDLE hProcess)
+	{
+		CHAR szPath[MAX_PATH];
+		DWORD dwSize;
+		if (QueryFullProcessImageNameA(hProcess, 0, szPath, &dwSize) == TRUE)
+		{
+			return szPath;
+		}
+		return "";
 	}
 
 	std::string PsDevicePathToDosPath(std::string devPath)
