@@ -160,6 +160,7 @@
     <ClInclude Include="NetWork\UserNetwork.h" />
     <ClInclude Include="OS\OSInfo.h" />
     <ClInclude Include="OS\RealOSVersion.h" />
+    <ClInclude Include="OS\VersionApi.h" />
     <ClInclude Include="PE\ApcInject.h" />
     <ClInclude Include="PE\BypassUAC.h" />
     <ClInclude Include="PE\DisguiseProcess.h" />

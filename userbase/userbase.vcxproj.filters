@@ -282,6 +282,9 @@
     <ClInclude Include="Common\Utils.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="OS\VersionApi.h">
+      <Filter>OS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
