@@ -167,6 +167,7 @@
     <ClInclude Include="PE\MmLoadDll.h" />
     <ClInclude Include="PE\PE.h" />
     <ClInclude Include="PE\ReplaceProcess.h" />
+    <ClInclude Include="Process\AutoRun.h" />
     <ClInclude Include="Process\UserProcess.h" />
     <ClInclude Include="Reg\UserReg.h" />
     <ClInclude Include="stdafx.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="PE\MmLoadDll.cpp" />
     <ClCompile Include="PE\PE.cpp" />
     <ClCompile Include="PE\ReplaceProcess.cpp" />
+    <ClCompile Include="Process\AutoRun.cpp" />
     <ClCompile Include="Process\UserProcess.cpp" />
     <ClCompile Include="Reg\UserReg.cpp" />
     <ClCompile Include="stdafx.cpp">

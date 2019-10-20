@@ -1,4 +1,5 @@
 #include "AutoRun.h"
+#include "../String/UserString.h"
 
 /*
 	* 创建快捷方式
@@ -6,7 +7,7 @@
 	* szLinkName[in]:要创建的快捷方式.link文件的全路径
 	* iIcon[in]:要创建快捷方式的exe文件RC资源中的icon值（默认为0）
 */
-BOOL PsCreateOneLink(LPCTSTR  lpszExePath, LPCTSTR lpszLnkPath, int iIcon)
+BOOL PsCreateLink(LPCTSTR lpszExePath, CONST WCHAR* lpWzLinkPath, int iIcon)
 {
 	if (NULL == lpszExePath)
 	{
@@ -29,7 +30,7 @@ BOOL PsCreateOneLink(LPCTSTR  lpszExePath, LPCTSTR lpszLnkPath, int iIcon)
 		}
 
 		TCHAR szWorkPath[MAX_PATH] = { 0 };
-		StringCchCopy(szWorkPath, MAX_PATH, lpszExePath);
+		strcpy(szWorkPath, lpszExePath);
 		LPTSTR pszEnd = _tcsrchr(szWorkPath, _T('\\'));
 		if (pszEnd != NULL)
 		{
@@ -38,7 +39,7 @@ BOOL PsCreateOneLink(LPCTSTR  lpszExePath, LPCTSTR lpszLnkPath, int iIcon)
 
 		// 设置快捷方式的各种属性
 		pShellLink->SetPath(lpszExePath); // 快捷方式所指的应用程序名
-		pShellLink->SetDescription(_T("描述")); // 描述
+		pShellLink->SetDescription(_T("快捷方式")); // 描述
 		pShellLink->SetWorkingDirectory(szWorkPath); // 设置工作目录
 		pShellLink->SetIconLocation(lpszExePath, iIcon);//直接取exe文件中的图标进行设置
 
@@ -48,7 +49,7 @@ BOOL PsCreateOneLink(LPCTSTR  lpszExePath, LPCTSTR lpszLnkPath, int iIcon)
 		{
 			throw(hres);
 		}
-		StringCchPrintfW(szwShortCutName, MAX_PATH, L"%s", lpszLnkPath);
+		wsprintfW(szwShortCutName, L"%s", lpWzLinkPath);
 		//使用 IPersistFile 接口的 Save() 方法保存快捷方式
 		hres = pPersistFile->Save(szwShortCutName, TRUE);
 	}
@@ -98,9 +99,32 @@ void PsCreateDesktopLink(LPCTSTR szExePath, LPCTSTR szLinkName, int iIcon)
 
 	//设置快捷方式.link文件的全路径
 	TCHAR szExeLinkFullPath[MAX_PATH] = { 0 };
-	StringCchPrintf(szExeLinkFullPath, _countof(szExeLinkFullPath), _T("%s\\%s.lnk"), szDesktopPath, szLinkName);
+	wsprintf(szExeLinkFullPath, _T("%s\\%s.lnk"), szDesktopPath, szLinkName);
+	std::wstring wzExeLinkFullPathStr = ubase::StrGbkToUnicode(szExeLinkFullPath);
 	//开始创建快捷方式
-	PsCreateOneLink(szExePath, szExeLinkFullPath, iIcon);
+	PsCreateLink(szExePath, wzExeLinkFullPathStr.c_str(), iIcon);
 	// 通知shell有关变化
 	SHChangeNotify(SHCNE_CREATE | SHCNE_INTERRUPT, SHCNF_FLUSH | SHCNF_PATH, szExeLinkFullPath, 0);
+}
+
+BOOL PsAutoRunStartup(CONST CHAR* szSrcFileFullPath, CONST CHAR* szLinkName)
+{
+	BOOL bRet = FALSE;
+	CHAR szStartupPath[MAX_PATH] = { 0 };
+	//获取快速启动目录的路径
+	bRet = SHGetSpecialFolderPathA(NULL, szStartupPath, CSIDL_STARTUP, TRUE);
+	if (bRet == FALSE)
+	{
+		return FALSE;
+	}
+
+	//设置快捷方式.link文件的全路径
+	TCHAR szLinkFullPath[MAX_PATH] = { 0 };
+	wsprintf(szLinkFullPath, _T("%s\\%s.lnk"), szStartupPath, szLinkName);
+	//获取链接的绝对路径(unicode)
+	std::wstring wzExeLinkFullPath = ubase::StrGbkToUnicode(szLinkFullPath);
+	PsCreateLink(szSrcFileFullPath, wzExeLinkFullPath.c_str(), 0);//在快速启动文件夹中创建快捷方式
+	// 通知shell有关变化
+	SHChangeNotify(SHCNE_CREATE | SHCNE_INTERRUPT, SHCNF_FLUSH | SHCNF_PATH, szLinkFullPath, 0);
+	return TRUE;
 }

@@ -285,6 +285,9 @@
     <ClInclude Include="OS\VersionApi.h">
       <Filter>OS</Filter>
     </ClInclude>
+    <ClInclude Include="Process\AutoRun.h">
+      <Filter>Process</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -418,6 +421,9 @@
     </ClCompile>
     <ClCompile Include="Exception\Error.cpp">
       <Filter>Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="Process\AutoRun.cpp">
+      <Filter>Process</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

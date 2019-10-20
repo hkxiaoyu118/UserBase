@@ -14,6 +14,7 @@
 #include "Reg/UserReg.h"
 
 #include "Process/UserProcess.h"
+#include "Process/AutoRun.h"
 
 #include "PE/ApcInject.h"
 #include "PE/BypassUAC.h"

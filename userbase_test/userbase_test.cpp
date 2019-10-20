@@ -76,9 +76,19 @@ int main()
 // 		printf("%d %d %d %s %s\n", item->rect.left, item->rect.top, item->pid, item->title.c_str(),  item->filePath.c_str());
 // 	}
 
-	HANDLE handle = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, 15024);
-	std::string msg = ubase::PsGetProcessFullPathV2(handle);
-	std::cout << msg << std::endl;
+// 	HANDLE handle = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, 15024);
+// 	std::string msg = ubase::PsGetProcessFullPathV2(handle);
+// 	std::cout << msg << std::endl;
 
+	std::string filePath = "D:\\Code\\TestApp\\Aliwangwang\\AliIM.exe";
+	if (PsAutoRunStartup((char *)filePath.c_str(), "测试") == TRUE)
+	{
+		std::cout << "PsAutoRunStartup成功" << std::endl;
+		PsCreateDesktopLink((char*)filePath.c_str(), "hahahha哈哈");
+	}
+	else
+	{
+		std::cout << "PsAutoRunStartup失败" << std::endl;
+	}
 	system("pause");
 }
