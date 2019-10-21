@@ -109,6 +109,9 @@
     <Filter Include="Exception">
       <UniqueIdentifier>{a64b6d03-487c-41ed-bb6e-fe6c94cc7c11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UAC">
+      <UniqueIdentifier>{6677b7b6-4887-41f3-ab3e-2911b53dcde8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -136,9 +139,6 @@
       <Filter>PE</Filter>
     </ClInclude>
     <ClInclude Include="PE\ApcInject.h">
-      <Filter>PE</Filter>
-    </ClInclude>
-    <ClInclude Include="PE\BypassUAC.h">
       <Filter>PE</Filter>
     </ClInclude>
     <ClInclude Include="PE\DisguiseProcess.h">
@@ -297,6 +297,12 @@
     <ClInclude Include="Reg\RegAutoRun.h">
       <Filter>Reg</Filter>
     </ClInclude>
+    <ClInclude Include="UAC\ByPassUAC.h">
+      <Filter>UAC</Filter>
+    </ClInclude>
+    <ClInclude Include="PE\HideProcess.h">
+      <Filter>PE</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -321,9 +327,6 @@
       <Filter>PE</Filter>
     </ClCompile>
     <ClCompile Include="PE\ApcInject.cpp">
-      <Filter>PE</Filter>
-    </ClCompile>
-    <ClCompile Include="PE\BypassUAC.cpp">
       <Filter>PE</Filter>
     </ClCompile>
     <ClCompile Include="PE\DisguiseProcess.cpp">
@@ -442,6 +445,15 @@
     </ClCompile>
     <ClCompile Include="Reg\RegAutoRun.cpp">
       <Filter>Reg</Filter>
+    </ClCompile>
+    <ClCompile Include="UAC\ByPassUAC.cpp">
+      <Filter>UAC</Filter>
+    </ClCompile>
+    <ClCompile Include="UAC\BypassUACTest.cpp">
+      <Filter>UAC</Filter>
+    </ClCompile>
+    <ClCompile Include="PE\HideProcess.cpp">
+      <Filter>PE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

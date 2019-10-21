@@ -20,7 +20,6 @@
 #include "Process/ServiceManager.h"
 
 #include "PE/ApcInject.h"
-#include "PE/BypassUAC.h"
 #include "PE/DisguiseProcess.h"
 #include "PE/HideProcess.h"
 #include "PE/MmLoadDll.h"
@@ -54,6 +53,8 @@
 #include "Common/Event.h"
 #include "Common/MyCriticalSection.h"
 #include "Common/Utils.h"
+
+#include "UAC/ByPassUAC.h"
 
 #include "Exception/Error.h"
 

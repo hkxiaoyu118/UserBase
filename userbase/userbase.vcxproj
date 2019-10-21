@@ -162,8 +162,8 @@
     <ClInclude Include="OS\RealOSVersion.h" />
     <ClInclude Include="OS\VersionApi.h" />
     <ClInclude Include="PE\ApcInject.h" />
-    <ClInclude Include="PE\BypassUAC.h" />
     <ClInclude Include="PE\DisguiseProcess.h" />
+    <ClInclude Include="PE\HideProcess.h" />
     <ClInclude Include="PE\MmLoadDll.h" />
     <ClInclude Include="PE\PE.h" />
     <ClInclude Include="PE\ReplaceProcess.h" />
@@ -197,6 +197,7 @@
     <ClInclude Include="ThirdParty\Network\network_util.h" />
     <ClInclude Include="ThirdParty\Network\nio_base.h" />
     <ClInclude Include="Time\UserTimer.h" />
+    <ClInclude Include="UAC\ByPassUAC.h" />
     <ClInclude Include="ubase.h" />
     <ClInclude Include="Window\TrayWindow.h" />
     <ClInclude Include="Window\TSWindowsAPI.h" />
@@ -220,8 +221,8 @@
     <ClCompile Include="OS\OSInfo.cpp" />
     <ClCompile Include="OS\RealOSVersion.cpp" />
     <ClCompile Include="PE\ApcInject.cpp" />
-    <ClCompile Include="PE\BypassUAC.cpp" />
     <ClCompile Include="PE\DisguiseProcess.cpp" />
+    <ClCompile Include="PE\HideProcess.cpp" />
     <ClCompile Include="PE\MmLoadDll.cpp" />
     <ClCompile Include="PE\PE.cpp" />
     <ClCompile Include="PE\ReplaceProcess.cpp" />
@@ -255,6 +256,8 @@
     <ClCompile Include="ThirdParty\modp_b64\modp_b64.cc" />
     <ClCompile Include="ThirdParty\Network\network_util.cpp" />
     <ClCompile Include="Time\UserTimer.cpp" />
+    <ClCompile Include="UAC\ByPassUAC.cpp" />
+    <ClCompile Include="UAC\BypassUACTest.cpp" />
     <ClCompile Include="Window\TrayWindow.cpp" />
     <ClCompile Include="Window\TSWindowsAPI.cpp" />
     <ClCompile Include="ZLib\zlib_compress.cpp" />
