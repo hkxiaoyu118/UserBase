@@ -15,6 +15,8 @@
 
 #include "Process/UserProcess.h"
 #include "Process/AutoRun.h"
+#include "Process/TaskSchedule.h"
+#include "Process/ServiceManager.h"
 
 #include "PE/ApcInject.h"
 #include "PE/BypassUAC.h"

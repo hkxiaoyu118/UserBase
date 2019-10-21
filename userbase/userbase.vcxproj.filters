@@ -288,6 +288,12 @@
     <ClInclude Include="Process\AutoRun.h">
       <Filter>Process</Filter>
     </ClInclude>
+    <ClInclude Include="Process\TaskSchedule.h">
+      <Filter>Process</Filter>
+    </ClInclude>
+    <ClInclude Include="Process\ServiceManager.h">
+      <Filter>Process</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -423,6 +429,12 @@
       <Filter>Exception</Filter>
     </ClCompile>
     <ClCompile Include="Process\AutoRun.cpp">
+      <Filter>Process</Filter>
+    </ClCompile>
+    <ClCompile Include="Process\TaskSchedule.cpp">
+      <Filter>Process</Filter>
+    </ClCompile>
+    <ClCompile Include="Process\ServiceManager.cpp">
       <Filter>Process</Filter>
     </ClCompile>
   </ItemGroup>

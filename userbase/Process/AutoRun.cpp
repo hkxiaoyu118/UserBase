@@ -80,7 +80,6 @@ BOOL PsCreateLink(LPCTSTR lpszExePath, CONST WCHAR* lpWzLinkPath, int iIcon)
 */
 void PsCreateDesktopLink(LPCTSTR szExePath, LPCTSTR szLinkName, int iIcon)
 {
-	LPITEMIDLIST pidlBeginAt, pidlDestination;
 	TCHAR szDesktopPath[MAX_PATH] = { 0 };
 	LPITEMIDLIST  ppidl = NULL;
 
