@@ -171,6 +171,7 @@
     <ClInclude Include="Process\ServiceManager.h" />
     <ClInclude Include="Process\TaskSchedule.h" />
     <ClInclude Include="Process\UserProcess.h" />
+    <ClInclude Include="Reg\RegAutoRun.h" />
     <ClInclude Include="Reg\UserReg.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="String\UserString.h" />
@@ -228,6 +229,7 @@
     <ClCompile Include="Process\ServiceManager.cpp" />
     <ClCompile Include="Process\TaskSchedule.cpp" />
     <ClCompile Include="Process\UserProcess.cpp" />
+    <ClCompile Include="Reg\RegAutoRun.cpp" />
     <ClCompile Include="Reg\UserReg.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -294,6 +294,9 @@
     <ClInclude Include="Process\ServiceManager.h">
       <Filter>Process</Filter>
     </ClInclude>
+    <ClInclude Include="Reg\RegAutoRun.h">
+      <Filter>Reg</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -436,6 +439,9 @@
     </ClCompile>
     <ClCompile Include="Process\ServiceManager.cpp">
       <Filter>Process</Filter>
+    </ClCompile>
+    <ClCompile Include="Reg\RegAutoRun.cpp">
+      <Filter>Reg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

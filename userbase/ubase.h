@@ -12,6 +12,7 @@
 #include "String/UserString.h"
 
 #include "Reg/UserReg.h"
+#include "Reg/RegAutoRun.h"
 
 #include "Process/UserProcess.h"
 #include "Process/AutoRun.h"
