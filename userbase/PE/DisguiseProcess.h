@@ -15,7 +15,7 @@ typedef NTSTATUS(NTAPI *typedef_NtQueryInformationProcess)(
 	);
 
 
-// 修改指定进程的进程环境块PEB中的路径和命令行信息, 实现进程伪装
+// 修改指定进程的进程环境块PEB中的路径和命令行信息, 实现进程伪装(可以骗过procxp)
 BOOL DisguiseProcess(DWORD dwProcessId, wchar_t *lpwszPath, wchar_t *lpwszCmd);
 
 
