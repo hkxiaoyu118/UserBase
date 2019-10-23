@@ -28,7 +28,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140_xp</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -41,15 +41,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -128,7 +128,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -149,7 +149,9 @@
     <ClInclude Include="Crypto\base64.h" />
     <ClInclude Include="Crypto\crc.h" />
     <ClInclude Include="Exception\Error.h" />
+    <ClInclude Include="File\RtlCompressBuffer.h" />
     <ClInclude Include="File\UserFile.h" />
+    <ClInclude Include="Inject\ApcInject.h" />
     <ClInclude Include="Integer\UserInteger.h" />
     <ClInclude Include="Log\log_file.h" />
     <ClInclude Include="Memory\ShareMemory.h" />
@@ -161,9 +163,7 @@
     <ClInclude Include="OS\OSInfo.h" />
     <ClInclude Include="OS\RealOSVersion.h" />
     <ClInclude Include="OS\VersionApi.h" />
-    <ClInclude Include="PE\ApcInject.h" />
     <ClInclude Include="PE\DisguiseProcess.h" />
-    <ClInclude Include="PE\HideProcess.h" />
     <ClInclude Include="PE\MmLoadDll.h" />
     <ClInclude Include="PE\PE.h" />
     <ClInclude Include="PE\ReplaceProcess.h" />
@@ -210,7 +210,9 @@
     <ClCompile Include="Crypto\base64.cpp" />
     <ClCompile Include="Crypto\crc.cc" />
     <ClCompile Include="Exception\Error.cpp" />
+    <ClCompile Include="File\RtlCompressBuffer.cpp" />
     <ClCompile Include="File\UserFile.cpp" />
+    <ClCompile Include="Inject\ApcInject.cpp" />
     <ClCompile Include="Integer\UserInteger.cpp" />
     <ClCompile Include="Log\log_file.cpp" />
     <ClCompile Include="Memory\UserMemory.cpp" />
@@ -220,9 +222,7 @@
     <ClCompile Include="NetWork\UserNetwork.cpp" />
     <ClCompile Include="OS\OSInfo.cpp" />
     <ClCompile Include="OS\RealOSVersion.cpp" />
-    <ClCompile Include="PE\ApcInject.cpp" />
     <ClCompile Include="PE\DisguiseProcess.cpp" />
-    <ClCompile Include="PE\HideProcess.cpp" />
     <ClCompile Include="PE\MmLoadDll.cpp" />
     <ClCompile Include="PE\PE.cpp" />
     <ClCompile Include="PE\ReplaceProcess.cpp" />

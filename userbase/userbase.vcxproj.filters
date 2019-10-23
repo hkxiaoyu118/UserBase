@@ -112,6 +112,9 @@
     <Filter Include="UAC">
       <UniqueIdentifier>{6677b7b6-4887-41f3-ab3e-2911b53dcde8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inject">
+      <UniqueIdentifier>{aa92588d-7e84-4d36-a5b9-128bf02c6327}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -136,9 +139,6 @@
       <Filter>Crypto</Filter>
     </ClInclude>
     <ClInclude Include="PE\MmLoadDll.h">
-      <Filter>PE</Filter>
-    </ClInclude>
-    <ClInclude Include="PE\ApcInject.h">
       <Filter>PE</Filter>
     </ClInclude>
     <ClInclude Include="PE\DisguiseProcess.h">
@@ -300,8 +300,11 @@
     <ClInclude Include="UAC\ByPassUAC.h">
       <Filter>UAC</Filter>
     </ClInclude>
-    <ClInclude Include="PE\HideProcess.h">
-      <Filter>PE</Filter>
+    <ClInclude Include="Inject\ApcInject.h">
+      <Filter>Inject</Filter>
+    </ClInclude>
+    <ClInclude Include="File\RtlCompressBuffer.h">
+      <Filter>File</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -324,9 +327,6 @@
       <Filter>Crypto</Filter>
     </ClCompile>
     <ClCompile Include="PE\MmLoadDll.cpp">
-      <Filter>PE</Filter>
-    </ClCompile>
-    <ClCompile Include="PE\ApcInject.cpp">
       <Filter>PE</Filter>
     </ClCompile>
     <ClCompile Include="PE\DisguiseProcess.cpp">
@@ -452,8 +452,11 @@
     <ClCompile Include="UAC\BypassUACTest.cpp">
       <Filter>UAC</Filter>
     </ClCompile>
-    <ClCompile Include="PE\HideProcess.cpp">
-      <Filter>PE</Filter>
+    <ClCompile Include="Inject\ApcInject.cpp">
+      <Filter>Inject</Filter>
+    </ClCompile>
+    <ClCompile Include="File\RtlCompressBuffer.cpp">
+      <Filter>File</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

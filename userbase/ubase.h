@@ -19,9 +19,9 @@
 #include "Process/TaskSchedule.h"
 #include "Process/ServiceManager.h"
 
-#include "PE/ApcInject.h"
+#include "Inject/ApcInject.h"
+
 #include "PE/DisguiseProcess.h"
-#include "PE/HideProcess.h"
 #include "PE/MmLoadDll.h"
 #include "PE/ReplaceProcess.h"
 #include "PE/PE.h"
@@ -34,6 +34,7 @@
 #include "Integer/UserInteger.h"
 
 #include "File/UserFile.h"
+#include "File/RtlCompressBuffer.h"
 
 #include "ZLib/zlib_compress.h"
 
