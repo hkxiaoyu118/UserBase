@@ -57,6 +57,8 @@
 
 #include "UAC/ByPassUAC.h"
 
+#include "Shell/PipeCmd.h"
+
 #include "Exception/Error.h"
 
 

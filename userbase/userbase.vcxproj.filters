@@ -115,6 +115,9 @@
     <Filter Include="Inject">
       <UniqueIdentifier>{aa92588d-7e84-4d36-a5b9-128bf02c6327}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shell">
+      <UniqueIdentifier>{7171bdbd-15e2-4e14-8c7d-bf8861ce9712}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -306,6 +309,9 @@
     <ClInclude Include="File\RtlCompressBuffer.h">
       <Filter>File</Filter>
     </ClInclude>
+    <ClInclude Include="Shell\PipeCmd.h">
+      <Filter>Shell</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -457,6 +463,9 @@
     </ClCompile>
     <ClCompile Include="File\RtlCompressBuffer.cpp">
       <Filter>File</Filter>
+    </ClCompile>
+    <ClCompile Include="Shell\PipeCmd.cpp">
+      <Filter>Shell</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
