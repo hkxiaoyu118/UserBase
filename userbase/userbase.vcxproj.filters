@@ -118,6 +118,9 @@
     <Filter Include="Shell">
       <UniqueIdentifier>{7171bdbd-15e2-4e14-8c7d-bf8861ce9712}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Regex">
+      <UniqueIdentifier>{4ff2fbbd-ca18-493d-a161-14703926ad99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -312,6 +315,9 @@
     <ClInclude Include="Shell\PipeCmd.h">
       <Filter>Shell</Filter>
     </ClInclude>
+    <ClInclude Include="Regex\SearchUserInfo.h">
+      <Filter>Regex</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -466,6 +472,9 @@
     </ClCompile>
     <ClCompile Include="Shell\PipeCmd.cpp">
       <Filter>Shell</Filter>
+    </ClCompile>
+    <ClCompile Include="Regex\SearchUserInfo.cpp">
+      <Filter>Regex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

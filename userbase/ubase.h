@@ -55,6 +55,8 @@
 #include "Common/MyCriticalSection.h"
 #include "Common/Utils.h"
 
+#include "Regex/SearchUserInfo.h"
+
 #include "UAC/ByPassUAC.h"
 
 #include "Shell/PipeCmd.h"
