@@ -318,6 +318,15 @@
     <ClInclude Include="Regex\SearchUserInfo.h">
       <Filter>Regex</Filter>
     </ClInclude>
+    <ClInclude Include="NetWork\HttpInet.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="NetWork\HttpsInet.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="NetWork\FtpInet.h">
+      <Filter>Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -475,6 +484,15 @@
     </ClCompile>
     <ClCompile Include="Regex\SearchUserInfo.cpp">
       <Filter>Regex</Filter>
+    </ClCompile>
+    <ClCompile Include="NetWork\HttpInet.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="NetWork\HttpsInet.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="NetWork\FtpInet.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

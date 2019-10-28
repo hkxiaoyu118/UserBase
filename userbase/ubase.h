@@ -5,7 +5,9 @@
 #include "NetWork/HttpInet.h"
 #include "NetWork/HttpsInet.h"
 #include "NetWork/HttpUnity.h"
-#include "NetWork/WinInet_Ftp.h"
+#include "NetWork/FtpInet.h"
+#include "NetWork/HttpInet.h"
+#include "NetWork/HttpsInet.h"
 
 #include "Time/UserTimer.h"
 

@@ -1,5 +1,4 @@
-#include "stdafx.h"
-#include "WinInet_Ftp.h"
+#include "FtpInet.h"
 
 
 void Ftp_ShowError(char *lpszText)

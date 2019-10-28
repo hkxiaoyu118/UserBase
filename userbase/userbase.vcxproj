@@ -158,8 +158,11 @@
     <ClInclude Include="Memory\UserMemory.h" />
     <ClInclude Include="NativeAPI\NtAPI.h" />
     <ClInclude Include="NetWork\FtpUtility.h" />
+    <ClInclude Include="NetWork\HttpInet.h" />
+    <ClInclude Include="NetWork\HttpsInet.h" />
     <ClInclude Include="NetWork\HttpUnity.h" />
     <ClInclude Include="NetWork\UserNetwork.h" />
+    <ClInclude Include="NetWork\FtpInet.h" />
     <ClInclude Include="OS\OSInfo.h" />
     <ClInclude Include="OS\RealOSVersion.h" />
     <ClInclude Include="OS\VersionApi.h" />
@@ -220,8 +223,11 @@
     <ClCompile Include="Memory\UserMemory.cpp" />
     <ClCompile Include="NativeAPI\NtAPI.cpp" />
     <ClCompile Include="NetWork\FtpUtility.cpp" />
+    <ClCompile Include="NetWork\HttpInet.cpp" />
+    <ClCompile Include="NetWork\HttpsInet.cpp" />
     <ClCompile Include="NetWork\HttpUnity.cpp" />
     <ClCompile Include="NetWork\UserNetwork.cpp" />
+    <ClCompile Include="NetWork\FtpInet.cpp" />
     <ClCompile Include="OS\OSInfo.cpp" />
     <ClCompile Include="OS\RealOSVersion.cpp" />
     <ClCompile Include="PE\DisguiseProcess.cpp" />
