@@ -63,6 +63,8 @@
 
 #include "Shell/PipeCmd.h"
 
+#include "Monitor/DiskVolumeMonitor.h"
+
 #include "Exception/Error.h"
 
 

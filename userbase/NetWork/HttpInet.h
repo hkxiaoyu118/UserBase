@@ -4,6 +4,7 @@
 
 #include <Windows.h>
 #include <WinInet.h>
+#include <stdio.h>
 #pragma comment(lib, "WinInet.lib")
 
 

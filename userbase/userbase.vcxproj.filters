@@ -121,6 +121,9 @@
     <Filter Include="Regex">
       <UniqueIdentifier>{4ff2fbbd-ca18-493d-a161-14703926ad99}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Monitor">
+      <UniqueIdentifier>{7c2c2d14-51e0-4f62-a1f9-30772e4c74f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -327,6 +330,9 @@
     <ClInclude Include="NetWork\FtpInet.h">
       <Filter>Network</Filter>
     </ClInclude>
+    <ClInclude Include="Monitor\DiskVolumeMonitor.h">
+      <Filter>Monitor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -493,6 +499,9 @@
     </ClCompile>
     <ClCompile Include="NetWork\FtpInet.cpp">
       <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Monitor\DiskVolumeMonitor.cpp">
+      <Filter>Monitor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
