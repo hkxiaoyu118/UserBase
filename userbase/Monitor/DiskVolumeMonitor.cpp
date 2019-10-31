@@ -69,7 +69,7 @@ LRESULT OnDeviceChange(WPARAM wParam, LPARAM lParam)
 }
 
 
-BOOL CALLBACK ProgMainDlg(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam)
+BOOL CALLBACK DiskVolMainDlg(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam)
 {
 	if (WM_DEVICECHANGE == uiMsg)
 	{

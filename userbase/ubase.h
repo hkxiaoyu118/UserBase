@@ -65,6 +65,8 @@
 
 #include "Monitor/DiskVolumeMonitor.h"
 
+#include "KeyMouse/KeyMonitor.h"
+
 #include "Exception/Error.h"
 
 

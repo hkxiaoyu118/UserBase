@@ -153,6 +153,8 @@
     <ClInclude Include="File\UserFile.h" />
     <ClInclude Include="Inject\ApcInject.h" />
     <ClInclude Include="Integer\UserInteger.h" />
+    <ClInclude Include="KeyMouse\KeyMonitor.h" />
+    <ClInclude Include="KeyMouse\VirtualKeyToAscii.h" />
     <ClInclude Include="Log\log_file.h" />
     <ClInclude Include="Memory\ShareMemory.h" />
     <ClInclude Include="Memory\UserMemory.h" />
@@ -220,6 +222,7 @@
     <ClCompile Include="File\UserFile.cpp" />
     <ClCompile Include="Inject\ApcInject.cpp" />
     <ClCompile Include="Integer\UserInteger.cpp" />
+    <ClCompile Include="KeyMouse\KeyMonitor.cpp" />
     <ClCompile Include="Log\log_file.cpp" />
     <ClCompile Include="Memory\UserMemory.cpp" />
     <ClCompile Include="Monitor\DiskVolumeMonitor.cpp" />

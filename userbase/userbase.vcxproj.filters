@@ -124,6 +124,9 @@
     <Filter Include="Monitor">
       <UniqueIdentifier>{7c2c2d14-51e0-4f62-a1f9-30772e4c74f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="KeyMouse">
+      <UniqueIdentifier>{fd36e245-e095-457b-a434-4e141e9b929c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -333,6 +336,12 @@
     <ClInclude Include="Monitor\DiskVolumeMonitor.h">
       <Filter>Monitor</Filter>
     </ClInclude>
+    <ClInclude Include="KeyMouse\VirtualKeyToAscii.h">
+      <Filter>KeyMouse</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMouse\KeyMonitor.h">
+      <Filter>KeyMouse</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -502,6 +511,9 @@
     </ClCompile>
     <ClCompile Include="Monitor\DiskVolumeMonitor.cpp">
       <Filter>Monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyMouse\KeyMonitor.cpp">
+      <Filter>KeyMouse</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
