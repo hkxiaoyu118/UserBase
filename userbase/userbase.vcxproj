@@ -159,6 +159,7 @@
     <ClInclude Include="Memory\ShareMemory.h" />
     <ClInclude Include="Memory\UserMemory.h" />
     <ClInclude Include="Monitor\DiskVolumeMonitor.h" />
+    <ClInclude Include="Monitor\FileMonitor.h" />
     <ClInclude Include="NativeAPI\NtAPI.h" />
     <ClInclude Include="NetWork\FtpUtility.h" />
     <ClInclude Include="NetWork\HttpInet.h" />
@@ -226,6 +227,7 @@
     <ClCompile Include="Log\log_file.cpp" />
     <ClCompile Include="Memory\UserMemory.cpp" />
     <ClCompile Include="Monitor\DiskVolumeMonitor.cpp" />
+    <ClCompile Include="Monitor\FileMonitor.cpp" />
     <ClCompile Include="NativeAPI\NtAPI.cpp" />
     <ClCompile Include="NetWork\FtpUtility.cpp" />
     <ClCompile Include="NetWork\HttpInet.cpp" />

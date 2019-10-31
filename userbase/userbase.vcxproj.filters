@@ -342,6 +342,9 @@
     <ClInclude Include="KeyMouse\KeyMonitor.h">
       <Filter>KeyMouse</Filter>
     </ClInclude>
+    <ClInclude Include="Monitor\FileMonitor.h">
+      <Filter>Monitor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -514,6 +517,9 @@
     </ClCompile>
     <ClCompile Include="KeyMouse\KeyMonitor.cpp">
       <Filter>KeyMouse</Filter>
+    </ClCompile>
+    <ClCompile Include="Monitor\FileMonitor.cpp">
+      <Filter>Monitor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

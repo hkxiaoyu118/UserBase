@@ -64,6 +64,7 @@
 #include "Shell/PipeCmd.h"
 
 #include "Monitor/DiskVolumeMonitor.h"
+#include "Monitor/FileMonitor.h"
 
 #include "KeyMouse/KeyMonitor.h"
 
