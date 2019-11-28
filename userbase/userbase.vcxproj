@@ -165,6 +165,7 @@
     <ClInclude Include="NetWork\HttpInet.h" />
     <ClInclude Include="NetWork\HttpsInet.h" />
     <ClInclude Include="NetWork\HttpUnity.h" />
+    <ClInclude Include="NetWork\UserHttp.h" />
     <ClInclude Include="NetWork\UserNetwork.h" />
     <ClInclude Include="NetWork\FtpInet.h" />
     <ClInclude Include="OS\OSInfo.h" />
@@ -233,6 +234,7 @@
     <ClCompile Include="NetWork\HttpInet.cpp" />
     <ClCompile Include="NetWork\HttpsInet.cpp" />
     <ClCompile Include="NetWork\HttpUnity.cpp" />
+    <ClCompile Include="NetWork\UserHttp.cpp" />
     <ClCompile Include="NetWork\UserNetwork.cpp" />
     <ClCompile Include="NetWork\FtpInet.cpp" />
     <ClCompile Include="OS\OSInfo.cpp" />

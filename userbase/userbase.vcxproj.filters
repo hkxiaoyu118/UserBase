@@ -345,6 +345,9 @@
     <ClInclude Include="Monitor\FileMonitor.h">
       <Filter>Monitor</Filter>
     </ClInclude>
+    <ClInclude Include="NetWork\UserHttp.h">
+      <Filter>Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -520,6 +523,9 @@
     </ClCompile>
     <ClCompile Include="Monitor\FileMonitor.cpp">
       <Filter>Monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="NetWork\UserHttp.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

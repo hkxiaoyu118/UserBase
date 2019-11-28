@@ -8,6 +8,7 @@
 #include "NetWork/FtpInet.h"
 #include "NetWork/HttpInet.h"
 #include "NetWork/HttpsInet.h"
+#include "NetWork/UserHttp.h"
 
 #include "Time/UserTimer.h"
 
