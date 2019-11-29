@@ -206,6 +206,8 @@
     <ClInclude Include="ThirdParty\modp_b64\modp_b64_data.h" />
     <ClInclude Include="ThirdParty\Network\network_util.h" />
     <ClInclude Include="ThirdParty\Network\nio_base.h" />
+    <ClInclude Include="ThirdParty\Zip\miniz.h" />
+    <ClInclude Include="ThirdParty\Zip\zip.h" />
     <ClInclude Include="Time\UserTimer.h" />
     <ClInclude Include="UAC\ByPassUAC.h" />
     <ClInclude Include="ubase.h" />
@@ -274,6 +276,7 @@
     <ClCompile Include="ThirdParty\MHook\mhook-lib\mhook.cpp" />
     <ClCompile Include="ThirdParty\modp_b64\modp_b64.cc" />
     <ClCompile Include="ThirdParty\Network\network_util.cpp" />
+    <ClCompile Include="ThirdParty\Zip\zip.c" />
     <ClCompile Include="Time\UserTimer.cpp" />
     <ClCompile Include="UAC\ByPassUAC.cpp" />
     <ClCompile Include="UAC\BypassUACTest.cpp" />
