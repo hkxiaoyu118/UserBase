@@ -58,4 +58,7 @@ namespace ubase
 	//文件压缩
 	bool CompressData(BYTE *pUncompressData, DWORD dwUncompressDataLength, BYTE **ppCompressData, DWORD *pdwCompressDataLength);//压缩数据,返回指针,需要自行释放内存
 	bool UncompressData(BYTE *pCompressData, DWORD dwCompressDataLength, BYTE **ppUncompressData, DWORD *pdwUncompressDataLength);//解压缩数据,返回指针,需要自行释放内存
+
+	//PE文件相关常用操作
+	std::wstring FsGetFileVersion(LPCWSTR lpszFilePath);//获取PE文件的文件版本号,必须是PE文件
 };

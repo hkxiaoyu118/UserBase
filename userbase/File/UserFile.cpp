@@ -773,4 +773,56 @@ namespace ubase
 
 		return bRet;
 	}
+
+	std::wstring FsGetFileVersion(LPCWSTR lpszFilePath)
+	{
+		std::wstring szFilePath(lpszFilePath);
+		std::wstring szResult(L"0.0.0.0");
+
+		if (PathFileExistsW(szFilePath.c_str()))
+		{
+			VS_FIXEDFILEINFO *pVerInfo = NULL;
+			DWORD dwTemp, dwSize;
+			BYTE *pData = NULL;
+			UINT uLen;
+
+			dwSize = GetFileVersionInfoSizeW(lpszFilePath, &dwTemp);
+			if (dwSize == 0)
+			{
+				return szResult;
+			}
+
+			pData = new BYTE[dwSize + 1];
+			if (pData == NULL)
+			{
+				return szResult;
+			}
+
+			if (!GetFileVersionInfoW(lpszFilePath, 0, dwSize, pData))
+			{
+				delete[] pData;
+				return szResult;
+			}
+
+			if (!VerQueryValueW(pData, L"\\", (void **)&pVerInfo, &uLen))
+			{
+				delete[] pData;
+				return szResult;
+			}
+
+			DWORD verMS = pVerInfo->dwFileVersionMS;
+			DWORD verLS = pVerInfo->dwFileVersionLS;
+			DWORD major = HIWORD(verMS);
+			DWORD minor = LOWORD(verMS);
+			DWORD build = HIWORD(verLS);
+			DWORD revision = LOWORD(verLS);
+			delete[] pData;
+
+			WCHAR wzResult[128] = { 0 };
+			wsprintfW(wzResult, L"%d.%d.%d.%d", major, minor, build, revision);
+			szResult = wzResult;
+		}
+
+		return szResult;
+	}
 }
