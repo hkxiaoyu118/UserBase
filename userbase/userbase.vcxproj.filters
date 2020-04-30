@@ -130,6 +130,9 @@
     <Filter Include="ThirdParty\Zip">
       <UniqueIdentifier>{c9d957ba-d437-4cc9-9fa2-dd42a8fd9fc0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Hardware">
+      <UniqueIdentifier>{85fb8838-d570-4f3d-bdd9-6be4841f8b9b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -357,6 +360,9 @@
     <ClInclude Include="ThirdParty\Zip\zip.h">
       <Filter>ThirdParty\Zip</Filter>
     </ClInclude>
+    <ClInclude Include="Hardware\mac.h">
+      <Filter>Hardware</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -538,6 +544,9 @@
     </ClCompile>
     <ClCompile Include="ThirdParty\Zip\zip.c">
       <Filter>ThirdParty\Zip</Filter>
+    </ClCompile>
+    <ClCompile Include="Hardware\mac.cpp">
+      <Filter>Hardware</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

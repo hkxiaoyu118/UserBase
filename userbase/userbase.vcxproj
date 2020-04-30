@@ -151,6 +151,7 @@
     <ClInclude Include="Exception\Error.h" />
     <ClInclude Include="File\RtlCompressBuffer.h" />
     <ClInclude Include="File\UserFile.h" />
+    <ClInclude Include="Hardware\mac.h" />
     <ClInclude Include="Inject\ApcInject.h" />
     <ClInclude Include="Integer\UserInteger.h" />
     <ClInclude Include="KeyMouse\KeyMonitor.h" />
@@ -224,6 +225,7 @@
     <ClCompile Include="Exception\Error.cpp" />
     <ClCompile Include="File\RtlCompressBuffer.cpp" />
     <ClCompile Include="File\UserFile.cpp" />
+    <ClCompile Include="Hardware\mac.cpp" />
     <ClCompile Include="Inject\ApcInject.cpp" />
     <ClCompile Include="Integer\UserInteger.cpp" />
     <ClCompile Include="KeyMouse\KeyMonitor.cpp" />
