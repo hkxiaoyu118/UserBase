@@ -66,7 +66,7 @@ void ControlDeLength(std::string &strtext)
 		size++;
 		p++;
 	}
-	strtext.resize(size + 1);
+	strtext.resize(size);
 }
 
 std::string Encoder(std::string srctext, std::string key)
