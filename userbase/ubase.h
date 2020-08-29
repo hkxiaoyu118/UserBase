@@ -71,6 +71,8 @@
 
 #include "Exception/Error.h"
 
+#include "Sign/UserSign.h"
+
 
 //以下是ThirdParty(三方函数)
 #include "ThirdParty/CmdLineArgs/CmdLineArgs.h"

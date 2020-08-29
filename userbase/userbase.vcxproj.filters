@@ -133,6 +133,9 @@
     <Filter Include="Hardware">
       <UniqueIdentifier>{85fb8838-d570-4f3d-bdd9-6be4841f8b9b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sign">
+      <UniqueIdentifier>{0ffd6e5a-5c01-49e6-b2d3-b6b0cbf11511}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -363,6 +366,9 @@
     <ClInclude Include="Hardware\mac.h">
       <Filter>Hardware</Filter>
     </ClInclude>
+    <ClInclude Include="Sign\UserSign.h">
+      <Filter>Sign</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -547,6 +553,9 @@
     </ClCompile>
     <ClCompile Include="Hardware\mac.cpp">
       <Filter>Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="Sign\UserSign.cpp">
+      <Filter>Sign</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
