@@ -43,6 +43,7 @@
 
 #include "Crypto/aes_helper.h"
 #include "Crypto/base64.h"
+#include "Crypto/RsaHelper.h"
 
 #include "Window/TSWindowsAPI.h"
 #include "Window/TrayWindow.h"
