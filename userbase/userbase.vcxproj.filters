@@ -372,6 +372,9 @@
     <ClInclude Include="Crypto\RsaHelper.h">
       <Filter>Crypto</Filter>
     </ClInclude>
+    <ClInclude Include="Crypto\HashHelper.h">
+      <Filter>Crypto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -561,6 +564,9 @@
       <Filter>Sign</Filter>
     </ClCompile>
     <ClCompile Include="Crypto\RsaHelper.cpp">
+      <Filter>Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="Crypto\HashHelper.cpp">
       <Filter>Crypto</Filter>
     </ClCompile>
   </ItemGroup>
